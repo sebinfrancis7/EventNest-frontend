@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/navbar.jsx';
 import EventImage from '../assets/festivity.svg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
 // import { Link } from 'react-router-dom';

@@ -56,6 +56,7 @@ function MediaCard(props) {
 				title={props.title}
 				subheader={props.date}
 			/>
+
 			<CardMedia
 				className={classes.media}
 				image={props.img_url}
