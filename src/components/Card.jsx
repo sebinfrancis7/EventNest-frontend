@@ -64,10 +64,7 @@ function MediaCard(props) {
 			/>
 			<CardContent>
 				<Typography variant="body2" color="textPrimary" component="p">
-					DATE &emsp; &emsp;: {props.cardContent}
-				</Typography>
-				<Typography variant="body2" color="textPrimary" component="p">
-					LOCATION : {props.cardContent}
+					Location : {props.city}
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
@@ -95,9 +92,9 @@ function MediaCard(props) {
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
 					<Typography paragraph>COST: {props.price}</Typography>
-					<Typography paragraph>EVENT:</Typography>
+					<Typography paragraph>EVENT: {props.description}</Typography>
 					<Typography paragraph>
-						{props.info}
+						{props.city}
 					</Typography>
 				</CardContent>
 			</Collapse>
