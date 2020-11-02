@@ -7,7 +7,6 @@ import Events from './pages/EventsPage.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-// import { dark } from '@material-ui/core/styles/createPalette';
 
 const theme = createMuiTheme({
 	palette: {

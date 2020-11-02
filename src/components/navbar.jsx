@@ -14,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
+import { Button, StylesProvider } from '@material-ui/core';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 		marginRight: theme.spacing(2),
 	},
 	title: {
-		width: '100%',
+		// width: '100%',
 		// display: 'none',
 		// [theme.breakpoints.up('sm')]: {
 		// 	display: 'block',
@@ -157,58 +158,83 @@ export default function Navbar() {
 	);
 
 	return (
-		<div className={classes.grow}>
-			<AppBar color="secondary" className="no-shadow" position="static">
-				<Toolbar>
-					<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>
+		<StylesProvider injectFirst>
+			<div className={classes.grow}>
+				<AppBar color="secondary" className="no-shadow" position="static">
+					<Toolbar>
+						<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>
                         Procyon
-					</Typography>
-					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
+						</Typography>
+						<div className={classes.search}>
+							<div className={classes.searchIcon}>
+								<SearchIcon />
+							</div>
+							<InputBase
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput,
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
 						</div>
-						<InputBase
-							placeholder="Search…"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div>
-					<div className={classes.grow} />
-					<div className={classes.sectionDesktop}>
-						<IconButton aria-label="show 17 new notifications" color="inherit">
-							<Badge badgeContent={17} color="secondary">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton>
-						<IconButton
-							edge="end"
-							aria-label="account of current user"
-							aria-controls={menuId}
-							aria-haspopup="true"
-							onClick={handleProfileMenuOpen}
-							color="inherit"
-						>
-							<AccountCircle />
-						</IconButton>
-					</div>
-					<div className={classes.sectionMobile}>
-						<IconButton
-							aria-label="show more"
-							aria-controls={mobileMenuId}
-							aria-haspopup="true"
-							onClick={handleMobileMenuOpen}
-							color="inherit"
-						>
-							<MenuIcon />
-						</IconButton>
-					</div>
-				</Toolbar>
-			</AppBar>
-			{renderMobileMenu}
-			{renderMenu}
-		</div>
+						<div className={classes.grow} />
+						<div className={classes.sectionDesktop}>
+							{/* <Button variant="contained" className="nav-button" noWrap>
+							Sign Up
+						</Button>
+						<Typography variant="h6">
+							or
+						</Typography>
+						<Button variant="contained" className="nav-button">
+							Sign In
+						</Button> */}
+							<IconButton aria-label="show 17 new notifications" color="inherit">
+								<Badge badgeContent={17} color="secondary">
+									<NotificationsIcon />
+								</Badge>
+							</IconButton>
+							<IconButton
+								edge="end"
+								aria-label="account of current user"
+								aria-controls={menuId}
+								aria-haspopup="true"
+								onClick={handleProfileMenuOpen}
+								color="inherit"
+							>
+								<AccountCircle />
+							</IconButton>
+						</div>
+						<div className={classes.sectionMobile}>
+							<IconButton
+								aria-label="show more"
+								aria-controls={mobileMenuId}
+								aria-haspopup="true"
+								onClick={handleMobileMenuOpen}
+								color="inherit"
+							>
+								<MenuIcon />
+							</IconButton>
+						</div>
+					</Toolbar>
+					<Toolbar className="no-min-height">
+						<Button variant="contained" className="nav-button">
+						Music
+						</Button>
+						<Button variant="contained" className="nav-button">
+						Comedy
+						</Button>
+						<Button variant="contained" className="nav-button">
+						Arts
+						</Button>
+						<Button variant="contained" className="nav-button">
+						Fitness
+						</Button>
+					</Toolbar>
+				</AppBar>
+				{renderMobileMenu}
+				{renderMenu}
+			</div>
+		</StylesProvider> 
 	);
 }

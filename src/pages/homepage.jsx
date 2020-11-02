@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import EventImage from '../assets/festivity.svg';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, StylesProvider, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import '../sass/homepage.scss';
 
 export default function Homepage() {
 	return (
-		<div>
+		<StylesProvider injectFirst>
 			<Navbar />
 			<Grid container >
 				<Grid conatiner item xs={12} lg={6} alignItems="center" justify="center" direction="column" className="title-container">
@@ -24,7 +24,6 @@ export default function Homepage() {
 					<img src={EventImage} alt="Festival Image" className={'event-image'} />
 				</Grid>
 			</Grid>
-			{/* <div className={'landing'}></div> */}
-		</div>
+		</StylesProvider>
 	);
 }
