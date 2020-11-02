@@ -49,11 +49,11 @@ function CardRow() {
 				{events.map(createCard)}
 			</div>
 			<div className='scroll-buttons'>
-				<IconButton onClick={handleScrollLeft}>
-					<ChevronLeftIcon className='left-button' />
+				<IconButton onClick={handleScrollLeft} className='left-button'>
+					<ChevronLeftIcon  />
 				</IconButton>
-				<IconButton onClick={handleScrollRight}>
-					<ChevronRightIcon className='right-button' />
+				<IconButton onClick={handleScrollRight}  className='right-button'>
+					<ChevronRightIcon />
 				</IconButton>
 
 			</div>
