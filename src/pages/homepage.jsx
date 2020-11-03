@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/navbar.jsx';
 import EventImage from '../assets/festivity.svg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
-// import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import '../sass/homepage.scss';
 import EventPanel from '../components/EventPanel';
 
@@ -20,6 +20,11 @@ export default function Homepage() {
 							Explore Events
 						</Button>
 					</Link>
+					<RouterLink to='/create-event'>
+						<Button variant="contained" color="primary" className="button">
+							Create Event
+						</Button>
+					</RouterLink>
 				</Grid>
 				<Grid conatiner item xs={12} lg={6} alignItems="center" justify="center">
 					<img src={EventImage} alt="Festival Image" className={'event-image'} />

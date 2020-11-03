@@ -4,6 +4,7 @@ import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
 import Error from './pages/404';
 import Events from './pages/EventsPage.jsx';
+import CreateEvent from './pages/createvent.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -33,6 +34,9 @@ function App() {
 					</Route>
 					<Route path='/events' exact>
 						<Events />
+					</Route>
+					<Route path='/create-event' exact>
+						<CreateEvent />
 					</Route>
 					<Route path="*">
 						<Error />

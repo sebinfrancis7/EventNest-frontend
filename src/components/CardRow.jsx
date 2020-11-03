@@ -23,17 +23,17 @@ function createCard(event) {
 }
 
 function CardRow(props) {
-// eslint-disable-next-line
+	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
 	const listRef = useRef(null);
-	
+
 	useEffect(() => {
 		var category = props.category;
 		console.log(category);
 		let url;
-		if(category) 
+		if (category)
 			url = 'http://localhost:4000/events?category=' + category;
-		else 
+		else
 			url = 'http://localhost:4000/events';
 		axios
 			.get(url)
@@ -41,7 +41,7 @@ function CardRow(props) {
 				console.log(res);
 				setEvents(res.data);
 			});
-	},[]);
+	}, []);
 
 	const handleScrollLeft = () => {
 		if (listRef.current) {
@@ -68,9 +68,9 @@ function CardRow(props) {
 			</div>
 			<div className='scroll-buttons'>
 				<IconButton onClick={handleScrollLeft} className='left-button'>
-					<ChevronLeftIcon  />
+					<ChevronLeftIcon />
 				</IconButton>
-				<IconButton onClick={handleScrollRight}  className='right-button'>
+				<IconButton onClick={handleScrollRight} className='right-button'>
 					<ChevronRightIcon />
 				</IconButton>
 
