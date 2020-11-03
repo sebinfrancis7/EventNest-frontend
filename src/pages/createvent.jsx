@@ -4,14 +4,10 @@ import axios from 'axios';
 function createvent() {
 
 	const [details, setDetails] = useState({ organizer: '', title: '', category: '', city: '', image_url: '', price: '', description: '', attendees: '' });
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('clicked');
-		console.log(JSON.stringify(details));
-		const data = JSON.stringify(details);
 		axios
-			.post('http://localhost:4000/events', data)
+			.post('http://localhost:4000/events', details)
 			.then(res => {
 				console.log(res);
 				console.log(res.data);
