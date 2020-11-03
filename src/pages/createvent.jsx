@@ -57,6 +57,7 @@ function createvent() {
 			}
 		}
 		);
+		console.log(inputvalue);
 	}
 
 	return (
