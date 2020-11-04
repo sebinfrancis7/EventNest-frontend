@@ -1,7 +1,17 @@
 .card {
-    box-shadow: 0px 0px 1rem 2px rgba(#6C63FF,0.2);
+    box-shadow: 0px 0px 2rem 0.5rem rgba(#6C63FF,0.2);
     height: 25rem;
     width: 20rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    margin-right: 2rem;
+
+    @media (max-width: 600px) {
+        height: 12rem;
+        width: 5rem;
+        margin-right: 1rem;
+    }
+
 
     &:hover {
         box-shadow: 0px 0px 1rem 2px rgba(#6C63FF,0.3);
@@ -15,15 +25,22 @@
 
     &-body {
         padding-bottom: 16px !important;
+        display: flex;
+        justify-content: space-between;    
+        
+        &-text {
+            display: inline-flex;
+        }
     }
     
     &-img {
-        border-radius: 0 0 1rem 1rem;
-        min-height: 22rem;
+        border-radius: 1rem;
+        min-height: 21.5rem;
         background-size: cover;
     }
 
     &-title {
+        border-radius: 1rem;
         margin-top: 5px;
         margin-left: 5px;
         background-color: rgba(#F50057, 0.5);
@@ -36,4 +53,8 @@
             cursor: initial;
         }
     }
+}
+
+.title-fav {
+    padding: 0;
 }

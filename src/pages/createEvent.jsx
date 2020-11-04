@@ -5,9 +5,6 @@ import { Button, Grid, makeStyles, StylesProvider, TextField, Typography } from 
 import { Paper } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { AddCircle } from '@material-ui/icons';
-import { Avatar } from '@material-ui/core';
-
 import '../sass/createEvent.scss';
 
 

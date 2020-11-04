@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Button, CardActionArea, makeStyles, StylesProvider } from '@material-ui/core';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -68,7 +67,6 @@ function MediaCard(props) {
 				<CardActionArea>
 					<Link to={`/events/${props.event_id}`}>
 						<CardMedia
-							// onClick={handleClick}
 							className={classNames(classes.media, 'card-img')}
 							image={props.img_url}
 							title={props.title}
@@ -77,18 +75,20 @@ function MediaCard(props) {
 								<Button color="secondary" variant="contained" className="card-title" noWrap>
 									{props.title}
 								</Button>
-								<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
-									{/* {favorite ? coloris = "red":coloris = null} */}
-									<FavoriteIcon style={{ fill: coloris }} />
-								</IconButton>
+
 							</div>
 						</CardMedia>
 					</Link>
+
 				</CardActionArea>
 				<CardContent className="card-body">
-					<Typography variant="body2" color="textPrimary" component="p">
-						Location : {props.city}
+					<Typography variant="body2" color="textPrimary" component="p" className="card-body-text">
+					Location : {props.city}
 					</Typography>
+					<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
+						{/* {favorite ? coloris = "red":coloris = null} */}
+						<FavoriteIcon style={{ fill: coloris }} />
+					</IconButton>
 				</CardContent>
 				{/* <CardActions disableSpacing>
 				<IconButton onClick={handleFavorite} aria-label="add to favorites">

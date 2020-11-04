@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar.jsx';
-import EventImage from '../assets/festivity.svg';
+import EventImage from '../assets/blocks.jpg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import '../sass/homepage.scss';
@@ -11,22 +11,25 @@ export default function Homepage() {
 		<StylesProvider injectFirst>
 			<Navbar />
 			<Grid container className="welcome-container">
-				<Grid conatiner item xs={12} lg={6} alignItems="center" justify="center" direction="column" className="title-container">
-					<Typography variant="h3" alignItems="center" justify="center" className="title">
-						Welcome to Procyon
+				<Grid container item xs={12} lg={6} direction="column" className="title-container">
+					<Typography variant="h3" justify="center" className="title">
+						Welcome to EventNest
+					</Typography>
+					<Typography variant="subtitle1" justify="center" className="subtitle">
+						Your online destination for hosting and exploring events across the globe, at your fingertips.	
 					</Typography>
 					<Link href="#events">
 						<Button variant="contained" color="primary" className="button">
 							Explore Events
 						</Button>
 					</Link>
-					<RouterLink to='/create-event'>
-						<Button variant="contained" color="primary" className="button">
+					{/* <RouterLink to='/create-event'>
+						<Button variant="contained" color="primary" className="button" hidden>
 							Create Event
 						</Button>
-					</RouterLink>
+					</RouterLink> */}
 				</Grid>
-				<Grid conatiner item xs={12} lg={6} alignItems="center" justify="center">
+				<Grid container item xs={12} lg={6} alignItems="center" justify="center">
 					<img src={EventImage} alt="Festival Image" className={'event-image'} />
 				</Grid>
 			</Grid>

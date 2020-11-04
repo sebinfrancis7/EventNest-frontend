@@ -63,7 +63,7 @@ function CardRow(props) {
 	};
 
 	return (
-		<div>
+		<div className='cards-container'>
 			<div className='events-row' ref={listRef}>
 				{events.map(createCard)}
 			</div>

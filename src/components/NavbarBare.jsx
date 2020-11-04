@@ -166,7 +166,7 @@ export default function Navbar() {
 						<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>
 							<Link to="/" className="logo">EventNest</Link>
 						</Typography>
-						<div className={classes.search}>
+						{/* <div className={classes.search}>
 							<div className={classes.searchIcon}>
 								<SearchIcon />
 							</div>
@@ -178,23 +178,14 @@ export default function Navbar() {
 								}}
 								inputProps={{ 'aria-label': 'search' }}
 							/>
-						</div>
+						</div> */}
 						<div className={classes.grow} />
 						<div className={classes.sectionDesktop}>
-							{/* <Button variant="contained" className="nav-button" noWrap>
-							Sign Up
-						</Button>
-						<Typography variant="h6">
-							or
-						</Typography>
-						<Button variant="contained" className="nav-button">
-							Sign In
-						</Button> */}
-							<IconButton aria-label="show 17 new notifications" color="inherit">
+							{/* <IconButton aria-label="show 17 new notifications" color="inherit">
 								<Badge badgeContent={17} color="secondary">
 									<NotificationsIcon />
 								</Badge>
-							</IconButton>
+							</IconButton> */}
 							<IconButton
 								edge="end"
 								aria-label="account of current user"
@@ -218,24 +209,10 @@ export default function Navbar() {
 							</IconButton>
 						</div>
 					</Toolbar>
-					<Toolbar className="no-min-height">
-						<Button variant="contained" className="nav-button">
-							Music
-						</Button>
-						<Button variant="contained" className="nav-button">
-							Comedy
-						</Button>
-						<Button variant="contained" className="nav-button">
-							Arts
-						</Button>
-						<Button variant="contained" className="nav-button">
-							Fitness
-						</Button>
-					</Toolbar>
 				</AppBar>
 				{renderMobileMenu}
 				{renderMenu}
 			</div>
-		</StylesProvider>
+		</StylesProvider> 
 	);
 }

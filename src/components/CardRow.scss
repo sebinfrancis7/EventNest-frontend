@@ -25,9 +25,10 @@
 }
 
 .scroll-buttons {
-    position: relative;
+    position: absolute;
     width: 100%;
-    bottom: 18rem;
+    top: 50%;
+    transform: translate(0,-50%);
     display: flex;
     justify-content: space-between;
     pointer-events: none;
@@ -40,6 +41,6 @@
     pointer-events: auto;
 }
 
-// .right-button {
-//     // margin: 10px;
-// }
+.cards-container {
+    position: relative;
+}
