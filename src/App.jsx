@@ -4,7 +4,7 @@ import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
 import Error from './pages/404';
 import Events from './pages/EventsPage.jsx';
-import CreateEvent from './pages/createvent.jsx';
+import CreateEvent from './pages/createEvent.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

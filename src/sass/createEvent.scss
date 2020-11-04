@@ -1,0 +1,14 @@
+.event-input {
+    // display: block;
+    // margin-right: 1rem;
+    flex-grow: 1;
+}
+
+.event-input:nth-child(odd) {
+    margin-right: 1rem;
+}
+
+.submit-button {
+    margin-top: 1rem;
+    padding: 1rem 0;
+}
