@@ -11,6 +11,7 @@ function createCard(event) {
 	return (
 		<div className='event-card'>
 			<Card
+				event_id={event._id}
 				img_url={event.image_url}
 				title={event.title}
 				description={event.description}

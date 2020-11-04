@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Link } from 'react-router-dom';
 import '../sass/card.scss';
 import classNames from 'classnames';
 
@@ -53,6 +54,10 @@ function MediaCard(props) {
 		favorite ? setColoris('#F50057') : setColoris(null);
 	};
 
+	// const handleClick = () => {
+
+	// };
+
 	return (
 		<StylesProvider injectFirst>
 			<Card className={classNames(classes.root, 'card')}>
@@ -61,25 +66,28 @@ function MediaCard(props) {
 					subheader={props.date}
 				/> */}
 				<CardActionArea>
-					<CardMedia
-						className={classNames(classes.media, 'card-img')}
-						image={props.img_url}
-						title={props.title}
-					>
-						<div className="card-header">
-							<Button color="secondary" variant="contained" className="card-title" noWrap>
-								{props.title}
-							</Button>
-							<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
-								{/* {favorite ? coloris = "red":coloris = null} */}
-								<FavoriteIcon style={{ fill: coloris }} />
-							</IconButton>
-						</div>
-					</CardMedia>
+					<Link to={`/events/${props.event_id}`}>
+						<CardMedia
+							// onClick={handleClick}
+							className={classNames(classes.media, 'card-img')}
+							image={props.img_url}
+							title={props.title}
+						>
+							<div className="card-header">
+								<Button color="secondary" variant="contained" className="card-title" noWrap>
+									{props.title}
+								</Button>
+								<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
+									{/* {favorite ? coloris = "red":coloris = null} */}
+									<FavoriteIcon style={{ fill: coloris }} />
+								</IconButton>
+							</div>
+						</CardMedia>
+					</Link>
 				</CardActionArea>
 				<CardContent className="card-body">
 					<Typography variant="body2" color="textPrimary" component="p">
-					Location : {props.city}
+						Location : {props.city}
 					</Typography>
 				</CardContent>
 				{/* <CardActions disableSpacing>

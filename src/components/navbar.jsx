@@ -163,7 +163,7 @@ export default function Navbar() {
 				<AppBar color="primary" className="no-shadow" position="static">
 					<Toolbar>
 						<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>
-                        Procyon
+							Procyon
 						</Typography>
 						<div className={classes.search}>
 							<div className={classes.searchIcon}>
@@ -219,22 +219,22 @@ export default function Navbar() {
 					</Toolbar>
 					<Toolbar className="no-min-height">
 						<Button variant="contained" className="nav-button">
-						Music
+							Music
 						</Button>
 						<Button variant="contained" className="nav-button">
-						Comedy
+							Comedy
 						</Button>
 						<Button variant="contained" className="nav-button">
-						Arts
+							Arts
 						</Button>
 						<Button variant="contained" className="nav-button">
-						Fitness
+							Fitness
 						</Button>
 					</Toolbar>
 				</AppBar>
 				{renderMobileMenu}
 				{renderMenu}
 			</div>
-		</StylesProvider> 
+		</StylesProvider>
 	);
 }
