@@ -73,7 +73,6 @@ function CardRow(props) {
 				<IconButton onClick={handleScrollRight} className='right-button'>
 					<ChevronRightIcon />
 				</IconButton>
-
 			</div>
 		</div>
 

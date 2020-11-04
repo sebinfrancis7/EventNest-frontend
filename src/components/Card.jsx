@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, CardActionArea, makeStyles, StylesProvider } from '@material-ui/core';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -13,14 +13,17 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import '../sass/card.scss';
+import classNames from 'classnames';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		maxWidth: 345,
+		minWidth: 200,
+		maxWidth: 350,
 	},
 	media: {
-		height: 50,
-		paddingTop: '56.25%', // 16:9
+		// height: 150,
+		// paddingTop: '56.25%', // 16:9
 	},
 	expand: {
 		transform: 'rotate(0deg)',
@@ -47,29 +50,41 @@ function MediaCard(props) {
 
 	const handleFavorite = () => {
 		favorite ? setfavorite(false) : setfavorite(true);
-		favorite ? setColoris('red') : setColoris(null);
+		favorite ? setColoris('#F50057') : setColoris(null);
 	};
 
 	return (
-		<Card className={classes.root}>
-			<CardHeader
-				title={props.title}
-				subheader={props.date}
-			/>
-
-			<CardMedia
-				className={classes.media}
-				image={props.img_url}
-				title={props.title}
-			/>
-			<CardContent>
-				<Typography variant="body2" color="textPrimary" component="p">
+		<StylesProvider injectFirst>
+			<Card className={classNames(classes.root, 'card')}>
+				{/* <CardHeader
+					title={props.title}
+					subheader={props.date}
+				/> */}
+				<CardActionArea>
+					<CardMedia
+						className={classNames(classes.media, 'card-img')}
+						image={props.img_url}
+						title={props.title}
+					>
+						<div className="card-header">
+							<Button color="secondary" variant="contained" className="card-title" noWrap>
+								{props.title}
+							</Button>
+							<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
+								{/* {favorite ? coloris = "red":coloris = null} */}
+								<FavoriteIcon style={{ fill: coloris }} />
+							</IconButton>
+						</div>
+					</CardMedia>
+				</CardActionArea>
+				<CardContent className="card-body">
+					<Typography variant="body2" color="textPrimary" component="p">
 					Location : {props.city}
-				</Typography>
-			</CardContent>
-			<CardActions disableSpacing>
+					</Typography>
+				</CardContent>
+				{/* <CardActions disableSpacing>
 				<IconButton onClick={handleFavorite} aria-label="add to favorites">
-					{/* {favorite ? coloris = "red":coloris = null} */}
+					{favorite ? coloris = "red":coloris = null}
 					<FavoriteIcon style={{ fill: coloris }} />
 				</IconButton>
 				<Typography>
@@ -97,8 +112,9 @@ function MediaCard(props) {
 						{props.city}
 					</Typography>
 				</CardContent>
-			</Collapse>
-		</Card>
+			</Collapse> */}
+			</Card>
+		</StylesProvider>
 	);
 }
 
