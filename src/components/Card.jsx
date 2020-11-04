@@ -46,7 +46,7 @@ function MediaCard(props) {
 		<StylesProvider injectFirst>
 			<Card className={classNames(classes.root, 'card')}>
 				<CardActionArea>
-					<Link to={`/events/${props.event_id}`}>
+					<Link to={`/events/${props.event_id}`} className="card-link">
 						<CardMedia
 							className={classNames(classes.media, 'card-img')}
 							image={props.img_url}

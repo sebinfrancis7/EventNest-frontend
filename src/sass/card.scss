@@ -12,6 +12,9 @@
         margin-right: 1rem;
     }
 
+    &-link {
+        text-decoration:  none;
+    }
 
     &:hover {
         box-shadow: 0px 0px 1rem 2px rgba(#6C63FF,0.3);
