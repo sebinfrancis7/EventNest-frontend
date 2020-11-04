@@ -24,7 +24,6 @@ function createCard(event) {
 }
 
 function CardRow(props) {
-	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
 	const listRef = useRef(null);
 

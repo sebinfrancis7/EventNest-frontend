@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/Navbar.jsx';
+import Navbar from '../components/Navbar';
 import EventImage from '../assets/blocks.jpg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
