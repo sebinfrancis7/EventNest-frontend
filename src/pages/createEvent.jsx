@@ -59,7 +59,7 @@ function Copyright() {
 function createvent() {
 	const classes = useStyles();
 
-	const [details, setDetails] = useState({ organizer: '', title: '', category: '', city: '', image_url: '', price: '', description: '', attendees: '' });
+	const [details, setDetails] = useState({ organizer: '', title: '', category: '', city: '', image_url: '', price: '', description: '', max_attendees: '' });
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(details);
@@ -155,14 +155,14 @@ function createvent() {
 								onChange={handleChange}
 							/>
 							<TextField
-								name="attendees"
-								id="attendees"
-								label="Max Attendees"
+								name="max_attendees"
+								id="max_attendees"
+								label="Max max_attendees"
 								variant="outlined"
 								margin="normal"
 								className="event-input"
 								type="number"
-								value={details.attendees}
+								value={details.max_attendees}
 								onChange={handleChange}
 							/>
 							<TextField
