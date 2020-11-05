@@ -160,7 +160,7 @@ export default function Navbar() {
 
 	return (
 		<StylesProvider injectFirst>
-			<div className={classes.grow}>
+			<div className={classNames(classes.grow, 'navbar')}>
 				<AppBar color="primary" className="no-shadow" position="static">
 					<Toolbar>
 						<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>

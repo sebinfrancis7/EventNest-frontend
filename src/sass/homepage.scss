@@ -13,7 +13,6 @@
     @media (max-width: 600px) {
         text-align: center;
         padding: 1rem 1rem;
-
     }
 
     // @media (min-width: 600px) and (max-width: 1280px) {
@@ -26,7 +25,7 @@
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-60%);
+    transform: translate(-50%, -60%);
     z-index: -1;
 
     @media (max-width: 600px) {
@@ -58,7 +57,7 @@
     max-width: 25rem;
     margin-top: 1rem;
     display: block;
-    
+
     @media (max-width: 600px) {
         text-align: center;
         max-width: none;
@@ -67,12 +66,15 @@
 }
 
 .button {
-    box-shadow: 0px 0px 2rem 0.5rem rgba(#6C63FF,0.3);
     margin-top: 2rem !important;
     margin-right: 1rem;
 
-    &:hover {
-        box-shadow: 0px 0px 2rem 0.5rem rgba(#6C63FF,0.2);
+    &-shadow {
+        box-shadow: 0px 0px 2rem 0.5rem rgba(#6c63ff, 0.3);
+        
+        &:hover {
+            box-shadow: 0px 0px 2rem 0.5rem rgba(#6c63ff, 0.2);
+        }
     }
 }
 

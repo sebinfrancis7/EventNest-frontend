@@ -5,7 +5,7 @@ import Card from './Card.jsx';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
-import './CardRow.scss';
+import '../sass/cardrow.scss';
 
 function createCard(event) {
 	return (
@@ -24,6 +24,7 @@ function createCard(event) {
 }
 
 function CardRow(props) {
+	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
 	const listRef = useRef(null);
 

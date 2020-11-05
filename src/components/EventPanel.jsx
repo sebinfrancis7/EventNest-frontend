@@ -1,6 +1,6 @@
 import React from 'react';
 import CardRow from '../components/CardRow.jsx';
-import './EventPanel.scss';
+import '../sass/eventpanel.scss';
 
 function EventPanel() {
 	return (

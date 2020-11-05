@@ -3,8 +3,8 @@ import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
 import Error from './pages/404';
-import Events from './pages/EventsPage.jsx';
-import Event from './pages/event.jsx';
+import Events from './pages/eventsPage.jsx';
+import Event from './pages/eventinfo.jsx';
 import CreateEvent from './pages/createEvent.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
@@ -19,6 +19,9 @@ const theme = createMuiTheme({
 			// main: '#FFB27E',
 		},
 		type: 'light',
+	},
+	typography: {
+		fontFamily: '\'Open Sans\', sans-serif',
 	}
 });
 
