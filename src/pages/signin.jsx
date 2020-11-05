@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -48,6 +49,42 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
 	const classes = useStyles();
+	
+	const [details, setDetails] = useState({ username: '',password: ''});
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios
+			.post('http://localhost:4000/customer/login', details, {withCredentials: true })
+			.then(res => {
+				console.log(res);
+				console.log(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
+	const handleFacebook = (e) => {
+		e.preventDefault();
+		fetch('http://localhost:4000/auth/facebook',{mode: 'no-cors'})
+		.then(res => console.log(res), err => console.log(err));
+		// axios
+		// 	.get('http://localhost:4000/auth/facebook')
+		// 	.then(res => {
+		// 		console.log(res);
+		// 		console.log(res.data);
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 	});
+	};
+
+	function handleChange(event) {
+		const inputname = event.target.name;
+		const inputvalue = event.target.value;
+		const newDetails = { ...details, [inputname]: inputvalue};
+		setDetails(newDetails);
+	}
 
 	return (
 		<StylesProvider injectFirst>
@@ -62,26 +99,29 @@ export default function SignInSide() {
 						<Typography component="h1" variant="h5">
             Sign in
 						</Typography>
-						<form className={classes.form} noValidate>
-							<TextField
+						<form className={classes.form} noValidate onSubmit={handleSubmit}>
+						<TextField
+								name="username"
 								variant="outlined"
-								margin="normal"
+								required
 								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
-								autoComplete="email"
+								id="username"
+								label="username"
+								value={details.username}
+								onChange={handleChange}
 								autoFocus
 							/>
 							<TextField
 								variant="outlined"
-								margin="normal"
+								required
 								fullWidth
 								name="password"
 								label="Password"
 								type="password"
 								id="password"
 								autoComplete="current-password"
+								value={details.password}
+								onChange={handleChange}
 							/>
 							<FormControlLabel
 								control={<Checkbox value="remember" color="primary" />}
@@ -95,6 +135,16 @@ export default function SignInSide() {
 								className={classes.submit}
 							>
               Sign In
+							</Button>
+							<Button
+								type="submit"
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.submit}
+								onClick={handleFacebook}
+							>
+              Facebook
 							</Button>
 							<Grid container>
 								<Grid item xs={12} sm={6}>
