@@ -40,7 +40,7 @@ export default function Homepage() {
 						Your online destination for hosting and exploring events across the globe, at your fingertips.	
 					</Typography>
 					<Link href="#events">
-						<Button variant="contained" color="primary" className="button">
+						<Button variant="contained" color="primary" className="button button-shadow">
 							Explore Events
 						</Button>
 					</Link>
