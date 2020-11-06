@@ -28,7 +28,7 @@ export default function Error() {
 		<div className={classes.center}>
 			<Link to="/">
 				<Button color="primary" variant="contained" className={classes.horizontal}>
-                        Go back Home
+                    Go back Home
 				</Button>
 			</Link>
 			<img src={ErrorImg} className={classes.size}></img>

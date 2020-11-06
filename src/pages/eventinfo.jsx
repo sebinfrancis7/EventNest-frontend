@@ -12,7 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
-function event(props) {
+function EventInfo(props) {
 	const [details, setDetails] = useState([]);
 
 	useEffect(() => {
@@ -66,7 +66,7 @@ function event(props) {
 											variant="contained"
 											className="event-register-button button-shadow"
 										>
-										Register
+											Register
 										</Button>
 									</Grid>
 								</Grid>
@@ -99,7 +99,7 @@ function event(props) {
 								title="About"
 							/>
 							<CardContent>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo natus ratione facere officia placeat, assumenda ab hic ducimus qui deserunt quasi rerum laborum voluptatem ipsam tempora. Dolore debitis nulla tempora est libero eligendi? Voluptates fugiat possimus quasi aut beatae omnis aliquid? Expedita iure repudiandae natus possimus eligendi ipsam non, adipisci vitae ullam delectus autem sit et aperiam voluptatibus eum tempora, necessitatibus saepe eius assumenda, ea dolorum! Numquam libero deleniti voluptate repudiandae? Nisi eos ab recusandae deserunt atque odit temporibus, ducimus magni quas ipsam a, amet dolorum! Accusamus enim, impedit fuga unde reiciendis rem? Ea corporis maiores sed velit aut quam!
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo natus ratione facere officia placeat, assumenda ab hic ducimus qui deserunt quasi rerum laborum voluptatem ipsam tempora. Dolore debitis nulla tempora est libero eligendi? Voluptates fugiat possimus quasi aut beatae omnis aliquid? Expedita iure repudiandae natus possimus eligendi ipsam non, adipisci vitae ullam delectus autem sit et aperiam voluptatibus eum tempora, necessitatibus saepe eius assumenda, ea dolorum! Numquam libero deleniti voluptate repudiandae? Nisi eos ab recusandae deserunt atque odit temporibus, ducimus magni quas ipsam a, amet dolorum! Accusamus enim, impedit fuga unde reiciendis rem? Ea corporis maiores sed velit aut quam!
 							</CardContent>
 						</Card>
 					</Grid>
@@ -110,4 +110,4 @@ function event(props) {
 	);
 }
 
-export default event;
+export default EventInfo;

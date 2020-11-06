@@ -30,7 +30,7 @@ export default function Homepage() {
 				onClick={handleSubmit}
 			>
 				test
-			</Button>
+			</Button>	
 			<Grid container className="welcome-container">
 				<Grid container item xs={12} lg={6} direction="column" className="title-container">
 					<Typography variant="h3" justify="center" className="title">

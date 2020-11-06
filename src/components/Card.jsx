@@ -64,7 +64,7 @@ function MediaCard(props) {
 				</CardActionArea>
 				<CardContent className="card-body">
 					<Typography variant="body2" color="textPrimary" component="p" className="card-body-text">
-					Location : {props.city}
+						Location : {props.city}
 					</Typography>
 					<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
 						{/* {favorite ? coloris = "red":coloris = null} */}

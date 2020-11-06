@@ -56,7 +56,7 @@ function Copyright() {
 	);
 }
 
-function createvent() {
+function CreatEvent() {
 	const classes = useStyles();
 
 	const [details, setDetails] = useState({ organizer: '', title: '', category: '', city: '', image_url: '', price: '', description: '', max_attendees: '' });
@@ -195,7 +195,9 @@ function createvent() {
 								color="primary"
 								className="submit-button"
 								fullWidth
-							>Create Event</Button>
+							>
+								Create Event
+							</Button>
 							<Box mt={5}>
 								<Copyright />
 							</Box>
@@ -208,4 +210,4 @@ function createvent() {
 	);
 }
 
-export default createvent;
+export default CreatEvent;

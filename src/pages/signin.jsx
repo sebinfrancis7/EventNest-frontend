@@ -97,10 +97,10 @@ export default function SignInSide() {
 							<LockOutlinedIcon />
 						</Avatar>
 						<Typography component="h1" variant="h5">
-            Sign in
+							Sign in
 						</Typography>
 						<form className={classes.form} noValidate onSubmit={handleSubmit}>
-						<TextField
+							<TextField
 								name="username"
 								variant="outlined"
 								required
@@ -134,7 +134,7 @@ export default function SignInSide() {
 								color="primary"
 								className={classes.submit}
 							>
-              Sign In
+								Sign In
 							</Button>
 							<a href="http://localhost:4000/auth/facebook" >Facebook</a>
 							{/* <Button
@@ -150,7 +150,7 @@ export default function SignInSide() {
 							<Grid container>
 								<Grid item xs={12} sm={6}>
 									<Link href="#" variant="body2">
-                  Forgot password?
+										Forgot password?
 									</Link>
 								</Grid>
 								<Grid item xs={12} sm={6}>

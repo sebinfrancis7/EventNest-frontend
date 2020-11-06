@@ -68,7 +68,7 @@ export default function SignUp() {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-          Sign up
+					Sign up
 				</Typography>
 				<form className={classes.form} noValidate onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
@@ -136,12 +136,12 @@ export default function SignUp() {
 						color="primary"
 						className={classes.submit}
 					>
-            Sign Up
+						Sign Up
 					</Button>
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link to='/signin' variant="body2">
-                Already have an account? Sign in
+								Already have an account? Sign in
 							</Link>
 						</Grid>
 					</Grid>

@@ -6,7 +6,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -20,6 +21,16 @@
         "only-warn"
     ],
     "rules": {
+        "react/jsx-equals-spacing": [
+            2,
+            "never"
+        ],
+        "no-multi-spaces": "error",
+        "react/jsx-closing-bracket-location": [
+            1,
+            "tag-aligned"
+        ],
+        "react/jsx-closing-tag-location": "error",
         "indent": [
             "error",
             "tab"
