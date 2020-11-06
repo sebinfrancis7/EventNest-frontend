@@ -13,7 +13,6 @@ export default function Homepage() {
 		axios
 			.get('http://localhost:4000/auth',{withCredentials: true })
 			.then(res => {
-				console.log(res);
 				console.log(res.data);
 			})
 			.catch(err => {

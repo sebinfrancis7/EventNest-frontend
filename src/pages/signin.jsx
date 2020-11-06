@@ -64,20 +64,20 @@ export default function SignInSide() {
 			});
 	};
 
-	const handleFacebook = (e) => {
-		e.preventDefault();
-		fetch('http://localhost:4000/auth/facebook',{mode: 'no-cors'})
-		.then(res => console.log(res), err => console.log(err));
-		// axios
-		// 	.get('http://localhost:4000/auth/facebook')
-		// 	.then(res => {
-		// 		console.log(res);
-		// 		console.log(res.data);
-		// 	})
-		// 	.catch(err => {
-		// 		console.log(err);
-		// 	});
-	};
+	// const handleFacebook = (e) => {
+	// 	e.preventDefault();
+	// 	fetch('http://localhost:4000/auth/facebook',{mode: 'no-cors'})
+	// 	.then(res => console.log(res), err => console.log(err));
+	// 	// axios
+	// 	// 	.get('http://localhost:4000/auth/facebook')
+	// 	// 	.then(res => {
+	// 	// 		console.log(res);
+	// 	// 		console.log(res.data);
+	// 	// 	})
+	// 	// 	.catch(err => {
+	// 	// 		console.log(err);
+	// 	// 	});
+	// };
 
 	function handleChange(event) {
 		const inputname = event.target.name;
@@ -136,7 +136,8 @@ export default function SignInSide() {
 							>
               Sign In
 							</Button>
-							<Button
+							<a href="http://localhost:4000/auth/facebook" >Facebook</a>
+							{/* <Button
 								type="submit"
 								fullWidth
 								variant="contained"
@@ -145,7 +146,7 @@ export default function SignInSide() {
 								onClick={handleFacebook}
 							>
               Facebook
-							</Button>
+							</Button> */}
 							<Grid container>
 								<Grid item xs={12} sm={6}>
 									<Link href="#" variant="body2">

@@ -29,7 +29,6 @@ function CardRow(props) {
 
 	useEffect(() => {
 		var category = props.category;
-		console.log(category);
 		let url;
 		if (category)
 			url = 'http://localhost:4000/events?category=' + category;
@@ -38,7 +37,6 @@ function CardRow(props) {
 		axios
 			.get(url)
 			.then(res => {
-				console.log(res);
 				setEvents(res.data);
 			});
 	}, []);
