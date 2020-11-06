@@ -112,9 +112,9 @@ export default function Navbar() {
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={menuId}
 			keepMounted
-			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-			open={isMenuOpen}
 			onClose={handleMenuClose}
+			open={isMenuOpen}
+			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -129,9 +129,9 @@ export default function Navbar() {
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={mobileMenuId}
 			keepMounted
-			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
+			open={isMobileMenuOpen}
+			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			<MenuItem>
 				<IconButton aria-label="show 11 new notifications" color="inherit">
@@ -143,9 +143,9 @@ export default function Navbar() {
 			</MenuItem>
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
-					aria-label="account of current user"
 					aria-controls="primary-search-account-menu"
 					aria-haspopup="true"
+					aria-label="account of current user"
 					color="inherit"
 				>
 					<AccountCircle />
@@ -158,10 +158,10 @@ export default function Navbar() {
 	return (
 		<StylesProvider injectFirst>
 			<div className={classes.grow}>
-				<AppBar color="primary" className="no-shadow" position="static">
+				<AppBar className="no-shadow" color="primary" position="static">
 					<Toolbar>
-						<Typography variant="h5" noWrap className={classNames(classes.title, 'title')}>
-							<Link to="/" className="logo">EventNest</Link>
+						<Typography className={classNames(classes.title, 'title')} noWrap variant="h5">
+							<Link className="logo" to="/">EventNest</Link>
 						</Typography>
 						{/* <div className={classes.search}>
 							<div className={classes.searchIcon}>
@@ -184,23 +184,23 @@ export default function Navbar() {
 								</Badge>
 							</IconButton> */}
 							<IconButton
-								edge="end"
-								aria-label="account of current user"
 								aria-controls={menuId}
 								aria-haspopup="true"
-								onClick={handleProfileMenuOpen}
+								aria-label="account of current user"
 								color="inherit"
+								edge="end"
+								onClick={handleProfileMenuOpen}
 							>
 								<AccountCircle />
 							</IconButton>
 						</div>
 						<div className={classes.sectionMobile}>
 							<IconButton
-								aria-label="show more"
 								aria-controls={mobileMenuId}
 								aria-haspopup="true"
-								onClick={handleMobileMenuOpen}
+								aria-label="show more"
 								color="inherit"
+								onClick={handleMobileMenuOpen}
 							>
 								<MenuIcon />
 							</IconButton>

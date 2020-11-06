@@ -22,7 +22,7 @@ import { blue, indigo, green, pink } from '@material-ui/core/colors';
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
+		<Typography align="center" color="textSecondary" variant="body2">
 			{'Copyright © '}
 			<Link to="/">
 				Procyon
@@ -94,10 +94,10 @@ export default function AboutUs() {
 	const classes = useStyles();
 
 	return (
-		<Grid container component="main" className={classes.root}>
+		<Grid className={classes.root} component="main" container>
 			<CssBaseline />
-			<Grid item xs={false} sm={4} md={7} className={classes.image} />
-			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+			<Grid className={classes.image} item md={7} sm={4} xs={false} />
+			<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 				<div className={classes.paper}>
 					<Typography component="h1" variant="h5">
 						ABOUT US

@@ -4,7 +4,7 @@ import { Link }from 'react-router-dom';
 
 export default function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
+		<Typography align="center" color="textSecondary" variant="body2">
 			{'Copyright © '}
 			<Link color="inherit" to='/'>
                 EventNest

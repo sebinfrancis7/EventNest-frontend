@@ -46,14 +46,14 @@ function MediaCard(props) {
 		<StylesProvider injectFirst>
 			<Card className={classNames(classes.root, 'card')}>
 				<CardActionArea>
-					<Link to={`/events/${props.event_id}`} className="card-link">
+					<Link className="card-link" to={`/events/${props.event_id}`}>
 						<CardMedia
 							className={classNames(classes.media, 'card-img')}
 							image={props.img_url}
 							title={props.title}
 						>
 							<div className="card-header">
-								<Button color="secondary" variant="contained" className="card-title" noWrap>
+								<Button className="card-title" color="secondary" noWrap variant="contained">
 									{props.title}
 								</Button>
 
@@ -63,10 +63,10 @@ function MediaCard(props) {
 
 				</CardActionArea>
 				<CardContent className="card-body">
-					<Typography variant="body2" color="textPrimary" component="p" className="card-body-text">
+					<Typography className="card-body-text" color="textPrimary" component="p" variant="body2">
 						Location : {props.city}
 					</Typography>
-					<IconButton onClick={handleFavorite} aria-label="add to favorites" className="title-fav">
+					<IconButton aria-label="add to favorites" className="title-fav" onClick={handleFavorite}>
 						{/* {favorite ? coloris = "red":coloris = null} */}
 						<FavoriteIcon style={{ fill: coloris }} />
 					</IconButton>

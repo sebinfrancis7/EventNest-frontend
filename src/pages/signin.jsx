@@ -88,10 +88,10 @@ export default function SignInSide() {
 
 	return (
 		<StylesProvider injectFirst>
-			<Grid container component="main" className={classes.root}>
+			<Grid className={classes.root} component="main" container>
 				<CssBaseline />
-				<Grid item xs={false} sm={4} md={7} className={classes.image} />
-				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+				<Grid className={classes.image} item md={7} sm={4} xs={false} />
+				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 					<div className={classes.paper}>
 						<Avatar className={classes.avatar}>
 							<LockOutlinedIcon />
@@ -101,38 +101,38 @@ export default function SignInSide() {
 						</Typography>
 						<form className={classes.form} noValidate onSubmit={handleSubmit}>
 							<TextField
-								name="username"
-								variant="outlined"
-								required
+								autoFocus
 								fullWidth
 								id="username"
 								label="username"
-								value={details.username}
+								name="username"
 								onChange={handleChange}
-								autoFocus
+								required
+								value={details.username}
+								variant="outlined"
 							/>
 							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
 								autoComplete="current-password"
-								value={details.password}
+								fullWidth
+								id="password"
+								label="Password"
+								name="password"
 								onChange={handleChange}
+								required
+								type="password"
+								value={details.password}
+								variant="outlined"
 							/>
 							<FormControlLabel
-								control={<Checkbox value="remember" color="primary" />}
+								control={<Checkbox color="primary" value="remember" />}
 								label="Remember me"
 							/>
 							<Button
-								type="submit"
-								fullWidth
-								variant="contained"
-								color="primary"
 								className={classes.submit}
+								color="primary"
+								fullWidth
+								type="submit"
+								variant="contained"
 							>
 								Sign In
 							</Button>
@@ -148,12 +148,12 @@ export default function SignInSide() {
               Facebook
 							</Button> */}
 							<Grid container>
-								<Grid item xs={12} sm={6}>
+								<Grid item sm={6} xs={12}>
 									<Link href="#" variant="body2">
 										Forgot password?
 									</Link>
 								</Grid>
-								<Grid item xs={12} sm={6}>
+								<Grid item sm={6} xs={12}>
 									<Link to='/signup' variant="body2">
 										{'Don\'t have an account? Sign Up'}
 									</Link>

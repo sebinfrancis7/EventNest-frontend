@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
+		<Typography align="center" color="textSecondary" variant="body2">
 			{'Copyright © '}
 			<Link to="/">
 				Procyon
@@ -63,10 +63,10 @@ export default function ContactUs() {
 	const classes = useStyles();
 
 	return (
-		<Grid container component="main" className={classes.root}>
+		<Grid className={classes.root} component="main" container>
 			<CssBaseline />
-			<Grid item xs={false} sm={4} md={7} className={classes.image} />
-			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+			<Grid className={classes.image} item md={7} sm={4} xs={false} />
+			<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 				<div className={classes.paper}>
 					<Avatar className={classes.avatar}>
 						<EmailIcon />
@@ -76,46 +76,47 @@ export default function ContactUs() {
 					</Typography>
 					<form className={classes.form} noValidate>
 						<TextField
-							variant="outlined"
-							margin="normal"
+							autoComplete="fname"
+							autoFocus
 							fullWidth
 							id="fname"
 							label="First Name"
+							margin="normal"
 							name="fname"
-							autoComplete="fname"
-							autoFocus
+							variant="outlined"
 						/>
 						<TextField
-							variant="outlined"
-							margin="normal"
+							autoComplete="lname"
 							fullWidth
 							id="lname"
 							label="Last Name"
+							margin="normal"
 							name="lname"
-							autoComplete="lname"
+							variant="outlined"
 						/>
 						<TextField
 
-							variant="outlined"
-							margin="normal"
+							autoComplete="email"
 							fullWidth
 							id="email"
 							label="Email Address"
+							margin="normal"
 							name="email"
-							autoComplete="email"
+							variant="outlined"
 
 						/>
 						<TextareaAutosize
-							variant="outlined"
-							margin="normal"
+							aria-label="minimum height"
 							fullwidth
-							aria-label="minimum height" rowsMin={10} placeholder="Leave a Message" />
+							margin="normal"
+							placeholder="Leave a Message" rowsMin={10} variant="outlined"
+						/>
 						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							color="lightgray"
 							className={classes.submit}
+							color="lightgray"
+							fullWidth
+							type="submit"
+							variant="contained"
 						>
 							SEND MESSAGE
 						</Button>

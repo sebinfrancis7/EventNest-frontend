@@ -30,28 +30,28 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<Router>
 				<Switch>
-					<Route path='/' exact>
+					<Route exact path='/'>
 						<Homepage />
 					</Route>
-					<Route path='/signin' exact>
+					<Route exact path='/signin'>
 						<SignInSide />
 					</Route>
-					<Route path='/signup' exact>
+					<Route exact path='/signup'>
 						<SignUp />
 					</Route>
-					<Route path='/events' exact>
+					<Route exact path='/events'>
 						<Events />
 					</Route>
-					<Route path='/create-event' exact>
+					<Route exact path='/create-event'>
 						<CreateEvent />
 					</Route>
-					<Route path='/aboutus' exact>
+					<Route exact path='/aboutus'>
 						<AboutUs />
 					</Route>
-					<Route path='/contactus' exact>
+					<Route exact path='/contactus'>
 						<ContactUs />
 					</Route>
-					<Route path='/events/:event_id' exact component={Event} />
+					<Route component={Event} exact path='/events/:event_id' />
 					<Route path="*">
 						<Error />
 					</Route>

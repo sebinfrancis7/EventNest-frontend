@@ -14,7 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import Copyright from './../components/Copyright';
-import { DragHandle } from '@material-ui/icons';
 
 
 
@@ -74,67 +73,67 @@ export default function SignUp() {
 					<Grid container spacing={2}>
 						<Grid item xs={12} >
 							<TextField
-								name="username"
-								variant="outlined"
-								required
+								autoFocus
 								fullWidth
 								id="username"
 								label="username"
-								value={details.username}
+								name="username"
 								onChange={handleChange}
-								autoFocus
+								required
+								value={details.username}
+								variant="outlined"
 							/>
 						</Grid>
 						<Grid item xs={12} >
 							<TextField
-								name="display_name"
-								variant="outlined"
 								fullWidth
 								id="display_name"
 								label="display name"
-								value={details.display_name}
+								name="display_name"
 								onChange={handleChange}
+								value={details.display_name}
+								variant="outlined"
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								variant="outlined"
+								autoComplete="email"
 								fullWidth
 								id="email"
 								label="Email Address"
 								name="email"
-								autoComplete="email"
-								value={details.email}
 								onChange={handleChange}
+								value={details.email}
+								variant="outlined"
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
 								autoComplete="current-password"
-								value={details.password}
+								fullWidth
+								id="password"
+								label="Password"
+								name="password"
 								onChange={handleChange}
+								required
+								type="password"
+								value={details.password}
+								variant="outlined"
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<FormControlLabel
-								control={<Checkbox value="allowExtraEmails" color="primary" />}
+								control={<Checkbox color="primary" value="allowExtraEmails" />}
 								label="I want to receive inspiration, marketing promotions and updates via email."
 							/>
 						</Grid>
 					</Grid>
 					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
 						className={classes.submit}
+						color="primary"
+						fullWidth
+						type="submit"
+						variant="contained"
 					>
 						Sign Up
 					</Button>

@@ -27,11 +27,11 @@ export default function Error() {
 	return (
 		<div className={classes.center}>
 			<Link to="/">
-				<Button color="primary" variant="contained" className={classes.horizontal}>
+				<Button className={classes.horizontal} color="primary" variant="contained">
                     Go back Home
 				</Button>
 			</Link>
-			<img src={ErrorImg} className={classes.size}></img>
+			<img className={classes.size} src={ErrorImg}></img>
 		</div>
 	);
 }

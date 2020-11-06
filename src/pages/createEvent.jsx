@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
+		<Typography align="center" color="textSecondary" variant="body2">
 			{'Copyright © '}
 			<Link to="/">
                 Procyon
@@ -92,10 +92,10 @@ function CreatEvent() {
 
 	return (
 		<StylesProvider injectFirst>
-			<Navbar/>
-			<Grid container component="main" className={classes.root}>
-				<Grid item xs={false} sm={4} md={7} className={classes.image} />
-				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+			<Navbar />
+			<Grid className={classes.root} component="main" container>
+				<Grid className={classes.image} item md={7} sm={4} xs={false} />
+				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 					<div className={classes.paper}>
 						{/* <Avatar className={classes.avatar}>
 							<AddCircle />
@@ -105,96 +105,96 @@ function CreatEvent() {
 						</Typography>
 						<form className={classes.form} noValidate onSubmit={handleSubmit}>
 							<TextField 							
-								name="organizer"
+								className="event-input"
 								id="organizer"
 								label="Organizer"
-								variant="outlined"
 								margin="normal"
-								className="event-input"
-								value={details.organizer}
+								name="organizer"
 								onChange={handleChange}
+								value={details.organizer}
+								variant="outlined"
 							/>
 							<TextField
-								name="title"
+								className="event-input"
 								id="title"
 								label="Event Title"
-								variant="outlined"
 								margin="normal"
-								className="event-input"
+								name="title"
+								onChange={handleChange}
 								value={details.title}
-								onChange={handleChange}
-							/>
-							<TextField
-								name="category"
-								label="Event Category"
 								variant="outlined"
-								margin="normal"
-								className="event-input"
-								value={details.category}
-								onChange={handleChange}
 							/>
 							<TextField
-								name="city"
+								className="event-input"
+								label="Event Category"
+								margin="normal"
+								name="category"
+								onChange={handleChange}
+								value={details.category}
+								variant="outlined"
+							/>
+							<TextField
+								className="event-input"
 								id="city"
 								label="Event Location"
-								variant="outlined"
 								margin="normal"
-								className="event-input"
-								value={details.city}
+								name="city"
 								onChange={handleChange}
+								value={details.city}
+								variant="outlined"
 							/>
 							<TextField
-								name="price"
+								className="event-input"
 								id="price"
 								label="Ticket Price"
-								variant="outlined"
 								margin="normal"
-								className="event-input"
+								name="price"
+								onChange={handleChange}
 								type="number"
 								value={details.price}
-								onChange={handleChange}
+								variant="outlined"
 							/>
 							<TextField
-								name="max_attendees"
+								className="event-input"
 								id="max_attendees"
 								label="Max max_attendees"
-								variant="outlined"
 								margin="normal"
-								className="event-input"
+								name="max_attendees"
+								onChange={handleChange}
 								type="number"
 								value={details.max_attendees}
-								onChange={handleChange}
+								variant="outlined"
 							/>
 							<TextField
-								name="image_url"
+								fullWidth
 								id="image_url"
 								label="Banner Image URL"
-								variant="outlined"
 								margin="normal"
+								name="image_url"
 								// className="event-input"
-								value={details.image_url}
 								onChange={handleChange}
-								fullWidth
+								value={details.image_url}
+								variant="outlined"
 							/>
 							<TextField
-								name="description"
+								fullWidth
 								id="description"
 								label="Description"
-								placeholder="Event Description"
-								variant="outlined"
 								margin="normal"
-								value={details.description}
-								onChange={handleChange}
-								rows={4}
 								multiline
-								fullWidth
+								name="description"
+								onChange={handleChange}
+								placeholder="Event Description"
+								rows={4}
+								value={details.description}
+								variant="outlined"
 							/>
 							<Button 
+								className="submit-button"
+								color="primary"
+								fullWidth
 								type="submit"
 								variant="contained"
-								color="primary"
-								className="submit-button"
-								fullWidth
 							>
 								Create Event
 							</Button>

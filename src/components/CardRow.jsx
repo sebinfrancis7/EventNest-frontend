@@ -11,12 +11,12 @@ function createCard(event) {
 	return (
 		<div className='event-card'>
 			<Card
+				city={event.city || event.venue_addr}
+				description={event.description}
 				event_id={event._id}
 				img_url={event.image_url}
-				title={event.title}
-				description={event.description}
 				price={event.price}
-				city={event.city || event.venue_addr}
+				title={event.title}
 			/>
 		</div>
 	);
@@ -66,10 +66,10 @@ function CardRow(props) {
 				{events.map(createCard)}
 			</div>
 			<div className='scroll-buttons'>
-				<IconButton onClick={handleScrollLeft} className='left-button'>
+				<IconButton className='left-button' onClick={handleScrollLeft}>
 					<ChevronLeftIcon />
 				</IconButton>
-				<IconButton onClick={handleScrollRight} className='right-button'>
+				<IconButton className='right-button' onClick={handleScrollRight}>
 					<ChevronRightIcon />
 				</IconButton>
 			</div>

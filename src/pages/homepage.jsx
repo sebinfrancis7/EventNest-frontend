@@ -23,24 +23,24 @@ export default function Homepage() {
 		<StylesProvider injectFirst>
 			<Navbar />
 			<Button
-				type="submit"
-				fullWidth
-				variant="contained"
 				color="primary"
+				fullWidth
 				onClick={handleSubmit}
+				type="submit"
+				variant="contained"
 			>
 				test
 			</Button>	
-			<Grid container className="welcome-container">
-				<Grid container item xs={12} lg={6} direction="column" className="title-container">
-					<Typography variant="h3" justify="center" className="title">
+			<Grid className="welcome-container" container>
+				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
+					<Typography className="title" justify="center" variant="h3">
 						Welcome to EventNest
 					</Typography>
-					<Typography variant="subtitle1" justify="center" className="subtitle">
+					<Typography className="subtitle" justify="center" variant="subtitle1">
 						Your online destination for hosting and exploring events across the globe, at your fingertips.	
 					</Typography>
 					<Link href="#events">
-						<Button variant="contained" color="primary" className="button button-shadow">
+						<Button className="button button-shadow" color="primary" variant="contained">
 							Explore Events
 						</Button>
 					</Link>
@@ -50,8 +50,8 @@ export default function Homepage() {
 						</Button>
 					</RouterLink> */}
 				</Grid>
-				<Grid container item xs={12} lg={6} alignItems="center" justify="center">
-					<img src={EventImage} alt="Festival Image" className={'event-image'} />
+				<Grid alignItems="center" container item justify="center" lg={6} xs={12}>
+					<img alt="Festival Image" className={'event-image'} src={EventImage} />
 				</Grid>
 			</Grid>
 			<div className="events" id="events">

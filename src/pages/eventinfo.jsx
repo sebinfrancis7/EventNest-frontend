@@ -6,7 +6,6 @@ import '../sass/eventinfo.scss';
 import { CardMedia } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { CardActions } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -30,7 +29,7 @@ function EventInfo(props) {
 
 	return (
 		<StylesProvider injectFirst>
-			<Navbar/>
+			<Navbar />
 			{/* <h2>event data</h2>
 			<h2>{details.title}</h2>
 			<h2>{details.category}</h2>
@@ -39,32 +38,32 @@ function EventInfo(props) {
 			<h2>{details.image_url}</h2>
 			<h2>{details.attendees}</h2> */}
 			<Grid container>
-				<Grid item xs={1} sm={2}></Grid>
-				<Grid item container xs={10} sm={8} spacing={2}>
-					<Grid item xs={12} className="event-page-container">
+				<Grid item sm={2} xs={1}></Grid>
+				<Grid container item sm={8} spacing={2} xs={10}>
+					<Grid className="event-page-container" item xs={12}>
 						<Card className="event-page-card shadow-large">
 							<CardMedia
-								component="img"
 								alt={details.title}
+								className="event-banner-image"
+								component="img"
 								image={details.image_url}
 								title={details.title}
-								className="event-banner-image"
 							/>
 							<CardContent className="event-page-content-container">
-								<Grid item container xs={12} direction="row">
-									<Grid item xs={12} sm={6} direction="column">
-										<Typography variant="h5" component="h4" className="event-title">
+								<Grid container direction="row" item xs={12}>
+									<Grid direction="column" item sm={6} xs={12}>
+										<Typography className="event-title" component="h4" variant="h5">
 											{details.title}
 										</Typography>
-										<Typography variant="subtitle1" component="h2">
+										<Typography component="h2" variant="subtitle1">
 											{details.category} | {details.city || details.venue_addr} | ₹{details.price}
 										</Typography>
 									</Grid>
-									<Grid item xs={12} sm={6} className="event-button-container">
+									<Grid className="event-button-container" item sm={6} xs={12}>
 										<Button 
-											color="primary" 
+											className="event-register-button button-shadow" 
+											color="primary"
 											variant="contained"
-											className="event-register-button button-shadow"
 										>
 											Register
 										</Button>
@@ -82,7 +81,7 @@ function EventInfo(props) {
 						</CardActions> */}
 						</Card>
 					</Grid>
-					<Grid item xs={12} sm={4}>
+					<Grid item sm={4} xs={12}>
 						<Card className="shadow-large">
 							<CardHeader 
 								title="Share"
@@ -93,7 +92,7 @@ function EventInfo(props) {
 							</CardContent>
 						</Card>
 					</Grid>
-					<Grid item xs={12} sm={8}>
+					<Grid item sm={8} xs={12}>
 						<Card className="shadow-large">
 							<CardHeader 
 								title="About"
@@ -104,7 +103,7 @@ function EventInfo(props) {
 						</Card>
 					</Grid>
 				</Grid>
-				<Grid item xs={1} sm={2}></Grid>
+				<Grid item sm={2} xs={1}></Grid>
 			</Grid>
 		</StylesProvider>
 	);
