@@ -17,7 +17,7 @@ function EventInfo(props) {
 	useEffect(() => {
 		const { match: { params } } = props;
 		console.log(params.event_id);
-		let url = 'http://localhost:4000/events?_id=' + params.event_id;
+		let url = 'https://eventnest-server.herokuapp.com/events?_id=' + params.event_id;
 		axios
 			.get(url)
 			.then(res => {
@@ -25,7 +25,6 @@ function EventInfo(props) {
 				setDetails(res.data[0]);
 			});
 	}, []);
-
 
 	return (
 		<StylesProvider injectFirst>
@@ -60,8 +59,8 @@ function EventInfo(props) {
 										</Typography>
 									</Grid>
 									<Grid className="event-button-container" item sm={6} xs={12}>
-										<Button 
-											className="event-register-button button-shadow" 
+										<Button
+											className="event-register-button button-shadow"
 											color="primary"
 											variant="contained"
 										>
@@ -83,7 +82,7 @@ function EventInfo(props) {
 					</Grid>
 					<Grid item sm={4} xs={12}>
 						<Card className="shadow-large">
-							<CardHeader 
+							<CardHeader
 								title="Share"
 							/>
 							<CardContent>
@@ -94,7 +93,7 @@ function EventInfo(props) {
 					</Grid>
 					<Grid item sm={8} xs={12}>
 						<Card className="shadow-large">
-							<CardHeader 
+							<CardHeader
 								title="About"
 							/>
 							<CardContent>

@@ -7,9 +7,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
 import '../sass/cardrow.scss';
 
-function createCard(event) {
+function createCard(event, i) {
 	return (
-		<div className='event-card'>
+		<div className='event-card' key={i}>
 			<Card
 				city={event.city || event.venue_addr}
 				description={event.description}
@@ -32,9 +32,9 @@ function CardRow(props) {
 		var category = props.category;
 		let url;
 		if (category)
-			url = 'http://localhost:4000/events?category=' + category;
+			url = 'https://eventnest-server.herokuapp.com/events?category=' + category;
 		else
-			url = 'http://localhost:4000/events';
+			url = 'https://eventnest-server.herokuapp.com/events';
 		axios
 			.get(url)
 			.then(res => {

@@ -84,14 +84,28 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+function displayResult(event, i) {
+	return (
+		<Link className="card-link" key={i} to={`/events/${event._id}`}>
+			<Button
+				className="search-button"
+				fullWidth
+			>
+				{event.title}
+			</Button>
+		</Link>
+	);
+}
+
 function Search() {
 	const classes = useStyles();
 	const [details, setDetails] = useState([]);
 	const [results, setResults] = useState([]);
+	const [notfound, setNotfound] = useState(false);
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:4000/events')
+			.get('https://eventnest-server.herokuapp.com/events')
 			.then(res => {
 				console.log(res);
 				setDetails(res.data);
@@ -104,11 +118,18 @@ function Search() {
 		console.log(input);
 		if (input) {
 			const newDetails = details.filter(event => event.title.includes(input));
-			setResults(newDetails);
+			console.log(newDetails);
+			if (newDetails.length != 0) {
+				setNotfound(false);
+				setResults(newDetails);
+			} else {
+				setNotfound(true);
+			}
+
 		} else {
+			setNotfound(false);
 			setResults([]);
 		}
-		console.log(results);
 	};
 
 	return (
@@ -126,18 +147,22 @@ function Search() {
 				placeholder="Search…"
 			/>
 			<Paper className="search-result">
-				{results.map(function (event, i) {
-					return (
-						<Link className="card-link" key={i} to={`/events/${event._id}`}>
-							<Button 
-								className="search-button"
-								fullWidth
-							>
-								{event.title}
-							</Button>
-						</Link>
-					); 
-				})}
+				{/* {
+					results.map(function (event, i) {
+						return (
+							<Link className="card-link" key={i} to={`/events/${event._id}`}>
+								<Button
+									className="search-button"
+									fullWidth
+								>
+									{event.title}
+								</Button>
+							</Link>
+						);
+					})} */}
+				{
+					notfound ? <Button className="search-button" fullWidth>Not Found</Button> : <div>{results.map(displayResult)}</div>
+				}
 			</Paper>
 		</div>
 	);
