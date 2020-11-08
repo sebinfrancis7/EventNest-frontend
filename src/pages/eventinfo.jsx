@@ -50,7 +50,7 @@ function EventInfo(props) {
 							/>
 							<CardContent className="event-page-content-container">
 								<Grid container direction="row" item xs={12}>
-									<Grid direction="column" item sm={6} xs={12}>
+									<Grid container direction="column" item sm={6} xs={12}>
 										<Typography className="event-title" component="h4" variant="h5">
 											{details.title}
 										</Typography>
