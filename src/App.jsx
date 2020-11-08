@@ -51,7 +51,7 @@ function App() {
 					<Route exact path='/contactus'>
 						<ContactUs />
 					</Route>
-					<Route component={Event} exact path='/events/:event_id' />
+					<Route component={Event} path='/events/:event_id' />
 					<Route path="*">
 						<Error />
 					</Route>

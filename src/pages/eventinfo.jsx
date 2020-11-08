@@ -13,7 +13,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 
 function EventInfo(props) {
 	const [details, setDetails] = useState([]);
-
+	
 	useEffect(() => {
 		const { match: { params } } = props;
 		console.log(params.event_id);
@@ -24,7 +24,7 @@ function EventInfo(props) {
 				console.log(res);
 				setDetails(res.data[0]);
 			});
-	}, []);
+	}, [props]);
 
 	return (
 		<StylesProvider injectFirst>
