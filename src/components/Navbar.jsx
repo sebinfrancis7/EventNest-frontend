@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,8 +14,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
-import { Button, StylesProvider } from '@material-ui/core';
+import { Button, Paper, StylesProvider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -83,10 +84,69 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+function Search() {
+	const classes = useStyles();
+	const [details, setDetails] = useState([]);
+	const [results, setResults] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get('http://localhost:4000/events')
+			.then(res => {
+				console.log(res);
+				setDetails(res.data);
+				console.log(details);
+			});
+	}, []);
+
+	const handleSearch = (event) => {
+		const input = event.target.value;
+		console.log(input);
+		if (input) {
+			const newDetails = details.filter(event => event.title.includes(input));
+			setResults(newDetails);
+		} else {
+			setResults([]);
+		}
+		console.log(results);
+	};
+
+	return (
+		<div className={classes.search}>
+			<div className={classes.searchIcon}>
+				<SearchIcon />
+			</div>
+			<InputBase
+				classes={{
+					root: classes.inputRoot,
+					input: classes.inputInput,
+				}}
+				inputProps={{ 'aria-label': 'search' }}
+				onChange={handleSearch}
+				placeholder="Search…"
+			/>
+			<Paper className="search-result">
+				{results.map(function (event, i) {
+					return (
+						<Link className="card-link" key={i} to={`/events/${event._id}`}>
+							<Button 
+								className="search-button"
+								fullWidth
+							>
+								{event.title}
+							</Button>
+						</Link>
+					); 
+				})}
+			</Paper>
+		</div>
+	);
+}
+
 export default function Navbar() {
 	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
 	const isMenuOpen = Boolean(anchorEl);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -163,33 +223,15 @@ export default function Navbar() {
 			<div className={classNames(classes.grow, 'navbar')}>
 				<AppBar className="no-shadow" color="primary" position="static">
 					<Toolbar>
-						<Typography className={classNames(classes.title, 'title')} noWrap variant="h5">
-							<Link className="logo" to="/">EventNest</Link>
-						</Typography>
-						<div className={classes.search}>
-							<div className={classes.searchIcon}>
-								<SearchIcon />
-							</div>
-							<InputBase
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput,
-								}}
-								inputProps={{ 'aria-label': 'search' }}
-								placeholder="Search…"
-							/>
+						<div className="title-search-container">
+							<Typography className={classNames(classes.title, 'title')} variant="h5">
+								<Link className="logo" to="/">EventNest</Link>
+							</Typography>
+							<Search />
 						</div>
 						<div className={classes.grow} />
 						<div className={classes.sectionDesktop}>
-							{/* <Button variant="contained" className="nav-button" noWrap>
-							Sign Up
-						</Button>
-						<Typography variant="h6">
-							or
-						</Typography>
-						<Button variant="contained" className="nav-button">
-							Sign In
-						</Button> */}
+
 							<IconButton aria-label="show 17 new notifications" color="inherit">
 								<Badge badgeContent={17} color="secondary">
 									<NotificationsIcon />
