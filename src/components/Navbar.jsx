@@ -17,6 +17,7 @@ import classNames from 'classnames';
 import { Button, Paper, StylesProvider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useGlobalContext } from '../context';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -99,25 +100,26 @@ function displayResult(event, i) {
 
 function Search() {
 	const classes = useStyles();
-	const [details, setDetails] = useState([]);
+	const { events } = useGlobalContext();
+	// const [details, setDetails] = useState([]);
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);
 
-	useEffect(() => {
-		axios
-			.get('https://eventnest-server.herokuapp.com/events')
-			.then(res => {
-				console.log(res);
-				setDetails(res.data);
-				console.log(details);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get('https://eventnest-server.herokuapp.com/events')
+	// 		.then(res => {
+	// 			console.log(res);
+	// 			setDetails(res.data);
+	// 			console.log(details);
+	// 		});
+	// }, []);
 
 	const handleSearch = (event) => {
 		const input = event.target.value;
 		console.log(input);
 		if (input) {
-			const newDetails = details.filter(event => event.title.includes(input));
+			const newDetails = events.filter(event => event.title.includes(input));
 			console.log(newDetails);
 			if (newDetails.length != 0) {
 				setNotfound(false);
