@@ -5,6 +5,7 @@ import Card from './Card.jsx';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
+import { useGlobalContext } from '../context';
 import '../sass/cardrow.scss';
 
 function createCard(event, i) {
@@ -25,7 +26,10 @@ function createCard(event, i) {
 
 function CardRow(props) {
 	// eslint-disable-next-line
-	const [events, setEvents] = useState([]);
+	// const [events, setEvents] = useState([]);
+	const { setEvents } = useGlobalContext();
+	const { events } = useGlobalContext();
+
 	const listRef = useRef(null);
 
 	useEffect(() => {

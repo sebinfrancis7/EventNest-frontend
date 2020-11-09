@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import EventImage from '../assets/blocks.jpg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
+
 import '../sass/homepage.scss';
 import EventPanel from '../components/EventPanel';
 
