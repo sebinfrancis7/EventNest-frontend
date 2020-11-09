@@ -3,11 +3,12 @@ import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
 import Error from './pages/404';
-import Events from './pages/eventsPage.jsx';
+import Events from './pages/EventsPage.jsx';
 import Event from './pages/eventinfo.jsx';
 import CreateEvent from './pages/createEvent.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
+import FooterPage from './pages/footer.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -56,6 +57,7 @@ function App() {
 						<Error />
 					</Route>
 				</Switch>
+				<FooterPage />
 			</Router>
 		</ThemeProvider>
 	);
