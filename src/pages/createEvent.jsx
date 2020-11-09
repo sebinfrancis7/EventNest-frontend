@@ -92,7 +92,7 @@ function CreatEvent() {
 
 	return (
 		<StylesProvider injectFirst>
-			<Navbar />
+			{/* <Navbar /> */}
 			<Grid className={classes.root} component="main" container>
 				<Grid className={classes.image} item md={7} sm={4} xs={false} />
 				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>

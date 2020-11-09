@@ -11,8 +11,54 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
+function loadScript(src) {
+	return new Promise((resolve) => {
+		const script = document.createElement('script');
+		script.src = src;
+		script.onload = () => {
+			resolve(true);
+		};
+		script.onerror = () => {
+			resolve(false);
+		};
+		document.body.appendChild(script);
+	});
+}
+
 function EventInfo(props) {
 	const [details, setDetails] = useState([]);
+	const [orderData, setOrder] = useState();
+
+	async function displayRazorpay() {
+		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+
+		if (!res) {
+			alert('Razorpay SDK failed to load. Are you online?');
+			return;
+		}
+
+		const options = {
+			key:'rzp_test_Cly42HaznEIi1i',
+			currency: 'INR',
+			amount: orderData.amount,
+			order_id: orderData.id,
+			name: 'money go brrrrrrrrrrrrrr',
+			description: 'Paisa de chal',
+			// image: 'http://localhost:1337/logo.svg',
+			handler: function (response) {
+				alert(response.razorpay_payment_id);
+				alert(response.razorpay_order_id);
+				alert(response.razorpay_signature);
+			},
+			// prefill: {
+			// 	name,
+			// 	email: 'sdfdsjfh2@ndsfdf.com',
+			// 	phone_number: '9899999999'
+			// }
+		};
+		const paymentObject = new window.Razorpay(options);
+		paymentObject.open();
+	}
 	
 	useEffect(() => {
 		const { match: { params } } = props;
@@ -26,9 +72,21 @@ function EventInfo(props) {
 			});
 	}, [props]);
 
+	useEffect(() => {
+		const postBody = {
+			amount: details.price
+		};
+		axios
+			.post('http://localhost:4000/razorpay', postBody)
+			.then(res => {
+				setOrder(res.data);
+				console.log(orderData);
+			});
+	}, [details]);
+
 	return (
 		<StylesProvider injectFirst>
-			<Navbar />
+			{/* <Navbar /> */}
 			{/* <h2>event data</h2>
 			<h2>{details.title}</h2>
 			<h2>{details.category}</h2>
@@ -62,6 +120,7 @@ function EventInfo(props) {
 										<Button
 											className="event-register-button button-shadow"
 											color="primary"
+											onClick={displayRazorpay}
 											variant="contained"
 										>
 											Register

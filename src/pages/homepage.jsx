@@ -29,7 +29,7 @@ export default function Homepage() {
 	};
 	return (
 		<StylesProvider injectFirst>
-			<Navbar />
+			{/* <Navbar /> */}
 			<Button
 				color="primary"
 				fullWidth
