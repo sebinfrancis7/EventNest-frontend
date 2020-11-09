@@ -12,6 +12,7 @@ import FooterPage from './pages/footer.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { UserProvider } from './userContext';
 
 const theme = createMuiTheme({
 	palette: {
@@ -28,38 +29,40 @@ const theme = createMuiTheme({
 
 function App() {
 	return (
+		<UserProvider>
 		<ThemeProvider theme={theme}>
-			<Router>
-				<Switch>
-					<Route exact path='/'>
-						<Homepage />
-					</Route>
-					<Route exact path='/signin'>
-						<SignInSide />
-					</Route>
-					<Route exact path='/signup'>
-						<SignUp />
-					</Route>
-					<Route exact path='/events'>
-						<Events />
-					</Route>
-					<Route exact path='/create-event'>
-						<CreateEvent />
-					</Route>
-					<Route exact path='/aboutus'>
-						<AboutUs />
-					</Route>
-					<Route exact path='/contactus'>
-						<ContactUs />
-					</Route>
-					<Route component={Event} path='/events/:event_id' />
-					<Route path="*">
-						<Error />
-					</Route>
-				</Switch>
-				<FooterPage />
-			</Router>
+		<Router>
+			<Switch>
+				<Route exact path='/'>
+					<Homepage />
+				</Route>
+				<Route exact path='/signin'>
+					<SignInSide />
+				</Route>
+				<Route exact path='/signup'>
+					<SignUp />
+				</Route>
+				<Route exact path='/events'>
+					<Events />
+				</Route>
+				<Route exact path='/create-event'>
+					<CreateEvent />
+				</Route>
+				<Route exact path='/aboutus'>
+					<AboutUs />
+				</Route>
+				<Route exact path='/contactus'>
+					<ContactUs />
+				</Route>
+				<Route component={Event} path='/events/:event_id' />
+				<Route path="*">
+					<Error />
+				</Route>
+			</Switch>
+			<FooterPage />
+		</Router>
 		</ThemeProvider>
+		</UserProvider>
 	);
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,6 +15,8 @@ import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { Link as Lnk } from '@material-ui/core';
 import Copyright from './../components/Copyright';
+import {  BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { useUserContext, UserContext } from '../userContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -49,16 +51,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
+
+	const [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
-	
 	const [details, setDetails] = useState({ username: '',password: ''});
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
 			.post('https://eventnest-server.herokuapp.com/customer/login', details, {withCredentials: true })
+			//.post('http://localhost:4000/customer/login', details, {withCredentials: true })
 			.then(res => {
-				console.log(res);
-				console.log(res.data);
+				console.log(user);
+				if(res.status == 200){
+					// console.log(res);
+					// console.log(res.data);
+					setUser({data: res.data, type: 'customer', loggedIn: true});
+					console.log(user);
+				}
+				
 			})
 			.catch(err => {
 				console.log(err);
@@ -87,6 +97,8 @@ export default function SignInSide() {
 		setDetails(newDetails);
 	}
 
+	if(user.loggedIn) return(<Redirect to="/" />)
+	 
 	return (
 		<StylesProvider injectFirst>
 			<Grid className={classes.root} component="main" container>
@@ -94,6 +106,7 @@ export default function SignInSide() {
 				<Grid className={classes.image} item md={7} sm={4} xs={false} />
 				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 					<div className={classes.paper}>
+					
 						<Avatar className={classes.avatar}>
 							<LockOutlinedIcon />
 						</Avatar>
@@ -188,6 +201,7 @@ export default function SignInSide() {
 					</div>
 				</Grid>
 			</Grid>
+			
 		</StylesProvider>
 	);
 }
