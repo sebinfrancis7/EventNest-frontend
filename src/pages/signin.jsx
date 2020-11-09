@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { Link as Lnk } from '@material-ui/core';
 import Copyright from './../components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: { 
 		padding: '10px',
-		margin: theme.spacing(3, 0, 2),
+		// margin: theme.spacing(3, 0, 2),
 	},
 }));
 
@@ -54,7 +55,7 @@ export default function SignInSide() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('http://localhost:4000/customer/login', details, {withCredentials: true })
+			.post('https://eventnest-server.herokuapp.com/customer/login', details, {withCredentials: true })
 			.then(res => {
 				console.log(res);
 				console.log(res.data);
@@ -66,10 +67,10 @@ export default function SignInSide() {
 
 	// const handleFacebook = (e) => {
 	// 	e.preventDefault();
-	// 	fetch('http://localhost:4000/auth/facebook',{mode: 'no-cors'})
+	// 	fetch('https://eventnest-server.herokuapp.com/auth/facebook',{mode: 'no-cors'})
 	// 	.then(res => console.log(res), err => console.log(err));
 	// 	// axios
-	// 	// 	.get('http://localhost:4000/auth/facebook')
+	// 	// 	.get('https://eventnest-server.herokuapp.com/auth/facebook')
 	// 	// 	.then(res => {
 	// 	// 		console.log(res);
 	// 	// 		console.log(res.data);
@@ -100,43 +101,64 @@ export default function SignInSide() {
 							Sign in
 						</Typography>
 						<form className={classes.form} noValidate onSubmit={handleSubmit}>
-							<TextField
-								autoFocus
-								fullWidth
-								id="username"
-								label="username"
-								name="username"
-								onChange={handleChange}
-								required
-								value={details.username}
-								variant="outlined"
-							/>
-							<TextField
-								autoComplete="current-password"
-								fullWidth
-								id="password"
-								label="Password"
-								name="password"
-								onChange={handleChange}
-								required
-								type="password"
-								value={details.password}
-								variant="outlined"
-							/>
-							<FormControlLabel
-								control={<Checkbox color="primary" value="remember" />}
-								label="Remember me"
-							/>
-							<Button
-								className={classes.submit}
-								color="primary"
-								fullWidth
-								type="submit"
-								variant="contained"
-							>
-								Sign In
-							</Button>
-							<a href="https://eventnest-server.herokuapp.com/auth/facebook" >Facebook</a>
+							<Grid container spacing={2}>
+								<Grid item xs={12} >
+									<TextField
+										autoFocus
+										fullWidth
+										id="username"
+										label="Username"
+										name="username"
+										onChange={handleChange}
+										required
+										value={details.username}
+										variant="outlined"
+									/>
+								</Grid>
+								<Grid item xs={12} >
+									<TextField
+										autoComplete="current-password"
+										fullWidth
+										id="password"
+										label="Password"
+										name="password"
+										onChange={handleChange}
+										required
+										type="password"
+										value={details.password}
+										variant="outlined"
+									/>
+								</Grid>
+								<Grid item xs={12} >
+									<FormControlLabel
+										control={<Checkbox color="primary" value="remember" />}
+										label="Remember me"
+									/>
+									<Button
+										className={classes.submit}
+										color="primary"
+										fullWidth
+										type="submit"
+										variant="outlined"
+									>
+										Sign In
+									</Button>
+								</Grid>
+								<Grid item xs={12}>
+									<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
+										<Button
+											className={classes.submit}
+											color="primary"
+											fullWidth
+											type="submit"
+											variant="outlined"
+										>
+										Facebook
+										</Button>
+									</Lnk>
+								</Grid>
+							</Grid>
+							{/* <a href="https://eventnest-server.herokuapp.com/auth/facebook">Facebook</a> */}
 							{/* <Button
 								type="submit"
 								fullWidth

@@ -165,7 +165,7 @@ function Search() {
 		
 		if (input) {
 			axios
-				.get('http://localhost:4000/events/search/' + input)
+				.get('https://eventnest-server.herokuapp.com/events/search/' + input)
 				.then(res => {
 					const newDetails = res.data;
 					console.log(newDetails);

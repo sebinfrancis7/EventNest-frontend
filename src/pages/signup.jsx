@@ -43,7 +43,7 @@ export default function SignUp() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('http://localhost:4000/customer', details, {withCredentials: true })
+			.post('https://eventnest-server.herokuapp.com/customer', details, {withCredentials: true })
 			.then(res => {
 				console.log(res);
 				console.log(res.data);

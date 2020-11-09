@@ -12,7 +12,7 @@ export default function Homepage() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.get('http://localhost:4000/auth',{withCredentials: true })
+			.get('https://eventnest-server.herokuapp.com/auth',{withCredentials: true })
 			.then(res => {
 				console.log(res.data);
 			})

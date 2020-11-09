@@ -64,7 +64,7 @@ function CreatEvent() {
 		e.preventDefault();
 		console.log(details);
 		axios
-			.post('http://localhost:4000/events', details)
+			.post('https://eventnest-server.herokuapp.com/events', details)
 			.then(res => {
 				console.log(res);
 				console.log(res.data);
