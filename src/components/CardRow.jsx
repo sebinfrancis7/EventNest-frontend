@@ -26,9 +26,9 @@ function createCard(event, i) {
 
 function CardRow(props) {
 	// eslint-disable-next-line
-	// const [events, setEvents] = useState([]);
-	const { setEvents } = useGlobalContext();
-	const { events } = useGlobalContext();
+	const [events, setEvents] = useState([]);
+	const { setGlobalEvents } = useGlobalContext();
+	// const { globalEvents } = useGlobalContext();
 
 	const listRef = useRef(null);
 
@@ -37,12 +37,18 @@ function CardRow(props) {
 		let url;
 		if (category)
 			url = 'https://eventnest-server.herokuapp.com/events?category=' + category;
-		else
+		else {
 			url = 'https://eventnest-server.herokuapp.com/events';
+		}
 		axios
 			.get(url)
 			.then(res => {
-				setEvents(res.data);
+				if (category) 
+					setEvents(res.data);
+				else {
+					setEvents(res.data);
+					setGlobalEvents(res.data);
+				}
 			});
 	}, []);
 

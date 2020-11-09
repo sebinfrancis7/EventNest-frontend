@@ -3,11 +3,11 @@ import React, { useState, useContext } from 'react';
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-	const [events, setEvents] = useState([]);
+	const [globalEvents, setGlobalEvents] = useState([]);
 
 	return (
 		<AppContext.Provider
-			value={{ events, setEvents }}
+			value={{ globalEvents, setGlobalEvents }}
 		>
 			{children}
 		</AppContext.Provider>

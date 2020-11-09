@@ -100,7 +100,7 @@ function displayResult(event, i) {
 
 function Search() {
 	const classes = useStyles();
-	const { events } = useGlobalContext();
+	const { globalEvents } = useGlobalContext();
 	// const [details, setDetails] = useState([]);
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);
@@ -119,7 +119,7 @@ function Search() {
 		const input = event.target.value;
 		console.log(input);
 		if (input) {
-			const newDetails = events.filter(event => event.title.includes(input));
+			const newDetails = globalEvents.filter(event => event.title.includes(input));
 			console.log(newDetails);
 			if (newDetails.length != 0) {
 				setNotfound(false);
