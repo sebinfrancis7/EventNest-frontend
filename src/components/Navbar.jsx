@@ -85,7 +85,24 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function displayResult(event, i) {
+function displayResult(events, i) {
+	if(i == 0) return events.map(displayTitle);
+	if(i == 1) return events.map(displayWithCity);
+	if(i == 2) return events.map(displayWithCategory);
+
+	// return (
+	// 	<Link className="card-link" key={i} to={`/events/${event._id}`}>
+	// 		<Button
+	// 			className="search-button"
+	// 			fullWidth
+	// 		>
+	// 			{event.title}
+	// 		</Button>
+	// 	</Link>
+	// );
+}
+
+function displayTitle(event, i) {
 	return (
 		<Link className="card-link" key={i} to={`/events/${event._id}`}>
 			<Button
@@ -97,6 +114,34 @@ function displayResult(event, i) {
 		</Link>
 	);
 }
+
+
+function displayWithCity(event, i) {
+	return (
+		<Link className="card-link" key={i} to={`/events/${event._id}`}>
+			<Button
+				className="search-button"
+				fullWidth
+			>
+				{event.title} in {event.city}
+			</Button>
+		</Link>
+	);
+}
+
+function displayWithCategory(event, i) {
+	return (
+		<Link className="card-link" key={i} to={`/events/${event._id}`}>
+			<Button
+				className="search-button"
+				fullWidth
+			>
+				{event.title} in {event.category}
+			</Button>
+		</Link>
+	);
+}
+
 
 function Search() {
 	const classes = useStyles();
@@ -115,18 +160,24 @@ function Search() {
 	// 		});
 	// }, []);
 
-	const handleSearch = (event) => {
+	const handleSearch = async (event) => {
 		const input = event.target.value;
-		console.log(input);
+		
 		if (input) {
-			const newDetails = globalEvents.filter(event => event.title.includes(input));
-			console.log(newDetails);
-			if (newDetails.length != 0) {
-				setNotfound(false);
-				setResults(newDetails);
-			} else {
-				setNotfound(true);
-			}
+			axios
+				.get('http://localhost:4000/events/search/' + input)
+				.then(res => {
+					const newDetails = res.data;
+					console.log(newDetails);
+					if (newDetails.length != 0) {
+						setNotfound(false);
+						setResults(newDetails);
+					} else {
+						setNotfound(true);
+					}
+				}, err => console.log(err));
+			//const newDetails = globalEvents.filter(event => event.title.includes(input));
+			
 
 		} else {
 			setNotfound(false);
