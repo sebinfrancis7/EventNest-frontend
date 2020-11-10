@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, CardActionArea, makeStyles, StylesProvider } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -9,7 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
 import '../sass/card.scss';
+import axios from 'axios';
 import classNames from 'classnames';
+
+import { useUserContext, UserContext } from '../userContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -36,10 +39,44 @@ function MediaCard(props) {
 	const classes = useStyles();
 	const [favorite, setfavorite] = useState(true);
 	const [coloris, setColoris] = useState(null);
+	let [user, setUser] = useContext(UserContext);
 
-	const handleFavorite = () => {
-		favorite ? setfavorite(false) : setfavorite(true);
-		favorite ? setColoris('#F50057') : setColoris(null);
+	const handleFavorite = (e) => {
+		// favorite ? setfavorite(false) : setfavorite(true);
+		// favorite ? setColoris('#F50057') : setColoris(null);
+		e.preventDefault();
+		// console.log(user.data._id);
+		if (favorite) {
+			setfavorite(false);
+			setColoris('#F50057');
+			console.log(favorite);
+			let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+			console.log(url);
+			axios
+				.post(url, props.event_id)
+				.then(res => {
+					console.log(res);
+					console.log(res.data);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		} else {
+			let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+			setfavorite(true);
+			setColoris(null);
+			console.log(favorite);
+			axios
+				.delete(url)
+				.then(res => {
+					console.log(res);
+					console.log(res.data);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+
+		}
 	};
 
 	return (

@@ -155,7 +155,7 @@ function Search() {
 					}
 				}, err => console.log(err));
 			//const newDetails = globalEvents.filter(event => event.title.includes(input));
-			
+
 
 		} else {
 			setNotfound(false);
