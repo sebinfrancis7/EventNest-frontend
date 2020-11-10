@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
 import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
@@ -12,7 +13,7 @@ import FooterPage from './pages/footer.jsx';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import { UserProvider } from './userContext';
+import { UserContext } from './userContext';
 import Navbar from './components/Navbar';
 
 const theme = createMuiTheme({
@@ -29,8 +30,36 @@ const theme = createMuiTheme({
 });
 
 function App() {
+	const [user, setUser] = useContext(UserContext);
+	useEffect(() => {
+		async function fetchData() {	
+			let url = 'https://eventnest-server.herokuapp.com/users';
+			//let url = 'http://localhost:4000/users'
+			
+			let response = await fetch( url,
+			{
+				method: 'get',
+				headers: {
+					"Content-type": "application/json"
+				},
+				credentials: "include"
+			});
+
+			if(response.ok) {
+				let json = await response.json();
+				if(user?.data?._id !== json.user._id) {
+					setUser({data: json.user, type: json.type, loggedIn: true})
+				}
+			}
+			else {
+				console.log(response.status)
+			}
+		}
+		fetchData();
+
+	},[])
 	return (
-		<UserProvider>
+		
 			<ThemeProvider theme={theme}>
 				<Router>
 					<Navbar />
@@ -64,7 +93,7 @@ function App() {
 					<FooterPage />
 				</Router>
 			</ThemeProvider>
-		</UserProvider>
+		
 	);
 }
 

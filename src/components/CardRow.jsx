@@ -27,7 +27,7 @@ function createCard(event, i) {
 function CardRow(props) {
 	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
-	const { setGlobalEvents } = useGlobalContext();
+	// const { setGlobalEvents } = useGlobalContext();
 	// const { globalEvents } = useGlobalContext();
 
 	const listRef = useRef(null);
@@ -47,7 +47,7 @@ function CardRow(props) {
 					setEvents(res.data);
 				else {
 					setEvents(res.data);
-					setGlobalEvents(res.data);
+					// setGlobalEvents(res.data);
 				}
 			});
 	}, []);

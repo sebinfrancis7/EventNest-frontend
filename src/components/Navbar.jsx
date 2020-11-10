@@ -110,7 +110,7 @@ function display(event, i) {
 
 function Search() {
 	const classes = useStyles();
-	const { globalEvents } = useGlobalContext();
+	// const { globalEvents } = useGlobalContext();
 	// const [details, setDetails] = useState([]);
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);

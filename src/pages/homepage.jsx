@@ -10,7 +10,7 @@ import '../sass/homepage.scss';
 import EventPanel from '../components/EventPanel';
 
 export default function Homepage() {
-	let [user, setUser] = useContext(UserContext);
+	const [user, setUser] = useContext(UserContext);
 	const handleLogout = (e) => {
 		e.preventDefault();
 		axios

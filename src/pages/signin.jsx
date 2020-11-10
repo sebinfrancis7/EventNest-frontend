@@ -17,6 +17,7 @@ import { Link as Lnk } from '@material-ui/core';
 import Copyright from './../components/Copyright';
 import {  BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
+import { Details } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -55,40 +56,28 @@ export default function SignInSide() {
 	const [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
 	const [details, setDetails] = useState({ username: '',password: ''});
+
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		axios
-			.post('https://eventnest-server.herokuapp.com/customer/login', details, {withCredentials: true })
-			//.post('http://localhost:4000/customer/login', details, {withCredentials: true })
-			.then(res => {
-				console.log(user);
-				if(res.status == 200){
-					// console.log(res);
-					// console.log(res.data);
-					setUser({data: res.data, type: 'customer', loggedIn: true});
-					console.log(user);
-				}
-				
-			})
-			.catch(err => {
-				console.log(err);
+		async function submitData() {	
+			let httpHeaders = { 'Content-Type': 'application/json' };
+			let url = 'https://eventnest-server.herokuapp.com/customer/login';
+			let myHeaders = new Headers(httpHeaders);
+			let response = await fetch(url, {
+				method: 'POST', 
+				headers: myHeaders,
+				credentials: "include",
+				body: JSON.stringify(details), 
 			});
+			if (response.ok) {
+				let json = await response.json();
+				setUser({ data: json, type: 'customer', loggedIn: true})
+			} 
+		}
+		e.preventDefault();
+		submitData();
+		
 	};
 
-	// const handleFacebook = (e) => {
-	// 	e.preventDefault();
-	// 	fetch('https://eventnest-server.herokuapp.com/auth/facebook',{mode: 'no-cors'})
-	// 	.then(res => console.log(res), err => console.log(err));
-	// 	// axios
-	// 	// 	.get('https://eventnest-server.herokuapp.com/auth/facebook')
-	// 	// 	.then(res => {
-	// 	// 		console.log(res);
-	// 	// 		console.log(res.data);
-	// 	// 	})
-	// 	// 	.catch(err => {
-	// 	// 		console.log(err);
-	// 	// 	});
-	// };
 
 	function handleChange(event) {
 		const inputname = event.target.name;
