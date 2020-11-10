@@ -86,9 +86,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function displayResult(events, i) {
-	if(i == 0) return events.map(displayTitle);
-	if(i == 1) return events.map(displayWithCity);
-	if(i == 2) return events.map(displayWithCategory);
+	if (i == 0) return events.map(displayTitle);
+	if (i == 1) return events.map(displayWithCity);
+	if (i == 2) return events.map(displayWithCategory);
 
 	// return (
 	// 	<Link className="card-link" key={i} to={`/events/${event._id}`}>
@@ -162,22 +162,22 @@ function Search() {
 
 	const handleSearch = async (event) => {
 		const input = event.target.value;
-		
+
 		if (input) {
 			axios
 				.get('https://eventnest-server.herokuapp.com/events/search/' + input)
 				.then(res => {
 					const newDetails = res.data;
 					console.log(newDetails);
-					if (newDetails.length != 0) {
+					if (newDetails[0].length == 0 && newDetails[1].length == 0 && newDetails[2].length == 0) {
+						setNotfound(true);
+					} else {
 						setNotfound(false);
 						setResults(newDetails);
-					} else {
-						setNotfound(true);
 					}
 				}, err => console.log(err));
 			//const newDetails = globalEvents.filter(event => event.title.includes(input));
-			
+
 
 		} else {
 			setNotfound(false);
