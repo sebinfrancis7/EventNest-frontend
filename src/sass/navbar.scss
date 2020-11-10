@@ -47,6 +47,16 @@
 }
 
 .search-button {
-    justify-content: flex-start;
-    align-items: flex-start;
+    display: block;
+    text-align: start;
+}
+
+.search-title {
+    font-weight: 600;
+}
+
+.search-details {
+    font-size: 0.7rem;
+    color: #858796;
+    font-weight: 400;
 }

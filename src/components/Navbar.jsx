@@ -86,57 +86,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function displayResult(events, i) {
-	if(i == 0) return events.map(displayTitle);
-	if(i == 1) return events.map(displayWithCity);
-	if(i == 2) return events.map(displayWithCategory);
-
-	// return (
-	// 	<Link className="card-link" key={i} to={`/events/${event._id}`}>
-	// 		<Button
-	// 			className="search-button"
-	// 			fullWidth
-	// 		>
-	// 			{event.title}
-	// 		</Button>
-	// 	</Link>
-	// );
+	return display(events);
 }
 
-function displayTitle(event, i) {
+function display(event, i) {
 	return (
 		<Link className="card-link" key={i} to={`/events/${event._id}`}>
 			<Button
 				className="search-button"
 				fullWidth
 			>
-				{event.title}
-			</Button>
-		</Link>
-	);
-}
-
-
-function displayWithCity(event, i) {
-	return (
-		<Link className="card-link" key={i} to={`/events/${event._id}`}>
-			<Button
-				className="search-button"
-				fullWidth
-			>
-				{event.title} in {event.city}
-			</Button>
-		</Link>
-	);
-}
-
-function displayWithCategory(event, i) {
-	return (
-		<Link className="card-link" key={i} to={`/events/${event._id}`}>
-			<Button
-				className="search-button"
-				fullWidth
-			>
-				{event.title} in {event.category}
+				<Typography className="search-title">
+					{event.title}
+				</Typography>
+				<Typography className="search-details">
+					{'    '}{event.category}, {event.city || 'Online'}
+				</Typography>
 			</Button>
 		</Link>
 	);
@@ -162,16 +127,29 @@ function Search() {
 
 	const handleSearch = async (event) => {
 		const input = event.target.value;
+		setResults([]);
 		
 		if (input) {
 			axios
 				.get('https://eventnest-server.herokuapp.com/events/search/' + input)
 				.then(res => {
-					const newDetails = res.data;
-					console.log(newDetails);
+					const data = res.data;
+					let newDetails = [];
+					let events = [];
+					// console.log(data);
+					for (const type of data) {
+						for (const event of type) {
+							if (events.includes(event._id) == false) {
+								events.push(event._id);
+								newDetails.push(event);
+							}
+						}
+					}
+					console.log(events);
 					if (newDetails.length != 0) {
 						setNotfound(false);
 						setResults(newDetails);
+						console.log({results});
 					} else {
 						setNotfound(true);
 					}
