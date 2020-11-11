@@ -37,62 +37,62 @@ function App() {
 			//let url = 'http://localhost:4000/users'
 			
 			let response = await fetch( url,
-			{
-				method: 'get',
-				headers: {
-					"Content-type": "application/json"
-				},
-				credentials: "include"
-			});
+				{
+					method: 'get',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					credentials: 'include'
+				});
 
 			if(response.ok) {
 				let json = await response.json();
 				if(user?.data?._id !== json.user._id) {
-					setUser({data: json.user, type: json.type, loggedIn: true})
+					setUser({data: json.user, type: json.type, loggedIn: true});
 				}
 			}
 			else {
-				console.log(response.status)
+				console.log(response.status);
 			}
 		}
 		fetchData();
 
-	},[])
+	},[]);
 	return (
 		
-			<ThemeProvider theme={theme}>
-				<Router>
-					<Navbar />
-					<Switch>
-						<Route exact path='/'>
-							<Homepage />
-						</Route>
-						<Route exact path='/signin'>
-							<SignInSide />
-						</Route>
-						<Route exact path='/signup'>
-							<SignUp />
-						</Route>
-						<Route exact path='/events'>
-							<Events />
-						</Route>
-						<Route exact path='/create-event'>
-							<CreateEvent />
-						</Route>
-						<Route exact path='/aboutus'>
-							<AboutUs />
-						</Route>
-						<Route exact path='/contactus'>
-							<ContactUs />
-						</Route>
-						<Route component={Event} path='/events/:event_id' />
-						<Route path="*">
-							<Error />
-						</Route>
-					</Switch>
-					<FooterPage />
-				</Router>
-			</ThemeProvider>
+		<ThemeProvider theme={theme}>
+			<Router>
+				<Navbar />
+				<Switch>
+					<Route exact path='/'>
+						<Homepage />
+					</Route>
+					<Route exact path='/signin'>
+						<SignInSide />
+					</Route>
+					<Route exact path='/signup'>
+						<SignUp />
+					</Route>
+					<Route exact path='/events'>
+						<Events />
+					</Route>
+					<Route exact path='/create-event'>
+						<CreateEvent />
+					</Route>
+					<Route exact path='/aboutus'>
+						<AboutUs />
+					</Route>
+					<Route exact path='/contactus'>
+						<ContactUs />
+					</Route>
+					<Route component={Event} path='/events/:event_id' />
+					<Route path="*">
+						<Error />
+					</Route>
+				</Switch>
+				<FooterPage />
+			</Router>
+		</ThemeProvider>
 		
 	);
 }

@@ -15,7 +15,7 @@ import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { Link as Lnk } from '@material-ui/core';
 import Copyright from './../components/Copyright';
-import {  BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import { Details } from '@material-ui/icons';
 
@@ -65,12 +65,12 @@ export default function SignInSide() {
 			let response = await fetch(url, {
 				method: 'POST', 
 				headers: myHeaders,
-				credentials: "include",
+				credentials: 'include',
 				body: JSON.stringify(details), 
 			});
 			if (response.ok) {
 				let json = await response.json();
-				setUser({ data: json, type: 'customer', loggedIn: true})
+				setUser({ data: json, type: 'customer', loggedIn: true});
 			} 
 		}
 		e.preventDefault();
@@ -86,7 +86,7 @@ export default function SignInSide() {
 		setDetails(newDetails);
 	}
 
-	if(user.loggedIn) return(<Redirect to="/" />)
+	if(user.loggedIn) return(<Redirect to="/" />);
 	 
 	return (
 		<StylesProvider injectFirst>
