@@ -61,6 +61,7 @@ export default function SignInSide() {
 		async function submitData() {	
 			let httpHeaders = { 'Content-Type': 'application/json' };
 			let url = 'https://eventnest-server.herokuapp.com/customer/login';
+			//let url = 'http://localhost:4000/customer/login';
 			let myHeaders = new Headers(httpHeaders);
 			let response = await fetch(url, {
 				method: 'POST', 

@@ -28,15 +28,18 @@ function loadScript(src) {
 function EventInfo(props) {
 	const [details, setDetails] = useState([]);
 	const [orderData, setOrder] = useState();
+	const [ loadRazor, setLoadRazor ] = useState(true);
+	const { match: { params } } = props;
 
 	async function displayRazorpay() {
-		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
-
-		if (!res) {
-			alert('Razorpay SDK failed to load. Are you online?');
-			return;
+		if(loadRazor) {
+			const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+			if (!res) {
+				alert('Razorpay SDK failed to load. Are you online?');
+				return;
+			}
+			setLoadRazor(false);
 		}
-
 		const options = {
 			key:'rzp_test_Cly42HaznEIi1i',
 			currency: 'INR',
@@ -44,11 +47,18 @@ function EventInfo(props) {
 			order_id: orderData.id,
 			name: 'money go brrrrrrrrrrrrrr',
 			description: 'Paisa de chal',
-			// image: 'http://localhost:1337/logo.svg',
+			
 			handler: function (response) {
-				alert(response.razorpay_payment_id);
-				alert(response.razorpay_order_id);
-				alert(response.razorpay_signature);
+				let values = {
+					razorpay_signature : response.razorpay_signature,
+					razorpay_order_id : response.razorpay_order_id,
+					transactionid : response.razorpay_payment_id,
+					transactionamount :  orderData.amount,
+					eventId: params.event_id
+				}
+				axios.post('https://eventnest-server.herokuapp.com/razorpay/payment',values, { withCredentials : true })
+				.then(res=>{alert("Success")})
+				.catch(e=>console.log(e))
 			},
 			// prefill: {
 			// 	name,
@@ -61,8 +71,6 @@ function EventInfo(props) {
 	}
 	
 	useEffect(() => {
-		const { match: { params } } = props;
-		console.log(params.event_id);
 		let url = 'https://eventnest-server.herokuapp.com/events?_id=' + params.event_id;
 		axios
 			.get(url)
@@ -74,14 +82,16 @@ function EventInfo(props) {
 
 	useEffect(() => {
 		const postBody = {
-			amount: details.price
+			amount: details.price 
 		};
-		axios
-			.post('https://eventnest-server.herokuapp.com/razorpay', postBody)
-			.then(res => {
-				setOrder(res.data);
-				console.log(orderData);
-			});
+		if(details.price)
+		{ 
+			axios
+				.post('https://eventnest-server.herokuapp.com/razorpay', postBody)
+				.then(res => {
+					setOrder(res.data);
+				});
+		}
 	}, [details]);
 
 	return (
