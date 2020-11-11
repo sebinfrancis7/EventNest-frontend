@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import EventImage from '../assets/blocks.jpg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
@@ -13,10 +13,10 @@ export default function Homepage() {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		axios
-			.get('https://eventnest-server.herokuapp.com/logout',{withCredentials: true })
+			.get('https://eventnest-server.herokuapp.com/logout', { withCredentials: true })
 			.then(res => {
 				console.log(res.data);
-				setUser({loggedIn: false});
+				setUser({ loggedIn: false });
 			})
 			.catch(err => {
 				console.log(err);
@@ -37,7 +37,7 @@ export default function Homepage() {
 				variant="contained"
 			>
 				logout
-			</Button>	
+			</Button>
 			<Button
 				color="primary"
 				fullWidth
@@ -46,14 +46,24 @@ export default function Homepage() {
 				variant="contained"
 			>
 				User
-			</Button>	
+			</Button>
+			<RouterLink className="card-link" to={`/dashboard`}>
+				<Button
+					color="primary"
+					fullWidth
+					variant="contained"
+				>
+					Dashboard
+			</Button>
+			</RouterLink>
+
 			<Grid className="welcome-container" container>
 				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
 					<Typography className="title" justify="center" variant="h3">
 						Welcome to EventNest
 					</Typography>
 					<Typography className="subtitle" justify="center" variant="subtitle1">
-						Your online destination for hosting and exploring events across the globe, at your fingertips.	
+						Your online destination for hosting and exploring events across the globe, at your fingertips.
 					</Typography>
 					<Link href="#events">
 						<Button className="button button-shadow" color="primary" variant="contained">

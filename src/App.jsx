@@ -7,10 +7,11 @@ import Error from './pages/404';
 import Events from './pages/eventsPage.jsx';
 import Event from './pages/eventinfo.jsx';
 import CreateEvent from './pages/createEvent.jsx';
+import Dashboard from './pages/dashboard.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
 import FooterPage from './pages/footer.jsx';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { UserContext } from './userContext';
@@ -32,11 +33,11 @@ const theme = createMuiTheme({
 function App() {
 	const [user, setUser] = useContext(UserContext);
 	useEffect(() => {
-		async function fetchData() {	
+		async function fetchData() {
 			let url = 'https://eventnest-server.herokuapp.com/users';
 			//let url = 'http://localhost:4000/users'
-			
-			let response = await fetch( url,
+
+			let response = await fetch(url,
 				{
 					method: 'get',
 					headers: {
@@ -45,11 +46,12 @@ function App() {
 					credentials: 'include'
 				});
 
-			if(response.ok) {
+			if (response.ok) {
 				let json = await response.json();
-				if(user?.data?._id !== json.user._id) {
-					setUser({data: json.user, type: json.type, loggedIn: true});
+				if (user?.data?._id !== json.user._id) {
+					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
+				console.log(user);
 			}
 			else {
 				console.log(response.status);
@@ -57,9 +59,9 @@ function App() {
 		}
 		fetchData();
 
-	},[]);
+	}, []);
 	return (
-		
+
 		<ThemeProvider theme={theme}>
 			<Router>
 				<Navbar />
@@ -79,9 +81,24 @@ function App() {
 					<Route exact path='/create-event'>
 						<CreateEvent />
 					</Route>
+					<Route exact path='/dashboard'>
+						{user.loggedIn ? <Dashboard /> :
+							<div>
+								<div>
+									<Link to='/signin'>
+										<h2>yo need to sign in first</h2>
+									</Link>
+
+								</div>
+							</div>}
+
+					</Route>
 					<Route exact path='/aboutus'>
 						<AboutUs />
 					</Route>
+					{/* <Route exact path='/dashboard'>
+						<Dashboard />
+					</Route> */}
 					<Route exact path='/contactus'>
 						<ContactUs />
 					</Route>
@@ -93,7 +110,6 @@ function App() {
 				<FooterPage />
 			</Router>
 		</ThemeProvider>
-		
 	);
 }
 
