@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import EventImage from '../assets/blocks.jpg';
 import { Button, Grid, Link, StylesProvider, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
@@ -17,7 +16,7 @@ export default function Homepage() {
 			.get('https://eventnest-server.herokuapp.com/logout',{withCredentials: true })
 			.then(res => {
 				console.log(res.data);
-				setUser({loggedIn: false})
+				setUser({loggedIn: false});
 			})
 			.catch(err => {
 				console.log(err);
