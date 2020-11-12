@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
-import { Card, Grid, StylesProvider, Button, Paper, CardHeader } from '@material-ui/core';
+import { Card, Grid, StylesProvider, Button, CardHeader } from '@material-ui/core';
 import '../sass/eventinfo.scss';
 import { CardMedia } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
