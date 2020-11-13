@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,9 +15,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
 import { Button, Paper, StylesProvider } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useGlobalContext } from '../context';
+import { useUserContext, UserContext } from '../userContext';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 	},
 	inputRoot: {
+		width: '100%',
 		color: 'inherit',
 	},
 	inputInput: {
@@ -67,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		transition: theme.transitions.create('width'),
 		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
+		// [theme.breakpoints.up('md')]: {
+		// 	width: '20ch',
+		// },
 	},
 	sectionDesktop: {
 		display: 'none',
@@ -107,6 +109,25 @@ function display(event, i) {
 	);
 }
 
+function NavLinks() {
+	return (
+		<Toolbar className="no-min-height">
+			<Button className="nav-button" variant="contained">
+				Music
+		</Button>
+			<Button className="nav-button" variant="contained">
+				Comedy
+		</Button>
+			<Button className="nav-button" variant="contained">
+				Arts
+		</Button>
+			<Button className="nav-button" variant="contained">
+				Fitness
+		</Button>
+		</Toolbar>
+	);
+}
+
 
 function Search() {
 	const classes = useStyles();
@@ -128,7 +149,7 @@ function Search() {
 	const handleSearch = async (event) => {
 		const input = event.target.value;
 		setResults([]);
-		
+
 		if (input) {
 			axios
 				.get('https://eventnest-server.herokuapp.com/events/search/' + input)
@@ -149,7 +170,7 @@ function Search() {
 					if (newDetails.length != 0) {
 						setNotfound(false);
 						setResults(newDetails);
-						console.log({results});
+						console.log({ results });
 					} else {
 						setNotfound(true);
 					}
@@ -178,19 +199,6 @@ function Search() {
 				placeholder="Search…"
 			/>
 			<Paper className="search-result">
-				{/* {
-					results.map(function (event, i) {
-						return (
-							<Link className="card-link" key={i} to={`/events/${event._id}`}>
-								<Button
-									className="search-button"
-									fullWidth
-								>
-									{event.title}
-								</Button>
-							</Link>
-						);
-					})} */}
 				{
 					notfound ? <Button className="search-button" fullWidth>Not Found</Button> : <div>{results.map(displayResult)}</div>
 				}
@@ -200,6 +208,7 @@ function Search() {
 }
 
 export default function Navbar() {
+	let [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -224,6 +233,19 @@ export default function Navbar() {
 		setMobileMoreAnchorEl(event.currentTarget);
 	};
 
+	const handleLogout = (e) => {
+		e.preventDefault();
+		axios
+			.get('https://eventnest-server.herokuapp.com/logout', { withCredentials: true })
+			.then(res => {
+				console.log(res.data);
+				setUser({ loggedIn: false });
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
 		<Menu
@@ -235,9 +257,11 @@ export default function Navbar() {
 			open={isMenuOpen}
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<Link to='/dashboard' className='no-underline'>
+				<MenuItem>Profile</MenuItem>
+			</Link>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
 
@@ -273,7 +297,7 @@ export default function Navbar() {
 			</MenuItem>
 		</Menu>
 	);
-
+	console.log(user);
 	return (
 		<StylesProvider injectFirst>
 			<div className={classNames(classes.grow, 'navbar')}>
@@ -287,22 +311,27 @@ export default function Navbar() {
 						</div>
 						<div className={classes.grow} />
 						<div className={classes.sectionDesktop}>
-
-							<IconButton aria-label="show 17 new notifications" color="inherit">
-								<Badge badgeContent={17} color="secondary">
-									<NotificationsIcon />
-								</Badge>
-							</IconButton>
-							<IconButton
-								aria-controls={menuId}
-								aria-haspopup="true"
-								aria-label="account of current user"
-								color="inherit"
-								edge="end"
-								onClick={handleProfileMenuOpen}
-							>
-								<AccountCircle />
-							</IconButton>
+							{user.loggedIn ?
+								<Button
+									onClick={handleProfileMenuOpen}
+									startIcon={<AccountCircle />}
+									color="inherit"
+								>
+									{user.data.display_name}
+								</Button>
+								:
+								<Link
+									to='/signin'
+									className='no-underline'
+								>
+									<Button
+										className="login-button"
+										variant="outlined"
+									>
+										Log in
+							</Button>
+								</Link>
+							}
 						</div>
 						<div className={classes.sectionMobile}>
 							<IconButton
@@ -316,24 +345,11 @@ export default function Navbar() {
 							</IconButton>
 						</div>
 					</Toolbar>
-					<Toolbar className="no-min-height">
-						<Button className="nav-button" variant="contained">
-							Music
-						</Button>
-						<Button className="nav-button" variant="contained">
-							Comedy
-						</Button>
-						<Button className="nav-button" variant="contained">
-							Arts
-						</Button>
-						<Button className="nav-button" variant="contained">
-							Fitness
-						</Button>
-					</Toolbar>
+					<NavLinks />
 				</AppBar>
 				{renderMobileMenu}
 				{renderMenu}
 			</div>
-		</StylesProvider>
+		</StylesProvider >
 	);
 }

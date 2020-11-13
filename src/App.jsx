@@ -59,7 +59,7 @@ function App() {
 		}
 		fetchData();
 
-	}, []);
+	}, [user]);
 	return (
 
 		<ThemeProvider theme={theme}>

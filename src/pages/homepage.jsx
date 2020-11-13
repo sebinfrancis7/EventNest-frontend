@@ -29,7 +29,7 @@ export default function Homepage() {
 	return (
 		<StylesProvider injectFirst>
 			{/* <Navbar /> */}
-			<Button
+			{/* <Button
 				color="primary"
 				fullWidth
 				onClick={handleLogout}
@@ -55,7 +55,7 @@ export default function Homepage() {
 				>
 					Dashboard
 			</Button>
-			</RouterLink>
+			</RouterLink> */}
 
 			<Grid className="welcome-container" container>
 				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
