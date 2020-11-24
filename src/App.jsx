@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
 import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
@@ -10,7 +9,6 @@ import CreateEvent from './pages/createEvent.jsx';
 import Dashboard from './pages/dashboard.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
-import FooterPage from './pages/footer.jsx';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -107,7 +105,6 @@ function App() {
 						<Error />
 					</Route>
 				</Switch>
-				<FooterPage />
 			</Router>
 		</ThemeProvider>
 	);

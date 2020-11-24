@@ -27,6 +27,7 @@ function createCard(event, i) {
 function CardRow(props) {
 	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
+	const [ loaded, setLoaded ] = useState(false);
 	// const { setGlobalEvents } = useGlobalContext();
 	// const { globalEvents } = useGlobalContext();
 
@@ -49,6 +50,7 @@ function CardRow(props) {
 					setEvents(res.data);
 					// setGlobalEvents(res.data);
 				}
+				setLoaded(true);
 			});
 	}, []);
 
@@ -59,6 +61,7 @@ function CardRow(props) {
 				behavior: 'smooth',
 			});
 		}
+		console.log(listRef);
 	};
 
 	const handleScrollRight = () => {
@@ -75,14 +78,20 @@ function CardRow(props) {
 			<div className='events-row' ref={listRef}>
 				{events.map(createCard)}
 			</div>
-			<div className='scroll-buttons'>
-				<IconButton className='left-button' onClick={handleScrollLeft}>
-					<ChevronLeftIcon />
-				</IconButton>
-				<IconButton className='right-button' onClick={handleScrollRight}>
-					<ChevronRightIcon />
-				</IconButton>
-			</div>
+			{ loaded ? 
+				listRef.current.clientWidth == listRef.current.scrollWidth ?
+					undefined
+					:
+					<div className='scroll-buttons'>
+						<IconButton className='left-button' onClick={handleScrollLeft}>
+							<ChevronLeftIcon />
+						</IconButton>
+						<IconButton className='right-button' onClick={handleScrollRight}>
+							<ChevronRightIcon />
+						</IconButton>
+					</div>
+				: undefined
+			}
 		</div>
 
 	);

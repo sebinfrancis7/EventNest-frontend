@@ -112,18 +112,18 @@ function display(event, i) {
 function NavLinks() {
 	return (
 		<Toolbar className="no-min-height">
-			<Button className="nav-button" variant="contained">
+			<Link className="nav-links" variant="contained">
 				Music
-		</Button>
-			<Button className="nav-button" variant="contained">
+			</Link>
+			<Link className="nav-links" variant="contained">
 				Comedy
-		</Button>
-			<Button className="nav-button" variant="contained">
+			</Link>
+			<Link className="nav-links" variant="contained">
 				Arts
-		</Button>
-			<Button className="nav-button" variant="contained">
+			</Link>
+			<Link className="nav-links" variant="contained">
 				Fitness
-		</Button>
+			</Link>
 		</Toolbar>
 	);
 }
@@ -257,7 +257,7 @@ export default function Navbar() {
 			open={isMenuOpen}
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
-			<Link to='/dashboard' className='no-underline'>
+			<Link className='no-underline' to='/dashboard'>
 				<MenuItem>Profile</MenuItem>
 			</Link>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -313,23 +313,23 @@ export default function Navbar() {
 						<div className={classes.sectionDesktop}>
 							{user.loggedIn ?
 								<Button
+									color="inherit"
 									onClick={handleProfileMenuOpen}
 									startIcon={<AccountCircle />}
-									color="inherit"
 								>
 									{user.data.display_name}
 								</Button>
 								:
 								<Link
-									to='/signin'
 									className='no-underline'
+									to='/signin'
 								>
 									<Button
 										className="login-button"
 										variant="outlined"
 									>
 										Log in
-							</Button>
+									</Button>
 								</Link>
 							}
 						</div>
