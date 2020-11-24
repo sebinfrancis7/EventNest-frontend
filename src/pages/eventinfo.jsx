@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useHistory } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { Card, Grid, StylesProvider, Button, Paper, CardHeader } from '@material-ui/core';
@@ -10,6 +11,11 @@ import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import { useUserContext, UserContext } from '../userContext';
+import {
+	FacebookShareButton,
+	TwitterShareButton
+  } from "react-share";
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -29,9 +35,15 @@ function EventInfo(props) {
 	const [details, setDetails] = useState([]);
 	const [orderData, setOrder] = useState();
 	const [ loadRazor, setLoadRazor ] = useState(true);
+	const [user, setUser] = useContext(UserContext);
 	const { match: { params } } = props;
+	let history = useHistory();
 
 	async function displayRazorpay() {
+		if(Object.keys(user).length == 0){
+			history.push('/signin');
+			return;
+		}
 		if(loadRazor) {
 			const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 			if (!res) {
@@ -54,7 +66,8 @@ function EventInfo(props) {
 					razorpay_order_id : response.razorpay_order_id,
 					transactionid : response.razorpay_payment_id,
 					transactionamount :  orderData.amount,
-					eventId: params.event_id
+					eventId: params.event_id,
+					tickets: tickets
 				}
 				axios.post('https://eventnest-server.herokuapp.com/razorpay/payment',values, { withCredentials : true })
 				.then(res=>{alert("Success")})
@@ -125,6 +138,9 @@ function EventInfo(props) {
 										<Typography component="h2" variant="subtitle1">
 											{details.category} | {details.city || details.venue_addr} | ₹{details.price}
 										</Typography>
+										<Typography className="event-title" component="h4" variant="h5">
+											Only {details.max_attendees - details.attendees} left !!!
+										</Typography>
 									</Grid>
 									<Grid className="event-button-container" item sm={6} xs={12}>
 										<Button
@@ -155,18 +171,28 @@ function EventInfo(props) {
 								title="Share"
 							/>
 							<CardContent>
-								<FacebookIcon />
-								<TwitterIcon />
+								<FacebookShareButton 
+									url={"https://www.facebook.com/EventNest-102276125061269"}
+									quote={"Your online destination for hosting"}
+									hashtag={"#"+ details.title}>
+									<FacebookIcon />
+								</FacebookShareButton>
+								<TwitterShareButton 
+									title={"Hey checkout this event on EventNest " + details.title}
+									url={window.location.href}
+									hashtag={["#"+ details.title, "#eventnest"]}>
+									<TwitterIcon />
+								</TwitterShareButton>
 							</CardContent>
 						</Card>
 					</Grid>
 					<Grid item sm={8} xs={12}>
 						<Card className="shadow-large">
 							<CardHeader
-								title="About"
+								title="Description"
 							/>
 							<CardContent>
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo natus ratione facere officia placeat, assumenda ab hic ducimus qui deserunt quasi rerum laborum voluptatem ipsam tempora. Dolore debitis nulla tempora est libero eligendi? Voluptates fugiat possimus quasi aut beatae omnis aliquid? Expedita iure repudiandae natus possimus eligendi ipsam non, adipisci vitae ullam delectus autem sit et aperiam voluptatibus eum tempora, necessitatibus saepe eius assumenda, ea dolorum! Numquam libero deleniti voluptate repudiandae? Nisi eos ab recusandae deserunt atque odit temporibus, ducimus magni quas ipsam a, amet dolorum! Accusamus enim, impedit fuga unde reiciendis rem? Ea corporis maiores sed velit aut quam!
+								{details.description}
 							</CardContent>
 						</Card>
 					</Grid>
