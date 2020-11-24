@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundImage: 'url(https://images.unsplash.com/photo-1603400522145-556093ef3a45?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max)',
 		backgroundRepeat: 'no-repeat',
 		backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+			theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 	},
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 		width: '90%', // Fix IE 11 issue.
 		marginTop: theme.spacing(1),
 	},
-	submit: { 
+	submit: {
 		padding: '10px',
 		// margin: theme.spacing(3, 0, 2),
 	},
@@ -55,40 +54,40 @@ export default function SignInSide() {
 
 	const [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
-	const [details, setDetails] = useState({ username: '',password: ''});
+	const [details, setDetails] = useState({ username: '', password: '' });
 
 	const handleSubmit = (e) => {
-		async function submitData() {	
+		async function submitData() {
 			let httpHeaders = { 'Content-Type': 'application/json' };
 			let url = 'https://eventnest-server.herokuapp.com/customer/login';
 			//let url = 'http://localhost:4000/customer/login';
 			let myHeaders = new Headers(httpHeaders);
 			let response = await fetch(url, {
-				method: 'POST', 
+				method: 'POST',
 				headers: myHeaders,
 				credentials: 'include',
-				body: JSON.stringify(details), 
+				body: JSON.stringify(details),
 			});
 			if (response.ok) {
 				let json = await response.json();
-				setUser({ data: json, type: 'customer', loggedIn: true});
-			} 
+				setUser({ data: json, type: 'customer', loggedIn: true });
+			}
 		}
 		e.preventDefault();
 		submitData();
-		
+
 	};
 
 
 	function handleChange(event) {
 		const inputname = event.target.name;
 		const inputvalue = event.target.value;
-		const newDetails = { ...details, [inputname]: inputvalue};
+		const newDetails = { ...details, [inputname]: inputvalue };
 		setDetails(newDetails);
 	}
 
-	if(user.loggedIn) return(<Redirect to="/" />);
-	 
+	if (user.loggedIn) return (<Redirect to="/" />);
+
 	return (
 		<StylesProvider injectFirst>
 			<Grid className={classes.root} component="main" container>
@@ -96,7 +95,7 @@ export default function SignInSide() {
 				<Grid className={classes.image} item md={7} sm={4} xs={false} />
 				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 					<div className={classes.paper}>
-					
+
 						<Avatar className={classes.avatar}>
 							<LockOutlinedIcon />
 						</Avatar>
@@ -156,7 +155,7 @@ export default function SignInSide() {
 											type="submit"
 											variant="outlined"
 										>
-										Facebook
+											Facebook
 										</Button>
 									</Lnk>
 								</Grid>
@@ -191,7 +190,7 @@ export default function SignInSide() {
 					</div>
 				</Grid>
 			</Grid>
-			
+
 		</StylesProvider>
 	);
 }

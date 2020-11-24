@@ -16,6 +16,11 @@
     margin-bottom: 1rem;
 }
 
+.login-button {
+    color: white;
+    padding: 4px 6px;
+}
+
 .no-min-height {
     min-height: 0;
 }
@@ -25,6 +30,11 @@
 }
 
 .logo {
+    color: inherit;
+    text-decoration: none;
+}
+
+.no-underline {
     color: inherit;
     text-decoration: none;
 }
@@ -59,4 +69,8 @@
     font-size: 0.7rem;
     color: #858796;
     font-weight: 400;
+}
+
+.username {
+    margin-left: 0.5rem;
 }
