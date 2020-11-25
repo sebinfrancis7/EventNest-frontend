@@ -108,7 +108,7 @@ function EventInfo(props) {
 		if(details.price)
 		{ 
 			axios
-				.post('http://localhost:4000/razorpay', postBody)
+				.post('https://eventnest-server.herokuapp.com/razorpay', postBody)
 				.then(res => {
 					setOrder(res.data);
 				});
