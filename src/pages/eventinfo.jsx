@@ -113,7 +113,7 @@ function EventInfo(props) {
 					setOrder(res.data);
 				});
 		}
-	}, [number]);
+	}, [details, number]);
 
 	return (
 		<StylesProvider injectFirst>
