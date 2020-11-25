@@ -17,6 +17,9 @@ import { MenuItem, InputLabel } from '@material-ui/core';
 import '../sass/eventinfo.scss';
 import { classNames } from 'classnames';
 
+const url = 'https://eventnest-server.herokuapp.com/'
+//const url = 'http://localhost:4000/'
+
 function loadScript(src) {
 	return new Promise((resolve) => {
 		const script = document.createElement('script');
@@ -59,10 +62,10 @@ function EventInfo(props) {
 			currency: 'INR',
 			amount: orderData.amount,
 			order_id: orderData.id,
-			name: 'money go brrrrrrrrrrrrrr',
-			description: 'Paisa de chal',
+			name: 'EnentNest',
+			description: 'EventNest',
 			
-			handler: function (response) {
+			handler:function (response) {
 				let values = {
 					razorpay_signature : response.razorpay_signature,
 					razorpay_order_id : response.razorpay_order_id,
@@ -71,10 +74,19 @@ function EventInfo(props) {
 					eventId: params.event_id,
 					tickets: number
 				};
-				axios.post('https://eventnest-server.herokuapp.com/razorpay/payment',values, { withCredentials : true })
-					.then(res=>{alert('Success');})
-					.catch(e=>console.log(e));
-			},
+				let httpHeaders = { 'Content-Type': 'application/json' };
+				let myurl = url + 'razorpay/payment';
+				let myHeaders = new Headers(httpHeaders);
+				fetch(myurl, {
+					method: 'POST',
+					headers: myHeaders,
+					credentials: 'include',
+					body: JSON.stringify(details),
+				})
+				.then(res=> res.json())
+				.then(data => console.log(data))
+				.catch(e=>console.log(e))
+			}
 			// prefill: {
 			// 	name,
 			// 	email: 'sdfdsjfh2@ndsfdf.com',
@@ -92,9 +104,9 @@ function EventInfo(props) {
 	};	
 
 	useEffect(() => {
-		let url = 'https://eventnest-server.herokuapp.com/events?_id=' + params.event_id;
+		let myurl = url + 'events?_id=' + params.event_id;
 		axios
-			.get(url)
+			.get(myurl)
 			.then(res => {
 				console.log(res);
 				setDetails(res.data[0]);
@@ -109,8 +121,9 @@ function EventInfo(props) {
 		if(details.price)
 		{ 
 			axios
-				.post('https://eventnest-server.herokuapp.com/razorpay', postBody)
+				.post(url + 'razorpay', postBody)
 				.then(res => {
+					console.log(res.data);
 					setOrder(res.data);
 					setLoad(true);
 				});
