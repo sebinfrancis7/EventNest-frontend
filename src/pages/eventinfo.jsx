@@ -17,7 +17,7 @@ import { MenuItem, InputLabel } from '@material-ui/core';
 import '../sass/eventinfo.scss';
 import { classNames } from 'classnames';
 
-const url = 'https://eventnest-server.herokuapp.com/'
+const url = 'https://eventnest-server.herokuapp.com/';
 //const url = 'http://localhost:4000/'
 
 function loadScript(src) {
@@ -62,10 +62,11 @@ function EventInfo(props) {
 			currency: 'INR',
 			amount: orderData.amount,
 			order_id: orderData.id,
-			name: 'EnentNest',
+			name: 'EventNest',
 			description: 'EventNest',
 			
 			handler:function (response) {
+				console.log(response);
 				let values = {
 					razorpay_signature : response.razorpay_signature,
 					razorpay_order_id : response.razorpay_order_id,
@@ -83,15 +84,13 @@ function EventInfo(props) {
 					credentials: 'include',
 					body: JSON.stringify(values),
 				})
-				.then(res=> res.json())
-				.then(data => console.log(data))
-				.catch(e=>console.log(e))
+					.then(res=> res.json())
+					.then(data => {
+						console.log(data);
+						history.push('/dashboard/invoices/' + response.razorpay_payment_id);
+					})
+					.catch(e=>console.log(e));
 			}
-			// prefill: {
-			// 	name,
-			// 	email: 'sdfdsjfh2@ndsfdf.com',
-			// 	phone_number: '9899999999'
-			// }
 		};
 		const paymentObject = new window.Razorpay(options);
 		paymentObject.open();

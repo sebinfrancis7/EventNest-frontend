@@ -112,16 +112,16 @@ function display(event, i) {
 function NavLinks() {
 	return (
 		<Toolbar className="no-min-height">
-			<Link className="nav-links" variant="contained">
+			<Link className="nav-links" to='/' variant="contained">
 				Music
 			</Link>
-			<Link className="nav-links" variant="contained">
+			<Link className="nav-links" to='/' variant="contained">
 				Comedy
 			</Link>
-			<Link className="nav-links" variant="contained">
+			<Link className="nav-links" to='/' variant="contained">
 				Arts
 			</Link>
-			<Link className="nav-links" variant="contained">
+			<Link className="nav-links" to='/' variant="contained">
 				Fitness
 			</Link>
 		</Toolbar>

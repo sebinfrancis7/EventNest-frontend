@@ -14,6 +14,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { UserContext } from './userContext';
 import Navbar from './components/Navbar';
+import Invoices from './pages/invoices';
+import Invoice from './components/Invoice';
 
 const theme = createMuiTheme({
 	palette: {
@@ -91,6 +93,10 @@ function App() {
 							</div>}
 
 					</Route>
+					<Route exact path='/dashboard/invoices'>
+						<Invoices />
+					</Route>
+					<Route component={Invoice} path='/dashboard/invoices/:invoice_id' />
 					<Route exact path='/aboutus'>
 						<AboutUs />
 					</Route>
