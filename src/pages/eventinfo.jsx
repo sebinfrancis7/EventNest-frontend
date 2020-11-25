@@ -81,7 +81,7 @@ function EventInfo(props) {
 					method: 'POST',
 					headers: myHeaders,
 					credentials: 'include',
-					body: JSON.stringify(details),
+					body: JSON.stringify(values),
 				})
 				.then(res=> res.json())
 				.then(data => console.log(data))
