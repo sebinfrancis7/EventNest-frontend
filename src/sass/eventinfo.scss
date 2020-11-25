@@ -16,6 +16,7 @@
 .event-button-container {
     display: flex;
     justify-content: flex-end;
+    margin-top: 1rem;
     // margin: 1rem 1rem;
 }
 
@@ -33,5 +34,13 @@
 }
 
 div.event-page-content-container:last-child {
-    padding-bottom: 0px;
+    padding-bottom: 2rem;
+}
+
+.ticket-select {
+    min-width: 8rem;
+}
+
+.form-select {
+    margin: 1rem;
 }

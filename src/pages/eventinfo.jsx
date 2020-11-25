@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
-import { Card, Grid, StylesProvider, Button, CardHeader } from '@material-ui/core';
-import '../sass/eventinfo.scss';
+import { Card, Grid, StylesProvider, Button, CardHeader, FormControl } from '@material-ui/core';
 import { CardMedia } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -13,10 +12,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { useUserContext, UserContext } from '../userContext';
-import {
-	FacebookShareButton,
-	TwitterShareButton
-} from 'react-share';
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
+import { MenuItem, InputLabel } from '@material-ui/core';
+import '../sass/eventinfo.scss';
+import { classNames } from 'classnames';
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -38,6 +37,7 @@ function EventInfo(props) {
 	const [ loadRazor, setLoadRazor ] = useState(true);
 	const [ number, setNumber ] = useState(1);
 	const [user, setUser] = useContext(UserContext);
+	const [load, setLoad] = useState(false);
 	const { match: { params } } = props;
 	let history = useHistory();
 
@@ -88,6 +88,7 @@ function EventInfo(props) {
 	const handleNumber = (event) => {
 		const number = event.target.value;
 		setNumber(number);
+		setLoad(false);
 	};	
 
 	useEffect(() => {
@@ -111,6 +112,7 @@ function EventInfo(props) {
 				.post('https://eventnest-server.herokuapp.com/razorpay', postBody)
 				.then(res => {
 					setOrder(res.data);
+					setLoad(true);
 				});
 		}
 	}, [details, number]);
@@ -151,24 +153,29 @@ function EventInfo(props) {
 										</Typography>
 									</Grid>
 									<Grid className="event-button-container" item sm={6} xs={12}>
-										<Select
-											inputProps={{
-												name: 'Tickets'
-											}}
-											native
-											onChange={handleNumber}
-											value={number}
-										>
-											<option value={1}>1</option>
-											<option value={2}>2</option>
-											<option value={3}>3</option>
-											<option value={4}>4</option>
-											<option value={5}>5</option>
-											<option value={6}>6</option>
-										</Select>
+										<FormControl className="form-select">
+											<InputLabel>Tickets</InputLabel>
+											<Select
+												className="ticket-select"
+												inputProps={{
+													name: 'Tickets'
+												}}
+												onChange={handleNumber}
+												value={number}
+												// variant="outlined"
+											>
+												<MenuItem value={1}>1</MenuItem>
+												<MenuItem value={2}>2</MenuItem>
+												<MenuItem value={3}>3</MenuItem>
+												<MenuItem value={4}>4</MenuItem>
+												<MenuItem value={5}>5</MenuItem>
+												<MenuItem value={6}>6</MenuItem>
+											</Select>
+										</FormControl>
 										<Button
 											className="event-register-button button-shadow"
 											color="primary"
+											disabled={!load}
 											onClick={displayRazorpay}
 											variant="contained"
 										>

@@ -240,6 +240,8 @@ export default function Navbar() {
 			.then(res => {
 				console.log(res.data);
 				setUser({ loggedIn: false });
+				setAnchorEl(null);
+				handleMobileMenuClose();
 			})
 			.catch(err => {
 				console.log(err);

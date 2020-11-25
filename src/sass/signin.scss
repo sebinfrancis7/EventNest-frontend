@@ -1,0 +1,50 @@
+@import './colors.scss';
+
+.facebook-btn {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.facebook-link {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.submit {
+    padding: 10px;
+}
+
+.form {
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.avatar {
+    margin: 1rem;
+    background-color: $secondary;
+}
+
+.signin-image {
+    background-image: url(https://images.unsplash.com/photo-1603400522145-556093ef3a45?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.signin-root {
+    height: 100vh;
+}
+
+.signin-paper {
+    margin: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,5 +1,5 @@
 .card {
-    box-shadow: 0px 0px 2rem 0.5rem rgba(#6C63FF,0.2);
+    box-shadow: 0px 0px 2rem 0.5rem rgba(#6c63ff, 0.2);
     height: 25rem;
     width: 15rem;
     overflow: hidden;
@@ -13,11 +13,11 @@
     }
 
     &-link {
-        text-decoration:  none;
+        text-decoration: none;
     }
 
     &:hover {
-        box-shadow: 0px 0px 1rem 2px rgba(#6C63FF,0.3);
+        box-shadow: 0px 0px 1rem 2px rgba(#6c63ff, 0.3);
     }
 
     &-header {
@@ -29,13 +29,13 @@
     &-body {
         padding-bottom: 16px !important;
         display: flex;
-        justify-content: space-between;    
-        
+        justify-content: space-between;
+
         &-text {
             display: inline-flex;
         }
     }
-    
+
     &-img {
         border-radius: 1rem;
         min-height: 21.5rem;
@@ -46,13 +46,15 @@
         border-radius: 1rem;
         margin-top: 5px;
         margin-left: 5px;
-        background-color: rgba(#F50057, 0.5);
+        background-color: rgba(#f50057, 0.5);
         max-width: 10rem;
         box-shadow: none;
-    
-        &:hover, &:active, &:focus {
+
+        &:hover,
+        &:active,
+        &:focus {
             box-shadow: none;
-            background-color: rgba(#F50057, 0.5);
+            background-color: rgba(#f50057, 0.5);
             cursor: initial;
         }
     }

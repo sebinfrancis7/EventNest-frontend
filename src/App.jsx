@@ -10,7 +10,7 @@ import Dashboard from './pages/dashboard.jsx';
 import AboutUs from './pages/about.jsx';
 import ContactUs from './pages/contact.jsx';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { UserContext } from './userContext';
 import Navbar from './components/Navbar';
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 		type: 'light',
 	},
 	typography: {
-		fontFamily: '\'Open Sans\', sans-serif',
+		fontFamily: '\'Josefin Sans\', sans-serif',
 	}
 });
 

@@ -1,7 +1,7 @@
-.events-row{
-    display : flex;
-    padding : 10px 40px;
-    overflow-x: scroll;  
+.events-row {
+    display: flex;
+    padding: 10px 40px;
+    overflow-x: scroll;
     overflow-y: visible;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -20,7 +20,7 @@
     transition: transform 350ms;
 }
 
-.event-card:hover{
+.event-card:hover {
     transform: scale(1.05);
 }
 
@@ -28,14 +28,15 @@
     position: absolute;
     width: 100%;
     top: 50%;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
     display: flex;
     justify-content: space-between;
     pointer-events: none;
 }
 
-.left-button, .right-button{
-    background-color: rgba(255,255,255,0.5);
+.left-button,
+.right-button {
+    background-color: rgba(255, 255, 255, 0.5);
     margin-right: 1rem;
     margin-left: 1rem;
     pointer-events: auto;

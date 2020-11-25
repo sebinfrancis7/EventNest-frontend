@@ -17,36 +17,14 @@ import Copyright from './../components/Copyright';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import { Details } from '@material-ui/icons';
+import '../sass/signin.scss';
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		height: '100vh',
-	},
-	image: {
-		backgroundImage: 'url(https://images.unsplash.com/photo-1603400522145-556093ef3a45?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max)',
-		backgroundRepeat: 'no-repeat',
-		backgroundColor:
-			theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-	},
 	paper: {
 		margin: theme.spacing(8, 4),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
-	form: {
-		width: '90%', // Fix IE 11 issue.
-		marginTop: theme.spacing(1),
-	},
-	submit: {
-		padding: '10px',
-		// margin: theme.spacing(3, 0, 2),
 	},
 }));
 
@@ -90,19 +68,19 @@ export default function SignInSide() {
 
 	return (
 		<StylesProvider injectFirst>
-			<Grid className={classes.root} component="main" container>
+			<Grid className="signin-root" component="main" container>
 				<CssBaseline />
-				<Grid className={classes.image} item md={7} sm={4} xs={false} />
-				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
-					<div className={classes.paper}>
+				<Grid className="signin-image" item md={8} sm={3} xs={false} />
+				<Grid component={Paper} elevation={6} item md={4} sm={9} square xs={12}>
+					<div className="signin-paper">
 
-						<Avatar className={classes.avatar}>
+						<Avatar className="avatar">
 							<LockOutlinedIcon />
 						</Avatar>
 						<Typography component="h1" variant="h5">
 							Sign in
 						</Typography>
-						<form className={classes.form} noValidate onSubmit={handleSubmit}>
+						<form className="form" noValidate onSubmit={handleSubmit}>
 							<Grid container spacing={2}>
 								<Grid item xs={12} >
 									<TextField
@@ -137,7 +115,7 @@ export default function SignInSide() {
 										label="Remember me"
 									/>
 									<Button
-										className={classes.submit}
+										className="submit"
 										color="primary"
 										fullWidth
 										type="submit"
@@ -147,9 +125,9 @@ export default function SignInSide() {
 									</Button>
 								</Grid>
 								<Grid item xs={12}>
-									<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
+									<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
 										<Button
-											className={classes.submit}
+											className="facebook-btn"
 											color="primary"
 											fullWidth
 											type="submit"
