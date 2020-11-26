@@ -8,35 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
-import '../sass/card.scss';
 import axios from 'axios';
-import classNames from 'classnames';
-
 import { useUserContext, UserContext } from '../userContext';
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		minWidth: 200,
-		maxWidth: 350,
-	},
-	media: {
-		// height: 150,
-		// paddingTop: '56.25%', // 16:9
-	},
-	expand: {
-		transform: 'rotate(0deg)',
-		marginLeft: 'auto',
-		transition: theme.transitions.create('transform', {
-			duration: theme.transitions.duration.shortest,
-		}),
-	},
-	expandOpen: {
-		transform: 'rotate(180deg)',
-	},
-}));
+import '../sass/card.scss';
 
 function MediaCard(props) {
-	const classes = useStyles();
 	const [favorite, setfavorite] = useState(false);
 	const [coloris, setColoris] = useState(props.fav);
 	let [user, setUser] = useContext(UserContext);
@@ -93,36 +69,34 @@ function MediaCard(props) {
 	};
 
 	return (
-		<StylesProvider injectFirst>
-			<Card className={classNames(classes.root, 'card')}>
-				<CardActionArea>
-					<Link className="card-link" to={`/events/${props.event_id}`}>
-						<CardMedia
-							className={classNames(classes.media, 'card-img')}
-							image={props.img_url}
-							title={props.title}
-						>
-							<div className="card-header">
-								<Button className="card-title" color="secondary" noWrap variant="contained">
-									{props.title}
-								</Button>
+		<Card className='card'>
+			<CardActionArea>
+				<Link className="card-link" to={`/events/${props.event_id}`}>
+					<CardMedia
+						className='card-img'
+						image={props.img_url}
+						title={props.title}
+					>
+						<div className="card-header">
+							<Button className="card-title" color="secondary" noWrap variant="contained">
+								{props.title}
+							</Button>
 
-							</div>
-						</CardMedia>
-					</Link>
+						</div>
+					</CardMedia>
+				</Link>
 
-				</CardActionArea>
-				<CardContent className="card-body">
-					<Typography className="card-body-text" color="textPrimary" component="p" variant="body2">
+			</CardActionArea>
+			<CardContent className="card-body">
+				<Typography className="card-body-text" color="textPrimary" component="p" variant="body2">
 						Location : {props.city}
-					</Typography>
-					<IconButton aria-label="add to favorites" className="title-fav" onClick={handleFavorite}>
-						{/* {favorite ? coloris = "red":coloris = null} */}
-						<FavoriteIcon style={{ fill: coloris }} />
-					</IconButton>
-				</CardContent>
-			</Card>
-		</StylesProvider>
+				</Typography>
+				<IconButton aria-label="add to favorites" className="title-fav" onClick={handleFavorite}>
+					{/* {favorite ? coloris = "red":coloris = null} */}
+					<FavoriteIcon style={{ fill: coloris }} />
+				</IconButton>
+			</CardContent>
+		</Card>
 	);
 }
 
