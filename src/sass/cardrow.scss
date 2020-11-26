@@ -5,6 +5,11 @@
     overflow-y: visible;
     padding-top: 1rem;
     padding-bottom: 1rem;
+
+    &-wishlist {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 }
 
 .events-row::-webkit-scrollbar {

@@ -22,45 +22,37 @@ function createCard(event, i) {
 	);
 }
 
-function Wishlist() {
-	const [events, setEvents] = useState([]);
-	const [user, setUser] = useContext(UserContext);
+// function Wishlist() {
+// 	const [events, setEvents] = useState([]);
+// 	const [user, setUser] = useContext(UserContext);
 
-	useEffect(() => {
-		user.data.wishlist.map(event_id => {
-			fetch(url + 'events?_id=' + event_id)
-				.then(res=> res.json())
-				.then(data => {
-					setEvents(events.concat(data));
-				});
-		});
-	},[user]);
+// 	useEffect(() => {
+// 		user.data.wishlist.map(event_id => {
+// 			fetch(url + 'events?_id=' + event_id)
+// 				.then(res=> res.json())
+// 				.then(data => {
+// 					setEvents(events.concat(data));
+// 				});
+// 		});
+// 	},[user]);
 
-	useEffect(() => {
-		console.log(events);
-	},[events]);
+// 	useEffect(() => {
+// 		console.log(events);
+// 	},[events]);
     
-	return (
-		<div className='events-row'>
-			{events.map(createCard)}
-		</div>
-	);
-}
+// 	return (
+// 		<div className='wishlist-cards'>
+// 			<div className='events-row'>
+// 				{events.map(createCard)}
+// 			</div>
+// 		</div>
+// 	);
+// }
 
 function WishlistPage() {
 	const [events, setEvents] = useState([]);
 	const [loaded, setLoaded] = useState(false);
-	// let [user, setUser] = useContext(UserContext);
-	// const { setGlobalEvents } = useGlobalContext();
-	// const { globalEvents } = useGlobalContext();
 	useEffect(() => {
-		// axios
-		// 	.get(wurl, { withCredentials: true})
-		// 	.then(res => {
-		// 		//console.log('data = ' + res.data);
-		// 		setEvents(res.data);
-		// 		setLoaded(true);
-		// 	});
 		async function fetchData() {
 			let wurl = url + 'customer/wishlist';
 			//let url = 'http://localhost:4000/users'
@@ -76,7 +68,7 @@ function WishlistPage() {
 
 			if (response.ok) {
 				let json = await response.json();
-				console.log(json)
+				console.log(json);
 				setEvents(json);
 		 		setLoaded(true);
 			}
@@ -85,7 +77,7 @@ function WishlistPage() {
 			}
 		}
 		fetchData();
-		}, []);
+	}, []);
 
 	return (
 		<div>
@@ -98,7 +90,7 @@ function WishlistPage() {
 					<Typography variant="h3">
 						Here are your Wishlisted Events
 					</Typography>
-					<div className='events-row' >
+					<div className='events-row events-row-wishlist' >
 						{events.map(createCard)}
 					</div>
 				</div>
