@@ -36,7 +36,7 @@ export default function Homepage() {
 					<Typography className="subtitle" justify="center" variant="subtitle1">
 						Your online destination for hosting and exploring events across the globe, at your fingertips.
 					</Typography>
-					<Link href="#events">
+					<Link href="#events" className="button-link">
 						<Button className="button button-shadow" color="primary" variant="contained">
 							Explore Events
 						</Button>

@@ -77,9 +77,9 @@ function MediaCard(props) {
 						title={props.title}
 					>
 						<div className="card-header">
-							<Button className="card-title" color="secondary" variant="contained">
+							<Typography className="card-title">
 								{props.title}
-							</Button>
+							</Typography>
 
 						</div>
 					</CardMedia>

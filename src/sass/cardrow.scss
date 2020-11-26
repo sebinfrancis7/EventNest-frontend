@@ -17,11 +17,11 @@
     // max-height: 300px;
     // width: 100%;
     height: 100%;
-    transition: transform 350ms;
+    transition: all 0.3s;
 }
 
 .event-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .scroll-buttons {
