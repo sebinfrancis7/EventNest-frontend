@@ -15,6 +15,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import classNames from 'classnames';
 import { Button, Paper, StylesProvider } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
+import { useUserContext, UserContext } from '../userContext';
 import axios from 'axios';
 import '../sass/navbar.scss';
 
