@@ -260,7 +260,10 @@ export default function Navbar() {
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			<Link className='no-underline' to='/dashboard'>
-				<MenuItem>Profile</MenuItem>
+				<MenuItem>Dashboard</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/wishlist'>
+				<MenuItem>Wishlist</MenuItem>
 			</Link>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>

@@ -34,7 +34,8 @@
 }
 
 .navbar {
-    box-shadow: 0px 0px 1rem 0.5rem rgba(#6c63ff, 0.3);
+    box-shadow: none;
+    z-index: 100;
 }
 
 .title-search-container {

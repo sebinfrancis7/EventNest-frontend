@@ -16,6 +16,7 @@ import { UserContext } from './userContext';
 import Navbar from './components/Navbar';
 import Invoices from './pages/invoices';
 import Invoice from './components/Invoice';
+import Wishlist from './pages/wishlist';
 
 const theme = createMuiTheme({
 	palette: {
@@ -91,12 +92,30 @@ function App() {
 
 								</div>
 							</div>}
+					</Route>
+					<Route exact path='/wishlist'>
+						{user.loggedIn ? <Wishlist /> :
+							<div>
+								<div>
+									<Link to='/signin'>
+										<h2>yo need to sign in first</h2>
+									</Link>
 
+								</div>
+							</div>}
 					</Route>
-					<Route exact path='/dashboard/invoices'>
-						<Invoices />
+					<Route exact path='/invoices'>
+						{user.loggedIn ? <Invoices /> :
+							<div>
+								<div>
+									<Link to='/signin'>
+										<h2>yo need to sign in first</h2>
+									</Link>
+
+								</div>
+							</div>}
 					</Route>
-					<Route component={Invoice} path='/dashboard/invoices/:invoice_id' />
+					<Route component={Invoice} path='/invoices/:invoice_id' />
 					<Route exact path='/aboutus'>
 						<AboutUs />
 					</Route>

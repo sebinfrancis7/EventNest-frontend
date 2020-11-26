@@ -45,7 +45,7 @@ function MediaCard(props) {
 		if (user.loggedIn) {
 			if (user.data.wishlist.indexOf(props.event_id) !== -1) {
 				setfavorite(true);
-				setColoris('#F50057')
+				setColoris('#F50057');
 			}
 		}
 	}, [user]);

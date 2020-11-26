@@ -87,7 +87,7 @@ function EventInfo(props) {
 					.then(res=> res.json())
 					.then(data => {
 						console.log(data);
-						history.push('/dashboard/invoices/' + response.razorpay_payment_id);
+						history.push('/invoices/' + response.razorpay_payment_id);
 					})
 					.catch(e=>console.log(e));
 			}
