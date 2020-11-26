@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect} from 'react';
-import { List, Typography } from '@material-ui/core';
+import { Divider, List, Typography } from '@material-ui/core';
 import { useUserContext, UserContext } from '../userContext';
 import Drawer from './../components/Drawer';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { ListItem } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import { ListItemText } from '@material-ui/core';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
+import '../sass/dashboard.scss';
 
 const url = 'https://eventnest-server.herokuapp.com/';
 
@@ -21,11 +22,12 @@ function Ticket(purchase) {
 	},[]);
 
 	return (
-		<Link to={'/invoices/' + purchase.transactionid}>
+		<Link to={'/invoices/' + purchase.transactionid} className='list-link'>
 			<ListItem button key={purchase.event}>
 				<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
 				<ListItemText primary={title + '\t' + 'Tickets: ' + purchase.tickets} />
 			</ListItem>
+			<Divider />
 		</Link>
 	);
 }

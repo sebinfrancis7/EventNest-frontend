@@ -13,7 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import classNames from 'classnames';
-import { Button, Paper, StylesProvider } from '@material-ui/core';
+import { Avatar, Button, Grid, Paper, StylesProvider } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import axios from 'axios';
@@ -79,18 +79,26 @@ function displayResult(events, i) {
 }
 
 function display(event, i) {
+	console.log(event);
 	return (
 		<Link className="card-link" key={i} to={`/events/${event._id}`}>
 			<Button
 				className="search-button"
 				fullWidth
 			>
-				<Typography className="search-title">
-					{event.title}
-				</Typography>
-				<Typography className="search-details">
-					{'    '}{event.category}, {event.city || 'Online'}
-				</Typography>
+				<Grid container>
+					<Grid item xs={2}>
+						<Avatar alt="imgage url" src={event.image_url} variant="rounded" />
+					</Grid>
+					<Grid item xs={10}>
+						<Typography className="search-title">
+							{event.title}
+						</Typography>
+						<Typography className="search-details">
+							{event.category}, {event.city || 'Online'}
+						</Typography>
+					</Grid>
+				</Grid>
 			</Button>
 		</Link>
 	);
@@ -255,25 +263,19 @@ export default function Navbar() {
 			open={isMobileMenuOpen}
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
-			<MenuItem>
-				<IconButton aria-label="show 11 new notifications" color="inherit">
-					<Badge badgeContent={11} color="secondary">
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
-				<p>Notifications</p>
-			</MenuItem>
-			<MenuItem onClick={handleProfileMenuOpen}>
-				<IconButton
-					aria-controls="primary-search-account-menu"
-					aria-haspopup="true"
-					aria-label="account of current user"
-					color="inherit"
-				>
-					<AccountCircle />
-				</IconButton>
-				<p>Profile</p>
-			</MenuItem>
+			<Link className='no-underline' to='/dashboard'>
+				<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/wishlist'>
+				<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/invoices'>
+				<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/'>
+				<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+			</Link>
+			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
 	return (

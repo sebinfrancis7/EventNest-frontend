@@ -14,6 +14,7 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import '../sass/dashboard.scss';
 
 const drawerWidth = 240;
 
@@ -43,8 +44,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ClippedDrawer({children}) {
 	const classes = useStyles();
 
-
-
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
@@ -62,14 +61,14 @@ export default function ClippedDrawer({children}) {
 				<Toolbar />
 				<div className={classes.drawerContainer}>
 					<List>
-						<Link to='/wishlist'>
-							<ListItem button>
+						<Link className='list-link' to='/wishlist'>
+							<ListItem button className='list-button'> 
 								<ListItemIcon><FavoriteOutlinedIcon /></ListItemIcon>
 								<ListItemText primary="Wishlist" />
 							</ListItem>
 						</Link>
-						<Link to='/invoices'>
-							<ListItem button>
+						<Link className='list-link' to='/invoices'>
+							<ListItem button className='list-button'>
 								<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
 								<ListItemText primary="Tickets" />
 							</ListItem>

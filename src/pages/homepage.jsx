@@ -30,7 +30,7 @@ export default function Homepage() {
 		<StylesProvider injectFirst>
 			<Grid className="welcome-container" container>
 				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
-					<Typography className="title" justify="center" variant="h3">
+					<Typography className="homepage-title" justify="center" variant="h3">
 						Welcome to EventNest
 					</Typography>
 					<Typography className="subtitle" justify="center" variant="subtitle1">
