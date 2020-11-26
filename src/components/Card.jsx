@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button, CardActionArea, makeStyles, StylesProvider } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -37,25 +37,23 @@ const useStyles = makeStyles((theme) => ({
 
 function MediaCard(props) {
 	const classes = useStyles();
-	let fav;
-	if (props.fav == 'red') {
-		fav = false;
-	} else {
-		fav = true;
-	}
-	const [favorite, setfavorite] = useState(fav);
+	const [favorite, setfavorite] = useState(false);
 	const [coloris, setColoris] = useState(props.fav);
-	// console.log(props.fav);
-	// console.log(props.event_id);
-
 	let [user, setUser] = useContext(UserContext);
-	// console.log(user.data.wishlist);
-
+	
+	useEffect(() => {
+		if (user.loggedIn) {
+			if (user.data.wishlist.indexOf(props.event_id) !== -1) {
+				setfavorite(true);
+				setColoris('#F50057')
+			}
+		}
+	}, [user]);
+	
 	const handleFavorite = (e) => {
-		// favorite ? setfavorite(false) : setfavorite(true);
-		// favorite ? setColoris('#F50057') : setColoris(null);
+		
 		e.preventDefault();
-		// console.log(user.data._id);
+		
 		if (user.loggedIn) {
 			if (favorite) {
 				setfavorite(false);

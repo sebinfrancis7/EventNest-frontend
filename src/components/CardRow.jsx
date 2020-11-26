@@ -10,27 +10,12 @@ import { useUserContext, UserContext } from '../userContext';
 import '../sass/cardrow.scss';
 
 function createCard(event, i) {
-	let [user, setUser] = useContext(UserContext);
-	let color;
-	if (user.loggedIn) {
-		if (user.data.wishlist.indexOf(event._id) !== -1) {
-			console.log("favourite");
-			console.log(event._id);
-			color = 'red';
-		}
-		else
-			color = null;
-	} else {
-		color = null;
-	}
-
 	return (
 		<div className='event-card' key={i}>
 			<Card
 				city={event.city || event.venue_addr}
 				description={event.description}
 				event_id={event._id}
-				fav={color}
 				img_url={event.image_url}
 				price={event.price}
 				title={event.title}
@@ -78,7 +63,6 @@ function CardRow(props) {
 				behavior: 'smooth',
 			});
 		}
-		console.log(listRef);
 	};
 
 	const handleScrollRight = () => {
