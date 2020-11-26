@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from 'react';
 import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
+import OrgSignUp from './pages/orgSignup.jsx';
+import OrgSignInSide from './pages/orgSignin.jsx';
 import Error from './pages/404';
 import Events from './pages/eventsPage.jsx';
 import Event from './pages/eventinfo.jsx';
@@ -48,6 +50,7 @@ function App() {
 
 			if (response.ok) {
 				let json = await response.json();
+				console.log(json)
 				if (user?.data?._id !== json.user._id) {
 					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
@@ -105,6 +108,12 @@ function App() {
 					</Route> */}
 					<Route exact path='/contactus'>
 						<ContactUs />
+					</Route>
+					<Route exact path='/orgsignin'>
+						<OrgSignInSide />
+					</Route>
+					<Route exact path='/orgsignup'>
+						<OrgSignUp/>
 					</Route>
 					<Route component={Event} path='/events/:event_id' />
 					<Route path="*">

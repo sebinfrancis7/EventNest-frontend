@@ -42,7 +42,7 @@ function MediaCard(props) {
 	let [user, setUser] = useContext(UserContext);
 	
 	useEffect(() => {
-		if (user.loggedIn) {
+		if (user.loggedIn && user.type === 'customer') {
 			if (user.data.wishlist.indexOf(props.event_id) !== -1) {
 				setfavorite(true);
 				setColoris('#F50057')
@@ -53,8 +53,12 @@ function MediaCard(props) {
 	const handleFavorite = (e) => {
 		
 		e.preventDefault();
+		if(user.type === 'organizer'){
+			alert('Only for customers');
+			return;
+		}
 		
-		if (user.loggedIn) {
+		if (user.loggedIn ) {
 			if (favorite) {
 				setfavorite(false);
 				setColoris('#F50057');

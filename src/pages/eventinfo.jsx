@@ -49,6 +49,10 @@ function EventInfo(props) {
 			history.push('/signin');
 			return;
 		}
+		if(user.type === 'organizer'){
+			alert('Only for customers');
+			return;
+		}
 		if(loadRazor) {
 			const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 			if (!res) {
