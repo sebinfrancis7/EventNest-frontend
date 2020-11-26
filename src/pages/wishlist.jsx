@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect} from 'react';
 import { useUserContext, UserContext } from '../userContext';
 import Drawer from './../components/Drawer';
 import Card from '../components/Card';
+import axios from 'axios';
 
 const url = 'https://eventnest-server.herokuapp.com/';
 
@@ -47,8 +48,45 @@ function Wishlist() {
 }
 
 function WishlistPage() {
-	let [user, setUser] = useContext(UserContext);
-	console.log(user);
+	const [events, setEvents] = useState([]);
+	const [loaded, setLoaded] = useState(false);
+	// let [user, setUser] = useContext(UserContext);
+	// const { setGlobalEvents } = useGlobalContext();
+	// const { globalEvents } = useGlobalContext();
+	useEffect(() => {
+		// axios
+		// 	.get(wurl, { withCredentials: true})
+		// 	.then(res => {
+		// 		//console.log('data = ' + res.data);
+		// 		setEvents(res.data);
+		// 		setLoaded(true);
+		// 	});
+		async function fetchData() {
+			let wurl = url + 'customer/wishlist';
+			//let url = 'http://localhost:4000/users'
+
+			let response = await fetch(wurl,
+				{
+					method: 'get',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					credentials: 'include'
+				});
+
+			if (response.ok) {
+				let json = await response.json();
+				console.log(json)
+				setEvents(json);
+		 		setLoaded(true);
+			}
+			else {
+				console.log(response.status);
+			}
+		}
+		fetchData();
+		}, []);
+
 	return (
 		<div>
 			<Drawer>
@@ -60,8 +98,8 @@ function WishlistPage() {
 					<Typography variant="h3">
 						Here are your Wishlisted Events
 					</Typography>
-					<div>
-						<Wishlist />
+					<div className='events-row' >
+						{events.map(createCard)}
 					</div>
 				</div>
 			</Drawer>
