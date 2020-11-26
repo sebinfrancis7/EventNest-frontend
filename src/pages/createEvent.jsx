@@ -58,14 +58,12 @@ function Copyright() {
 function CreatEvent() {
 	const classes = useStyles();
 
-	const [details, setDetails] = useState({ organizer: '', title: '', category: '', city: '', image_url: '', price: '', description: '', max_attendees: '' });
+	const [details, setDetails] = useState({});
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(details);
 		axios
 			.post('https://eventnest-server.herokuapp.com/events', details)
 			.then(res => {
-				console.log(res);
 				console.log(res.data);
 			})
 			.catch(err => {
@@ -73,32 +71,21 @@ function CreatEvent() {
 			});
 	};
 	
-	useEffect(() => {
-		console.log(details);
-	}, [details]);
-
 	function handleChange(event) {
 		const inputname = event.target.name;
 		const inputvalue = event.target.value;
-		console.log(event.target.value);
-		
 		
 		const newDetails = { ...details, [inputname]: inputvalue};
-		console.log(inputvalue);
 		setDetails(newDetails);
 
 	}
 
 	return (
 		<StylesProvider injectFirst>
-			{/* <Navbar /> */}
 			<Grid className={classes.root} component="main" container>
 				<Grid className={classes.image} item md={7} sm={4} xs={false} />
 				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
 					<div className={classes.paper}>
-						{/* <Avatar className={classes.avatar}>
-							<AddCircle />
-						</Avatar> */}
 						<Typography component="h1" variant="h5">
 							Create Event
 						</Typography>
@@ -170,7 +157,6 @@ function CreatEvent() {
 								label="Banner Image URL"
 								margin="normal"
 								name="image_url"
-								// className="event-input"
 								onChange={handleChange}
 								value={details.image_url}
 								variant="outlined"
@@ -205,7 +191,6 @@ function CreatEvent() {
 				</Grid>
 			</Grid>
 		</StylesProvider>
-
 	);
 }
 

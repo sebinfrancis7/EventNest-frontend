@@ -34,13 +34,10 @@ function MediaCard(props) {
 			if (favorite) {
 				setfavorite(false);
 				setColoris('#F50057');
-				console.log(favorite);
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
-				console.log(url);
 				axios
 					.post(url, props.event_id)
 					.then(res => {
-						console.log(res);
 						console.log(res.data);
 					})
 					.catch(err => {
@@ -50,11 +47,9 @@ function MediaCard(props) {
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				setfavorite(true);
 				setColoris(null);
-				console.log(favorite);
 				axios
 					.delete(url)
 					.then(res => {
-						console.log(res);
 						console.log(res.data);
 					})
 					.catch(err => {

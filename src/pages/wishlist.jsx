@@ -30,7 +30,6 @@ function Wishlist() {
 			fetch(url + 'events?_id=' + event_id)
 				.then(res=> res.json())
 				.then(data => {
-					console.log(data);
 					setEvents(events.concat(data));
 				});
 		});

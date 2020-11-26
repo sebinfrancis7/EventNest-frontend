@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import { ListItemText } from '@material-ui/core';
-import { useRef } from 'react';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 
 const url = 'https://eventnest-server.herokuapp.com/';
@@ -18,7 +17,6 @@ function Ticket(purchase) {
 			.then(res=> res.json())
 			.then(data => {
 				setTitle(data[0].title);
-				console.log(title);
 			});
 	},[]);
 
@@ -34,7 +32,6 @@ function Ticket(purchase) {
 
 function Tickets() {
 	const [user, setUser] = useContext(UserContext);
-	console.log(user);
 	return (
 		<List>
 			{user.data.purchases.map(Ticket)}
@@ -49,10 +46,6 @@ function TicketsPage() {
 		<div>
 			<Drawer>
 				<div>
-					{/* <h2>{user.data._id}</h2>
-					<h2>{user.data.username}</h2>
-					<h2>{user.data.display_name}</h2> */}
-					{/* <h2>wishlist</h2> */}
 					<Typography variant="h3">
 						Tickets
 					</Typography>

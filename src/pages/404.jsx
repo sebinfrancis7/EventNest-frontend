@@ -11,10 +11,11 @@ const useStyles = makeStyles({
 		backgroundPosition: 'center',
 	},
 	center: {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%,-50%)',
+		// position: 'relative',
+		// top: '50%',
+		// left: '50%',
+		// transform: 'translate(-50%,0)',
+		textAlign: 'center',
 	},
 	horizontal: {
 		display: 'block',
