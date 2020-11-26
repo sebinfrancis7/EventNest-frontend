@@ -29,7 +29,7 @@ export default function Homepage() {
 	return (
 		<StylesProvider injectFirst>
 			{/* <Navbar /> */}
-			<Button
+			{/* <Button
 				color="primary"
 				fullWidth
 				onClick={handleLogout}
@@ -55,7 +55,7 @@ export default function Homepage() {
 				>
 					Dashboard
 				</Button>
-			</RouterLink>
+			</RouterLink> */}
 
 			<Grid className="welcome-container" container>
 				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
@@ -70,11 +70,11 @@ export default function Homepage() {
 							Explore Events
 						</Button>
 					</Link>
-					<RouterLink to='/create-event'>
+					{/* <RouterLink to='/create-event'>
 						<Button className="button" color="primary" hidden variant="contained">
 							Create Event
 						</Button>
-					</RouterLink>
+					</RouterLink> */}
 				</Grid> 
 				<Grid alignItems="center" container item justify="center" lg={6} xs={12}>
 					<img alt="Festival Image" className={'event-image'} src={EventImage} />
