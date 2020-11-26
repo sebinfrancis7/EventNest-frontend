@@ -12,13 +12,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-// import MoreIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
 import { Button, Paper, StylesProvider } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
-import { useGlobalContext } from '../context';
 import { useUserContext, UserContext } from '../userContext';
+import axios from 'axios';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,13 +25,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	menuButton: {
 		marginRight: theme.spacing(2),
-	},
-	title: {
-		// width: '100%',
-		// display: 'none',
-		// [theme.breakpoints.up('sm')]: {
-		// 	display: 'block',
-		// },
 	},
 	search: {
 		position: 'relative',
@@ -65,13 +56,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		transition: theme.transitions.create('width'),
 		width: '100%',
-		// [theme.breakpoints.up('md')]: {
-		// 	width: '20ch',
-		// },
 	},
 	sectionDesktop: {
 		display: 'none',
@@ -128,23 +115,10 @@ function NavLinks() {
 	);
 }
 
-
 function Search() {
 	const classes = useStyles();
-	// const { globalEvents } = useGlobalContext();
-	// const [details, setDetails] = useState([]);
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);
-
-	// useEffect(() => {
-	// 	axios
-	// 		.get('https://eventnest-server.herokuapp.com/events')
-	// 		.then(res => {
-	// 			console.log(res);
-	// 			setDetails(res.data);
-	// 			console.log(details);
-	// 		});
-	// }, []);
 
 	const handleSearch = async (event) => {
 		const input = event.target.value;
@@ -157,7 +131,6 @@ function Search() {
 					const data = res.data;
 					let newDetails = [];
 					let events = [];
-					// console.log(data);
 					for (const type of data) {
 						for (const event of type) {
 							if (events.includes(event._id) == false) {
@@ -166,11 +139,9 @@ function Search() {
 							}
 						}
 					}
-					console.log(events);
 					if (newDetails.length != 0) {
 						setNotfound(false);
 						setResults(newDetails);
-						console.log({ results });
 					} else {
 						setNotfound(true);
 					}
@@ -260,7 +231,10 @@ export default function Navbar() {
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			<Link className='no-underline' to='/dashboard'>
-				<MenuItem>Profile</MenuItem>
+				<MenuItem>Dashboard</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/wishlist'>
+				<MenuItem>Wishlist</MenuItem>
 			</Link>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -299,7 +273,6 @@ export default function Navbar() {
 			</MenuItem>
 		</Menu>
 	);
-	console.log(user);
 	return (
 		<StylesProvider injectFirst>
 			<div className={classNames(classes.grow, 'navbar')}>

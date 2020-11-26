@@ -22,7 +22,6 @@ function createCard(event, i) {
 			/>
 		</div>
 	);
-
 }
 
 function CardRow(props) {

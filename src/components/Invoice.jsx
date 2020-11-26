@@ -15,21 +15,16 @@ function Invoice(props) {
 		if(user){
 			if(user.hasOwnProperty('data')){
 				const purchases = user.data.purchases;
-				console.log(purchases);
-				console.log(params.invoice_id);
 				const waw = purchases.filter(purchase => purchase.transactionid == params.invoice_id);
-				console.log(waw[0]);
 				setOrder(waw[0]);
 			}
 		}
 	},[user]);
 
 	useEffect(() => {
-		console.log(order);
 		fetch(url + 'events?_id=' + order.event)
 			.then(res=> res.json())
 			.then(data => {
-				console.log(data[0].title);
 				setName(data[0].title);
 			});
 	}, [order]);
@@ -53,10 +48,8 @@ function Invoice(props) {
 				if (user?.data?._id !== json.user._id) {
 					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
-				console.log(user);
 			}
 			else {
-				console.log(response.status);
 			}
 		}
 		fetchData();

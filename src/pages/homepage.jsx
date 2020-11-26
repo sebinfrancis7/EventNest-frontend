@@ -28,35 +28,6 @@ export default function Homepage() {
 	};
 	return (
 		<StylesProvider injectFirst>
-			{/* <Navbar /> */}
-			{/* <Button
-				color="primary"
-				fullWidth
-				onClick={handleLogout}
-				type="submit"
-				variant="contained"
-			>
-				logout
-			</Button>
-			<Button
-				color="primary"
-				fullWidth
-				onClick={handleUser}
-				type="submit"
-				variant="contained"
-			>
-				User
-			</Button>
-			<RouterLink className="card-link" to={'/dashboard'}>
-				<Button
-					color="primary"
-					fullWidth
-					variant="contained"
-				>
-					Dashboard
-				</Button>
-			</RouterLink> */}
-
 			<Grid className="welcome-container" container>
 				<Grid className="title-container" container direction="column" item lg={6} xs={12}>
 					<Typography className="title" justify="center" variant="h3">

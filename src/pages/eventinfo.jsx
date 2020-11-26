@@ -70,7 +70,6 @@ function EventInfo(props) {
 			description: 'EventNest',
 			
 			handler:function (response) {
-				console.log(response);
 				let values = {
 					razorpay_signature : response.razorpay_signature,
 					razorpay_order_id : response.razorpay_order_id,
@@ -90,8 +89,7 @@ function EventInfo(props) {
 				})
 					.then(res=> res.json())
 					.then(data => {
-						console.log(data);
-						history.push('/dashboard/invoices/' + response.razorpay_payment_id);
+						history.push('/invoices/' + response.razorpay_payment_id);
 					})
 					.catch(e=>console.log(e));
 			}
