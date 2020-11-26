@@ -77,7 +77,7 @@ function MediaCard(props) {
 						title={props.title}
 					>
 						<div className="card-header">
-							<Button className="card-title" color="secondary" noWrap variant="contained">
+							<Button className="card-title" color="secondary" variant="contained">
 								{props.title}
 							</Button>
 
