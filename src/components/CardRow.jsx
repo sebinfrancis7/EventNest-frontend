@@ -1,20 +1,36 @@
 /* eslint-disable react/prop-types */
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import Card from './Card.jsx';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
 import { useGlobalContext } from '../context';
+import { useUserContext, UserContext } from '../userContext';
 import '../sass/cardrow.scss';
 
 function createCard(event, i) {
+	let [user, setUser] = useContext(UserContext);
+	let color;
+	if (user.loggedIn) {
+		if (user.data.wishlist.indexOf(event._id) !== -1) {
+			console.log("favourite");
+			console.log(event._id);
+			color = 'red';
+		}
+		else
+			color = null;
+	} else {
+		color = null;
+	}
+
 	return (
 		<div className='event-card' key={i}>
 			<Card
 				city={event.city || event.venue_addr}
 				description={event.description}
 				event_id={event._id}
+				fav={color}
 				img_url={event.image_url}
 				price={event.price}
 				title={event.title}
@@ -27,7 +43,8 @@ function createCard(event, i) {
 function CardRow(props) {
 	// eslint-disable-next-line
 	const [events, setEvents] = useState([]);
-	const [ loaded, setLoaded ] = useState(false);
+	const [loaded, setLoaded] = useState(false);
+	// let [user, setUser] = useContext(UserContext);
 	// const { setGlobalEvents } = useGlobalContext();
 	// const { globalEvents } = useGlobalContext();
 
@@ -44,7 +61,7 @@ function CardRow(props) {
 		axios
 			.get(url)
 			.then(res => {
-				if (category) 
+				if (category)
 					setEvents(res.data);
 				else {
 					setEvents(res.data);
@@ -78,7 +95,7 @@ function CardRow(props) {
 			<div className='events-row' ref={listRef}>
 				{events.map(createCard)}
 			</div>
-			{ loaded ? 
+			{ loaded ?
 				listRef.current.clientWidth == listRef.current.scrollWidth ?
 					undefined
 					:

@@ -10,7 +10,7 @@ export const UserProvider = props => {
 			{props.children}
 		</UserContext.Provider>
 	);
-}
+};
 
 export const useUserContext = () => {
 	return useContext(UserContext);

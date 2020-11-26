@@ -37,46 +37,61 @@ const useStyles = makeStyles((theme) => ({
 
 function MediaCard(props) {
 	const classes = useStyles();
-	const [favorite, setfavorite] = useState(true);
-	const [coloris, setColoris] = useState(null);
+	let fav;
+	if (props.fav == 'red') {
+		fav = false;
+	} else {
+		fav = true;
+	}
+	const [favorite, setfavorite] = useState(fav);
+	const [coloris, setColoris] = useState(props.fav);
+	// console.log(props.fav);
+	// console.log(props.event_id);
+
 	let [user, setUser] = useContext(UserContext);
+	// console.log(user.data.wishlist);
 
 	const handleFavorite = (e) => {
 		// favorite ? setfavorite(false) : setfavorite(true);
 		// favorite ? setColoris('#F50057') : setColoris(null);
 		e.preventDefault();
 		// console.log(user.data._id);
-		if (favorite) {
-			setfavorite(false);
-			setColoris('#F50057');
-			console.log(favorite);
-			let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
-			console.log(url);
-			axios
-				.post(url, props.event_id)
-				.then(res => {
-					console.log(res);
-					console.log(res.data);
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		} else {
-			let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
-			setfavorite(true);
-			setColoris(null);
-			console.log(favorite);
-			axios
-				.delete(url)
-				.then(res => {
-					console.log(res);
-					console.log(res.data);
-				})
-				.catch(err => {
-					console.log(err);
-				});
+		if (user.loggedIn) {
+			if (favorite) {
+				setfavorite(false);
+				setColoris('#F50057');
+				console.log(favorite);
+				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+				console.log(url);
+				axios
+					.post(url, props.event_id)
+					.then(res => {
+						console.log(res);
+						console.log(res.data);
+					})
+					.catch(err => {
+						console.log(err);
+					});
+			} else {
+				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+				setfavorite(true);
+				setColoris(null);
+				console.log(favorite);
+				axios
+					.delete(url)
+					.then(res => {
+						console.log(res);
+						console.log(res.data);
+					})
+					.catch(err => {
+						console.log(err);
+					});
 
+			}
+		} else {
+			alert('login');
 		}
+
 	};
 
 	return (
