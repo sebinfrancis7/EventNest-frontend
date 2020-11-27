@@ -142,8 +142,8 @@ function EventInfo(props) {
 			<h2>{details.image_url}</h2>
 			<h2>{details.attendees}</h2> */}
 			<Grid container>
-				<Grid item sm={2} xs={1}></Grid>
-				<Grid container item sm={8} spacing={2} xs={10}>
+				<Grid item sm={2} xs={0}></Grid>
+				<Grid container item sm={8} spacing={2} xs={12}>
 					<Grid className="event-page-container" item xs={12}>
 						<Card className="event-page-card shadow-large">
 							<CardMedia
@@ -243,7 +243,7 @@ function EventInfo(props) {
 						</Card>
 					</Grid>
 				</Grid>
-				<Grid item sm={2} xs={1}></Grid>
+				<Grid item sm={2} xs={0}></Grid>
 			</Grid>
 		</StylesProvider>
 	);

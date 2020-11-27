@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: theme.spacing(3),
-			width: '30%',
+			width: '18rem',
 		},
 	},
 	searchIcon: {
-		padding: theme.spacing(0, 2),
+		// padding: theme.spacing(0, 2),
 		height: '100%',
 		position: 'absolute',
+		right: '1rem',
 		pointerEvents: 'none',
 		display: 'flex',
 		alignItems: 'center',
@@ -55,10 +56,10 @@ const useStyles = makeStyles((theme) => ({
 		color: 'inherit',
 	},
 	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		padding: theme.spacing(1.2, 1, 1, 0),
+		paddingLeft: '1rem',
 		transition: theme.transitions.create('width'),
-		width: '100%',
+		width: '75%',
 	},
 	sectionDesktop: {
 		display: 'none',
@@ -253,31 +254,52 @@ export default function Navbar() {
 	);
 
 	const mobileMenuId = 'primary-search-account-menu-mobile';
-	const renderMobileMenu = (
-		<Menu
-			anchorEl={mobileMoreAnchorEl}
-			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-			id={mobileMenuId}
-			keepMounted
-			onClose={handleMobileMenuClose}
-			open={isMobileMenuOpen}
-			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-		>
-			<Link className='no-underline' to='/dashboard'>
-				<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
-			</Link>
-			<Link className='no-underline' to='/wishlist'>
-				<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
-			</Link>
-			<Link className='no-underline' to='/invoices'>
-				<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
-			</Link>
-			<Link className='no-underline' to='/'>
-				<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
-			</Link>
-			<MenuItem onClick={handleLogout}>Logout</MenuItem>
-		</Menu>
-	);
+	let renderMobileMenu;
+	if (user.loggedIn) {
+		renderMobileMenu = (
+			<Menu
+				anchorEl={mobileMoreAnchorEl}
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				id={mobileMenuId}
+				keepMounted
+				onClose={handleMobileMenuClose}
+				open={isMobileMenuOpen}
+				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+			>
+				<Link className='no-underline' to='/dashboard'>
+					<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+				</Link>
+				<Link className='no-underline' to='/wishlist'>
+					<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
+				</Link>
+				<Link className='no-underline' to='/invoices'>
+					<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
+				</Link>
+				<Link className='no-underline' to='/'>
+					<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+				</Link>
+				<MenuItem onClick={handleLogout}>Logout</MenuItem>
+			</Menu>
+		);
+	} else {
+		renderMobileMenu = (
+			<Menu
+				anchorEl={mobileMoreAnchorEl}
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				id={mobileMenuId}
+				keepMounted
+				onClose={handleMobileMenuClose}
+				open={isMobileMenuOpen}
+				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+			>
+				<Link className='no-underline' to='/signin'>
+					<MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
+				</Link>
+			</Menu>
+		);
+	}
+
+
 	return (
 		<StylesProvider injectFirst>
 			<div className={classNames(classes.grow, 'navbar')}>
@@ -321,11 +343,11 @@ export default function Navbar() {
 								color="inherit"
 								onClick={handleMobileMenuOpen}
 							>
-								<MenuIcon />
+								<AccountCircle />
 							</IconButton>
 						</div>
 					</Toolbar>
-					<NavLinks />
+					{/* <NavLinks /> */}
 				</AppBar>
 				{renderMobileMenu}
 				{renderMenu}

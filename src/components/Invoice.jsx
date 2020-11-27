@@ -49,8 +49,6 @@ function Invoice(props) {
 					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
 			}
-			else {
-			}
 		}
 		fetchData();
 	},[]);
@@ -83,7 +81,7 @@ function Invoice(props) {
                 Payment Status: Successfull
 			</Typography>
 			<Typography variant='h5'>
-                Loding ...
+                Loading ...
 			</Typography>
 		</div>
 	);

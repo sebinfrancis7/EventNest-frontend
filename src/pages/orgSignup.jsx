@@ -92,9 +92,9 @@ export default function OrgSignUp() {
 								label="Email Address"
 								name="email"
 								onChange={handleChange}
+								required
 								value={details.email}
-                                variant="outlined"
-                                required
+								variant="outlined"
 							/>
 						</Grid>
 						<Grid item xs={12}>

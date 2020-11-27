@@ -51,19 +51,21 @@ function App() {
 
 			if (response.ok) {
 				let json = await response.json();
-				console.log(json)
+				console.log(json);
 				if (user?.data?._id !== json.user._id) {
 					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
 				console.log(user);
 			}
 			else {
+				setUser({ data: null, type: null, loggedIn: false });
 				console.log(response.status);
 			}
 		}
 		fetchData();
+	}, []);
 
-	}, [user]);
+	console.log(user);
 	return (
 
 		<ThemeProvider theme={theme}>
@@ -132,7 +134,7 @@ function App() {
 						<OrgSignInSide />
 					</Route>
 					<Route exact path='/orgsignup'>
-						<OrgSignUp/>
+						<OrgSignUp />
 					</Route>
 					<Route component={Event} path='/events/:event_id' />
 					<Route path="*">
