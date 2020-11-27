@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { Link as Lnk } from '@material-ui/core';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import Copyright from './../components/Copyright';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
@@ -124,7 +126,7 @@ export default function SignInSide() {
 										Sign In
 									</Button>
 								</Grid>
-								<Grid item xs={12}>
+								{/* {<Grid item xs={12}>
 									<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
 										<Button
 											className="facebook-btn"
@@ -135,6 +137,18 @@ export default function SignInSide() {
 										>
 											Facebook
 										</Button>
+									</Lnk>
+								</Grid>} */}
+								
+								<Grid item xs={12}>
+									<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
+										<FacebookIcon size={50} round={true} />
+									</Lnk>
+									<Lnk href="https://eventnest-server.herokuapp.com/auth/google">
+										G
+									</Lnk>
+									<Lnk href="https://eventnest-server.herokuapp.com/auth/twitter">
+										<TwitterIcon size={50} round={true} />
 									</Lnk>
 								</Grid>
 							</Grid>

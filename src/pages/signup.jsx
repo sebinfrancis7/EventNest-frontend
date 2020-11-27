@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link as Lnk } from '@material-ui/core';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'react-router-dom';
 import Copyright from './../components/Copyright';
 
@@ -135,6 +138,17 @@ export default function SignUp() {
 					>
 						Sign Up
 					</Button>
+					<Grid item xs={12}>
+						<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
+							<FacebookIcon size={50} round={true} />
+						</Lnk>
+						<Lnk href="https://eventnest-server.herokuapp.com/auth/google">
+							G
+						</Lnk>
+						<Lnk href="https://eventnest-server.herokuapp.com/auth/twitter">
+							<TwitterIcon size={50} round={true} />
+						</Lnk>
+					</Grid>
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link to='/signin' variant="body2">
