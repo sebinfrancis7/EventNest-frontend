@@ -39,7 +39,6 @@ function App() {
 		async function fetchData() {
 			let url = 'https://eventnest-server.herokuapp.com/users';
 			//let url = 'http://localhost:4000/users'
-
 			let response = await fetch(url,
 				{
 					method: 'get',
@@ -48,18 +47,14 @@ function App() {
 					},
 					credentials: 'include'
 				});
-
 			if (response.ok) {
 				let json = await response.json();
-				console.log(json);
 				if (user?.data?._id !== json.user._id) {
 					setUser({ data: json.user, type: json.type, loggedIn: true });
 				}
-				console.log(user);
 			}
 			else {
 				setUser({ data: null, type: null, loggedIn: false });
-				console.log(response.status);
 			}
 		}
 		fetchData();
@@ -83,7 +78,6 @@ function App() {
 		)
 	}
 
-	console.log(user);
 	return (
 
 		<ThemeProvider theme={theme}>

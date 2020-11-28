@@ -10,15 +10,18 @@ import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import '../sass/dashboard.scss';
 
 function Ticket(purchase) {
-	return (
-		<Link to={'/invoices/' + purchase.transactionid} className='list-link'>
-			<ListItem button key={purchase.event._id}>
-				<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
-				<ListItemText primary={purchase.event.title + '\t' + 'Tickets: ' + purchase.tickets} />
-			</ListItem>
-			<Divider />
-		</Link>
-	);
+	if(purchase.event) {
+		return (
+			<Link to={'/invoices/' + purchase.transactionid} className='list-link'>
+				<ListItem button key={purchase.event._id}>
+					<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
+					<ListItemText primary={purchase.event.title + '\t' + 'Tickets: ' + purchase.tickets} />
+				</ListItem>
+				<Divider />
+			</Link>
+		);
+	}
+	
 }
 
 
@@ -36,7 +39,7 @@ function TicketsPage() {
 		if(error) {
 			return 'Some error occured while getting your purchases'
 		}
-
+		console.log(purchases)
 		return (
 			<List>
 				{purchases.map(Ticket)}
