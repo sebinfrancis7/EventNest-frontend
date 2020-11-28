@@ -1,7 +1,8 @@
 @import './colors.scss';
 
-.facebook-btn {
-    margin-top: 2rem;
+.facebook-btn,
+.google-btn,
+.twitter-btn {
     margin-bottom: 1rem;
     padding: 10px;
     text-decoration: none;
@@ -11,13 +12,42 @@
     }
 }
 
-.facebook-link {
+.google-btn {
+    background-color: white;
+
+    &:hover {
+        background-color: white;
+    }
+}
+
+.facebook-btn {
+    color: white;
+    background-color: #3b5999;
+
+    &:hover {
+        background-color: #3b5999;
+    }
+}
+
+.twitter-btn {
+    color: white;
+    background-color: #5aa4eb;
+
+    &:hover {
+        background-color: #5aa4eb;
+    }
+}
+.facebook-link,
+.google-link,
+.twitter-link {
     &:hover {
         text-decoration: none;
     }
 }
 
 .submit {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 10px;
 }
 

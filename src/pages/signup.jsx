@@ -17,6 +17,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'react-router-dom';
 import Copyright from './../components/Copyright';
+import GoogleIcon from './../components/GoogleIcon';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -77,7 +78,7 @@ export default function SignUp() {
 								autoFocus
 								fullWidth
 								id="username"
-								label="username"
+								label="Username"
 								name="username"
 								onChange={handleChange}
 								required
@@ -89,7 +90,7 @@ export default function SignUp() {
 							<TextField
 								fullWidth
 								id="display_name"
-								label="display name"
+								label="Display Name"
 								name="display_name"
 								onChange={handleChange}
 								value={details.display_name}
@@ -122,32 +123,62 @@ export default function SignUp() {
 								variant="outlined"
 							/>
 						</Grid>
-						<Grid item xs={12}>
+						{/* <Grid item xs={12}>
 							<FormControlLabel
 								control={<Checkbox color="primary" value="allowExtraEmails" />}
 								label="I want to receive inspiration, marketing promotions and updates via email."
 							/>
-						</Grid>
+						</Grid> */}
 					</Grid>
 					<Button
-						className={classes.submit}
+						className="submit"
 						color="primary"
 						fullWidth
 						type="submit"
-						variant="contained"
+						variant="outlined"
 					>
 						Sign Up
 					</Button>
-					<Grid item xs={12}>
-						<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
-							<FacebookIcon size={50} round={true} />
-						</Lnk>
-						<Lnk href="https://eventnest-server.herokuapp.com/auth/google">
-							G
-						</Lnk>
-						<Lnk href="https://eventnest-server.herokuapp.com/auth/twitter">
-							<TwitterIcon size={50} round={true} />
-						</Lnk>
+					<Grid container item xs={12}>
+						<Grid item xs={12}>
+							<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
+								<Button
+									className="google-btn"
+									fullWidth
+									startIcon={<GoogleIcon />}
+									type="submit"
+									variant="contained"
+								>
+											Sign in with Google
+								</Button>
+							</Lnk>
+						</Grid>	
+						<Grid item xs={12}>
+							<Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
+								<Button
+									className="twitter-btn"
+									fullWidth
+									startIcon={<TwitterIcon />}
+									type="submit"
+									variant="contained"
+								>
+											Sign in with Twitter
+								</Button>
+							</Lnk>
+						</Grid>	
+						<Grid item xs={12}>
+							<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
+								<Button
+									className="facebook-btn"
+									fullWidth
+									startIcon={<FacebookIcon />}
+									type="submit"
+									variant="contained"
+								>
+											Sign in with Facebook
+								</Button>
+							</Lnk>
+						</Grid>
 					</Grid>
 					<Grid container justify="flex-end">
 						<Grid item>

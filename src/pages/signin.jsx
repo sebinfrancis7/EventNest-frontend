@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { Link as Lnk } from '@material-ui/core';
+import { Link as Lnk, SvgIcon } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Copyright from './../components/Copyright';
@@ -20,6 +20,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import { Details } from '@material-ui/icons';
 import '../sass/signin.scss';
+import GoogleIcon from './../components/GoogleIcon';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -126,30 +127,46 @@ export default function SignInSide() {
 										Sign In
 									</Button>
 								</Grid>
-								{/* {<Grid item xs={12}>
-									<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
-										<Button
-											className="facebook-btn"
-											color="primary"
-											fullWidth
-											type="submit"
-											variant="outlined"
-										>
-											Facebook
-										</Button>
-									</Lnk>
-								</Grid>} */}
-								
-								<Grid item xs={12}>
-									<Lnk href="https://eventnest-server.herokuapp.com/auth/facebook">
-										<FacebookIcon size={50} round={true} />
-									</Lnk>
-									<Lnk href="https://eventnest-server.herokuapp.com/auth/google">
-										G
-									</Lnk>
-									<Lnk href="https://eventnest-server.herokuapp.com/auth/twitter">
-										<TwitterIcon size={50} round={true} />
-									</Lnk>
+								<Grid container item xs={12}>
+									<Grid item xs={12}>
+										<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
+											<Button
+												className="google-btn"
+												fullWidth
+												startIcon={<GoogleIcon />}
+												type="submit"
+												variant="contained"
+											>
+											Sign in with Google
+											</Button>
+										</Lnk>
+									</Grid>	
+									<Grid item xs={12}>
+										<Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
+											<Button
+												className="twitter-btn"
+												fullWidth
+												startIcon={<TwitterIcon />}
+												type="submit"
+												variant="contained"
+											>
+											Sign in with Twitter
+											</Button>
+										</Lnk>
+									</Grid>	
+									<Grid item xs={12}>
+										<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
+											<Button
+												className="facebook-btn"
+												fullWidth
+												startIcon={<FacebookIcon />}
+												type="submit"
+												variant="contained"
+											>
+											Sign in with Facebook
+											</Button>
+										</Lnk>
+									</Grid>
 								</Grid>
 							</Grid>
 							{/* <a href="https://eventnest-server.herokuapp.com/auth/facebook">Facebook</a> */}
@@ -165,12 +182,12 @@ export default function SignInSide() {
 							</Button> */}
 							<Grid container>
 								<Grid item sm={6} xs={12}>
-									<Link href="#" variant="body2">
+									<Link href='#' variant='body2'>
 										Forgot password?
 									</Link>
 								</Grid>
 								<Grid item sm={6} xs={12}>
-									<Link to='/signup' variant="body2">
+									<Link to='/signup' variant='body2'>
 										{'Don\'t have an account? Sign Up'}
 									</Link>
 								</Grid>
