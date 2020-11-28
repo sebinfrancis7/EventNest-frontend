@@ -146,7 +146,6 @@ export default function SignUp() {
 									className="google-btn"
 									fullWidth
 									startIcon={<GoogleIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Google

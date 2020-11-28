@@ -319,7 +319,7 @@ export default function Navbar() {
 									onClick={handleProfileMenuOpen}
 									startIcon={<AccountCircle />}
 								>
-									{user.data.display_name}
+									{user.data.display_name || user.data.username}
 								</Button>
 								:
 								<Link
