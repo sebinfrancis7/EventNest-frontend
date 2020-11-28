@@ -33,11 +33,12 @@ function TicketsPage() {
 	const [purchases, setPurchases] = useState([]);
 
 	function Tickets() {
+		console.log(purchases);
 		if(loading) {
-			return 'Loading ...'
+			return 'Loading ...';
 		}
 		if(error) {
-			return 'Some error occured while getting your purchases'
+			return 'Some error occured while getting your purchases';
 		}
 		console.log(purchases)
 		return (
@@ -48,7 +49,7 @@ function TicketsPage() {
 	}
 
 	useEffect(()=>{
-		console.log(user)
+		console.log(user);
 		async function fetchData() {
 			let purl = url + 'customer/purchases';
 			let response = await fetch(purl,
@@ -59,19 +60,19 @@ function TicketsPage() {
 					},
 					credentials: 'include'
 				});
-			console.log(response)
+			console.log(response);
 			if (response.ok) {
 				let json = await response.json();
 				setPurchases(json);
 			}
 			else {
 				let json = await response.json();
-				setErrror(json)
+				setErrror(json);
 			}
 			setLoading(false);
 		}
 		fetchData();
-	},[])
+	},[]);
 
 	return (
 		<div>
