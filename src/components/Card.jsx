@@ -14,7 +14,7 @@ import '../sass/card.scss';
 
 function MediaCard(props) {
 	const [favorite, setfavorite] = useState(false);
-	const [coloris, setColoris] = useState(props.fav);
+	const [color, setColor] = useState();
 	let [user, setUser] = useContext(UserContext);
 	let history = useHistory();
 	
@@ -22,23 +22,24 @@ function MediaCard(props) {
 		if (user.loggedIn && user.type === 'customer') {
 			if (user.data.wishlist.indexOf(props.event_id) !== -1) {
 				setfavorite(true);
-				setColoris('#F50057');
+				setColor('F50057')
 			}
 		}
 	}, [user]);
 	
-	const handleFavorite = (e) => {
+	function handleFavorite(e){
 		
 		e.preventDefault();
 		if(user.type === 'organizer'){
 			alert('Only for customers');
 			return;
 		}
-		
+		console.log('ran')
 		if (user.loggedIn ) {
-			if (favorite) {
-				setfavorite(false);
-				setColoris('#F50057');
+			if (favorite == false) {
+				console.log('posting....')
+				setfavorite(true);
+				setColor('#F50057')
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				axios
 					.post(url, props.event_id)
@@ -49,9 +50,10 @@ function MediaCard(props) {
 						console.log(err);
 					});
 			} else {
+
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
-				setfavorite(true);
-				setColoris(null);
+				setfavorite(false);
+				setColor(null);
 				axios
 					.delete(url)
 					.then(res => {
@@ -60,7 +62,6 @@ function MediaCard(props) {
 					.catch(err => {
 						console.log(err);
 					});
-
 			}
 		} else {
 			history.push('/signin')
@@ -92,8 +93,8 @@ function MediaCard(props) {
 						Location : {props.city}
 				</Typography>
 				<IconButton aria-label="add to favorites" className="title-fav" onClick={handleFavorite}>
-					{/* {favorite ? coloris = "red":coloris = null} */}
-					<FavoriteIcon style={{ fill: coloris }} />
+	
+					<FavoriteIcon style={{ fill:color }} />
 				</IconButton>
 			</CardContent>
 		</Card>
