@@ -48,7 +48,7 @@ export default function OrgSignInSide() {
 			});
 			if (response.ok) {
 				let json = await response.json();
-				setUser({ data: json, type: 'customer', loggedIn: true });
+				setUser({ data: json, type: 'organizer', loggedIn: true });
 			}
 		}
 		e.preventDefault();

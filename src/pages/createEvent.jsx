@@ -62,7 +62,7 @@ function CreatEvent() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('https://eventnest-server.herokuapp.com/events', details)
+			.post('https://eventnest-server.herokuapp.com/events', details, { withCredentials: true })
 			.then(res => {
 				console.log(res.data);
 			})
@@ -90,16 +90,6 @@ function CreatEvent() {
 							Create Event
 						</Typography>
 						<form className={classes.form} noValidate onSubmit={handleSubmit}>
-							<TextField 							
-								className="event-input"
-								id="organizer"
-								label="Organizer"
-								margin="normal"
-								name="organizer"
-								onChange={handleChange}
-								value={details.organizer}
-								variant="outlined"
-							/>
 							<TextField
 								className="event-input"
 								id="title"
