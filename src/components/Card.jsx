@@ -17,16 +17,16 @@ function MediaCard(props) {
 	const [color, setColor] = useState();
 	let [user, setUser] = useContext(UserContext);
 	let history = useHistory();
-	
+
 	useEffect(() => {
 		if (user.loggedIn && user.type === 'customer') {
 			if (user.data.wishlist.indexOf(props.event_id) !== -1) {
 				setfavorite(true);
-				setColor('F50057')
+				setColor('#F50057');
 			}
 		}
 	}, [user]);
-	
+
 	function handleFavorite(e){
 		
 		e.preventDefault();
@@ -34,12 +34,12 @@ function MediaCard(props) {
 			alert('Only for customers');
 			return;
 		}
-		console.log('ran')
+		console.log('ran');
 		if (user.loggedIn ) {
 			if (favorite == false) {
-				console.log('posting....')
+				console.log('posting....');
 				setfavorite(true);
-				setColor('#F50057')
+				setColor('#F50057');
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				axios
 					.post(url, props.event_id)
@@ -50,7 +50,6 @@ function MediaCard(props) {
 						console.log(err);
 					});
 			} else {
-
 				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				setfavorite(false);
 				setColor(null);
@@ -64,10 +63,9 @@ function MediaCard(props) {
 					});
 			}
 		} else {
-			history.push('/signin')
+			history.push('/signin');
 		}
-
-	};
+	}
 
 	return (
 		<Card className='card'>
