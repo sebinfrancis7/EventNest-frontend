@@ -16,7 +16,7 @@ import { Link as Lnk, SvgIcon } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Copyright from './../components/Copyright';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, useHistory } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import { Details } from '@material-ui/icons';
 import '../sass/signin.scss';
@@ -36,6 +36,7 @@ export default function SignInSide() {
 	const [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
 	const [details, setDetails] = useState({ username: '', password: '' });
+	let history = useHistory();
 
 	const handleSubmit = (e) => {
 		async function submitData() {
@@ -52,6 +53,8 @@ export default function SignInSide() {
 			if (response.ok) {
 				let json = await response.json();
 				setUser({ data: json, type: 'customer', loggedIn: true });
+				alert('Sigin successful')
+				history.push('/')
 			}
 		}
 		e.preventDefault();
@@ -66,8 +69,6 @@ export default function SignInSide() {
 		const newDetails = { ...details, [inputname]: inputvalue };
 		setDetails(newDetails);
 	}
-
-	if (user.loggedIn) return (<Redirect to="/" />);
 
 	return (
 		<StylesProvider injectFirst>

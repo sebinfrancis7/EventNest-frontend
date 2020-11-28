@@ -14,7 +14,7 @@ import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { Link as Lnk } from '@material-ui/core';
 import Copyright from './../components/Copyright';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, useHistory } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
 import { Details } from '@material-ui/icons';
 import '../sass/signin.scss';
@@ -33,7 +33,8 @@ export default function OrgSignInSide() {
 	const [user, setUser] = useContext(UserContext);
 	const classes = useStyles();
 	const [details, setDetails] = useState({ username: '', password: '' });
-
+	let history = useHistory();
+	
 	const handleSubmit = (e) => {
 		async function submitData() {
 			let httpHeaders = { 'Content-Type': 'application/json' };
@@ -49,6 +50,8 @@ export default function OrgSignInSide() {
 			if (response.ok) {
 				let json = await response.json();
 				setUser({ data: json, type: 'organizer', loggedIn: true });
+				alert('Sigin successful')
+				history.push('/')
 			}
 		}
 		e.preventDefault();
@@ -63,8 +66,6 @@ export default function OrgSignInSide() {
 		const newDetails = { ...details, [inputname]: inputvalue };
 		setDetails(newDetails);
 	}
-
-	if (user.loggedIn) return (<Redirect to="/" />);
 
 	return (
 		<StylesProvider injectFirst>

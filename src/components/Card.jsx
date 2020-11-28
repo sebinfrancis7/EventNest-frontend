@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useUserContext, UserContext } from '../userContext';
 import '../sass/card.scss';
@@ -16,6 +16,7 @@ function MediaCard(props) {
 	const [favorite, setfavorite] = useState(false);
 	const [coloris, setColoris] = useState(props.fav);
 	let [user, setUser] = useContext(UserContext);
+	let history = useHistory();
 	
 	useEffect(() => {
 		if (user.loggedIn && user.type === 'customer') {
@@ -62,7 +63,7 @@ function MediaCard(props) {
 
 			}
 		} else {
-			alert('login');
+			history.push('/signin')
 		}
 
 	};
