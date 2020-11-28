@@ -52,6 +52,7 @@ function createCard(event, i) {
 function WishlistPage() {
 	const [events, setEvents] = useState([]);
 	const [loaded, setLoaded] = useState(false);
+	const [error, setErrror] = useState(); 
 	useEffect(() => {
 		async function fetchData() {
 			let wurl = url + 'customer/wishlist';
@@ -68,16 +69,30 @@ function WishlistPage() {
 
 			if (response.ok) {
 				let json = await response.json();
-				console.log(json);
 				setEvents(json);
-		 		setLoaded(true);
+		 		
 			}
 			else {
-				console.log(response.status);
+				let json = await response.json();
+				setErrror(json)
 			}
+			setLoaded(true);
 		}
 		fetchData();
 	}, []);
+
+	function Wishlist() {
+
+		if(!loaded) {
+			return 'Loading ...'
+		}
+		if(error) {
+			return 'Some error occured while getting your purchases'
+		}
+		return (
+			events.map(createCard)
+		);
+	}
 
 	return (
 		<div>
@@ -91,7 +106,7 @@ function WishlistPage() {
 						Here are your Wishlisted Events
 					</Typography>
 					<div className='events-row events-row-wishlist' >
-						{events.map(createCard)}
+						< Wishlist />
 					</div>
 				</div>
 			</Drawer>

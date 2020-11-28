@@ -9,41 +9,67 @@ import { ListItemText } from '@material-ui/core';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import '../sass/dashboard.scss';
 
-const url = 'https://eventnest-server.herokuapp.com/';
-
 function Ticket(purchase) {
-	const [title, setTitle] = useState('');
-	useEffect(() => {
-		fetch(url + 'events?_id=' + purchase.event)
-			.then(res=> res.json())
-			.then(data => {
-				setTitle(data[0].title);
-			});
-	},[]);
-
 	return (
 		<Link to={'/invoices/' + purchase.transactionid} className='list-link'>
-			<ListItem button key={purchase.event}>
+			<ListItem button key={purchase.event._id}>
 				<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
-				<ListItemText primary={title + '\t' + 'Tickets: ' + purchase.tickets} />
+				<ListItemText primary={purchase.event.title + '\t' + 'Tickets: ' + purchase.tickets} />
 			</ListItem>
 			<Divider />
 		</Link>
 	);
 }
 
-function Tickets() {
-	const [user, setUser] = useContext(UserContext);
-	return (
-		<List>
-			{user.data.purchases.map(Ticket)}
-		</List>
-	);
-}
 
 function TicketsPage() {
-	let [user, setUser] = useContext(UserContext);
-	console.log(user);
+	const url = 'https://eventnest-server.herokuapp.com/';
+	const [user, setUser] = useContext(UserContext);
+	const [loading, setLoading] = useState(true);
+	const [error, setErrror] = useState(); 
+	const [purchases, setPurchases] = useState([]);
+
+	function Tickets() {
+		if(loading) {
+			return 'Loading ...'
+		}
+		if(error) {
+			return 'Some error occured while getting your purchases'
+		}
+
+		return (
+			<List>
+				{purchases.map(Ticket)}
+			</List>
+		);
+	}
+
+	useEffect(()=>{
+		console.log(user)
+		async function fetchData() {
+			let purl = url + 'customer/purchases';
+			let response = await fetch(purl,
+				{
+					method: 'get',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					credentials: 'include'
+				});
+			console.log(response)
+			if (response.ok) {
+				let json = await response.json();
+				setPurchases(json);
+			}
+			else {
+				let json = await response.json();
+				setErrror(json)
+			}
+			setLoading(false);
+		}
+		fetchData();
+	},[])
+
 	return (
 		<div>
 			<Drawer>

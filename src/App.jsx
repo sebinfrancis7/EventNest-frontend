@@ -65,6 +65,24 @@ function App() {
 		fetchData();
 	}, []);
 
+	function checkLoggedIn(redirect) {
+		if(user.loggedIn != undefined) {
+			if(user.loggedIn) return redirect;
+			return (
+				<div>
+					<Link to='/signin'>
+						<h2>yo need to sign in first</h2>
+					</Link>
+				</div>
+			)
+		}
+		return (
+			<div>
+				<h2>Loading ...</h2>
+			</div>
+		)
+	}
+
 	console.log(user);
 	return (
 
@@ -88,7 +106,7 @@ function App() {
 						<CreateEvent />
 					</Route>
 					<Route exact path='/dashboard'>
-						{user.loggedIn ? <Dashboard /> :
+						{user.loggedIn == undefined || user.loggedIn ? <Dashboard /> :
 							<div>
 								<div>
 									<Link to='/signin'>
@@ -99,7 +117,7 @@ function App() {
 							</div>}
 					</Route>
 					<Route exact path='/wishlist'>
-						{user.loggedIn ? <Wishlist /> :
+						{user.loggedIn == undefined || user.loggedIn ? <Wishlist /> :
 							<div>
 								<div>
 									<Link to='/signin'>
@@ -110,15 +128,9 @@ function App() {
 							</div>}
 					</Route>
 					<Route exact path='/invoices'>
-						{user.loggedIn ? <Invoices /> :
-							<div>
-								<div>
-									<Link to='/signin'>
-										<h2>yo need to sign in first</h2>
-									</Link>
-
-								</div>
-							</div>}
+						{
+							checkLoggedIn(< Invoices />)
+						}
 					</Route>
 					<Route component={Invoice} path='/invoices/:invoice_id' />
 					<Route exact path='/aboutus'>
