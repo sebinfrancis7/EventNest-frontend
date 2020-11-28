@@ -146,7 +146,6 @@ export default function SignUp() {
 									className="google-btn"
 									fullWidth
 									startIcon={<GoogleIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Google
@@ -159,7 +158,6 @@ export default function SignUp() {
 									className="twitter-btn"
 									fullWidth
 									startIcon={<TwitterIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Twitter
@@ -172,7 +170,6 @@ export default function SignUp() {
 									className="facebook-btn"
 									fullWidth
 									startIcon={<FacebookIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Facebook
