@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { Link as Lnk, SvgIcon } from '@material-ui/core';
+import { Divider, Link as Lnk, SvgIcon } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Copyright from './../components/Copyright';
@@ -53,8 +53,7 @@ export default function SignInSide() {
 			if (response.ok) {
 				let json = await response.json();
 				setUser({ data: json, type: 'customer', loggedIn: true });
-				alert('Sigin successful')
-				history.push('/')
+				history.push('/');
 			}
 		}
 		e.preventDefault();
@@ -127,6 +126,13 @@ export default function SignInSide() {
 									>
 										Sign In
 									</Button>
+								</Grid>
+								<Grid item xs={12}>
+									<Typography
+										align='center'
+									>
+									Or
+									</Typography>
 								</Grid>
 								<Grid container item xs={12}>
 									<Grid item xs={12}>

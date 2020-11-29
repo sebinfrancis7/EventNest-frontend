@@ -138,7 +138,14 @@ export default function SignUp() {
 						variant="outlined"
 					>
 						Sign Up
-					</Button>
+					</Button>				
+					<Grid item xs={12}>
+						<Typography
+							align='center'
+						>
+									Or
+						</Typography>
+					</Grid>
 					<Grid container item xs={12}>
 						<Grid item xs={12}>
 							<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">

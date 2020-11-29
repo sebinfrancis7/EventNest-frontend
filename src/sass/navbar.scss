@@ -46,6 +46,7 @@
 }
 
 .search-result {
+    display: none;
     position: absolute;
     z-index: 100;
     width: 100%;
@@ -102,4 +103,92 @@
     @media (max-width: 600px) {
         display: none;
     }
+}
+
+.display-name {
+    white-space: nowrap;
+}
+
+.avatar-img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.menu-button {
+    margin-right: 1rem;
+}
+
+.input-root {
+    width: 100%;
+    color: inherit;
+}
+
+.input-input {
+    padding: 0.5rem 0.5rem 0 1rem;
+    transition: all 0.2s;
+    width: 100%;
+
+    &:focus-within {
+        color: white;
+        width: 75%;
+    }
+
+    @media (max-width: 600px) {
+        color: transparent;
+    }
+}
+
+.search-bar {
+    position: relative;
+    border-radius: 4px;
+    background-color: rgba(white, 0.1);
+    margin-right: 1rem;
+    margin-left: 0;
+    width: 2.5rem;
+    transition: all 0.3s;
+
+    @media (min-width: 600px) {
+        margin-left: 1.5rem;
+        width: 18rem;
+    }
+
+    @media (max-width: 600px) {
+        // color: transparent;
+        background-color: rgba(white, 0);
+        &:focus-within {
+            background-color: rgba(white, 0.1);
+            position: absolute;
+            right: 4rem;
+            top: 0.5rem;
+            width: 80%;
+        }
+    }
+}
+
+.search-icon {
+    height: 100%;
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 600px) {
+        right: 0.5rem;
+    }
+}
+
+.title-search-container:focus-within .title {
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+.search-bar:focus-within .search-result {
+    display: block;
 }
