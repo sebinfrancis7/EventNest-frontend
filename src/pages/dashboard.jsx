@@ -1,9 +1,22 @@
-import { Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 // import Wishlist from '../components/Wishlist';
 import { useUserContext, UserContext } from '../userContext';
 import Drawer from './../components/Drawer';
 
+function DashboardContent () {
+	return (
+		<Link className='no-underline' to='/create-event'>
+			<Button
+				color='primary'
+				variant='outlined'
+			>
+				Create Event kek
+			</Button>
+		</Link>
+	);
+}
 
 function Dashboard() {
 	let [user, setUser] = useContext(UserContext);
@@ -20,7 +33,7 @@ function Dashboard() {
 						Dashboard lelo
 					</Typography>
 					<div>
-						{/* <Wishlist /> */}
+						<DashboardContent />
 					</div>
 				</div>
 			</Drawer>
