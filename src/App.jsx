@@ -60,6 +60,10 @@ function App() {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+		console.log(user);
+	},[user]);
+
 	function checkLoggedIn(redirect) {
 		if(user.loggedIn != undefined) {
 			if(user.loggedIn) return redirect;
@@ -69,13 +73,13 @@ function App() {
 						<h2>yo need to sign in first</h2>
 					</Link>
 				</div>
-			)
+			);
 		}
 		return (
 			<div>
 				<h2>Loading ...</h2>
 			</div>
-		)
+		);
 	}
 
 	return (

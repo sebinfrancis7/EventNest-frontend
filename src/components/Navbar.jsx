@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,47 +20,6 @@ import axios from 'axios';
 import '../sass/navbar.scss';
 
 const useStyles = makeStyles((theme) => ({
-	grow: {
-		flexGrow: 1,
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	search: {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: fade(theme.palette.common.white, 0.1),
-		'&:hover': {
-			backgroundColor: fade(theme.palette.common.white, 0.20),
-		},
-		marginRight: theme.spacing(2),
-		marginLeft: 0,
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft: theme.spacing(3),
-			width: '18rem',
-		},
-	},
-	searchIcon: {
-		// padding: theme.spacing(0, 2),
-		height: '100%',
-		position: 'absolute',
-		right: '1rem',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	inputRoot: {
-		width: '100%',
-		color: 'inherit',
-	},
-	inputInput: {
-		padding: theme.spacing(1.2, 1, 1, 0),
-		paddingLeft: '1rem',
-		transition: theme.transitions.create('width'),
-		width: '75%',
-	},
 	sectionDesktop: {
 		display: 'none',
 		[theme.breakpoints.up('md')]: {
@@ -126,12 +85,14 @@ function NavLinks() {
 
 function Search() {
 	const classes = useStyles();
+	const [input, setInput] = useState('');
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);
 
 	const handleSearch = async (event) => {
 		const input = event.target.value;
 		setResults([]);
+		setInput(input);
 
 		if (input) {
 			axios
@@ -165,24 +126,26 @@ function Search() {
 	};
 
 	return (
-		<div className={classes.search}>
-			<div className={classes.searchIcon}>
+		<div className='search-bar'>
+			<div className='search-icon'>
 				<SearchIcon />
 			</div>
 			<InputBase
-				classes={{
-					root: classes.inputRoot,
-					input: classes.inputInput,
-				}}
+				className='input-root input-input'
 				inputProps={{ 'aria-label': 'search' }}
 				onChange={handleSearch}
 				placeholder="Search…"
+				value={input}
 			/>
-			<Paper className="search-result">
-				{
-					notfound ? <Button className="search-button" fullWidth>Not Found</Button> : <div>{results.map(displayResult)}</div>
-				}
-			</Paper>
+			{
+				input ? 
+					<Paper className="search-result">
+						{
+							notfound ? <Button className="search-button" fullWidth>Not Found</Button> : <div>{results.map(displayResult)}</div>
+						}
+					</Paper>
+					:null
+			}
 		</div>
 	);
 }
@@ -302,7 +265,7 @@ export default function Navbar() {
 
 	return (
 		<StylesProvider injectFirst>
-			<div className={classNames(classes.grow, 'navbar')}>
+			<div className='grow navbar'>
 				<AppBar className="no-shadow" color="primary" position="static">
 					<Toolbar>
 						<div className="title-search-container">
@@ -311,15 +274,17 @@ export default function Navbar() {
 							</Typography>
 							<Search />
 						</div>
-						<div className={classes.grow} />
+						<div className='grow' />
 						<div className={classes.sectionDesktop}>
 							{user.loggedIn ?
 								<Button
 									color="inherit"
 									onClick={handleProfileMenuOpen}
-									startIcon={<AccountCircle />}
+									startIcon={<Avatar alt="avatar" className="avatar-img" src={user.data.imageUrl} variant="circle" />}
 								>
-									{user.data.display_name || user.data.username}
+									<Typography className='display-name'>
+										{user.data.display_name || user.data.username}
+									</Typography>
 								</Button>
 								:
 								<Link
