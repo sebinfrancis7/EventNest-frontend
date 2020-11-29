@@ -5,13 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import classNames from 'classnames';
 import { Avatar, Button, Grid, Paper, StylesProvider } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
@@ -34,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function displayResult(events, i) {
+function displayResult(events) {
 	return display(events);
 }
 
@@ -84,7 +82,18 @@ function NavLinks() {
 }
 
 function Search() {
-	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = useState(null);
+	const isSearchOpen = Boolean(anchorEl);
+
+	const handleSearchOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleSearchClose = () => {
+		setAnchorEl(null);
+		handleMobileMenuClose();
+	};
+
 	const [input, setInput] = useState('');
 	const [results, setResults] = useState([]);
 	const [notfound, setNotfound] = useState(false);
@@ -116,8 +125,6 @@ function Search() {
 						setNotfound(true);
 					}
 				}, err => console.log(err));
-			//const newDetails = globalEvents.filter(event => event.title.includes(input));
-
 
 		} else {
 			setNotfound(false);
@@ -141,10 +148,15 @@ function Search() {
 				input ? 
 					<Paper className="search-result">
 						{
-							notfound ? <Button className="search-button" fullWidth>Not Found</Button> : <div>{results.map(displayResult)}</div>
+							notfound ? 
+								<Button className="search-button" fullWidth>Not Found</Button> 
+								: 
+								<div>
+									{results.map(displayResult)}
+								</div>
 						}
 					</Paper>
-					:null
+					: null
 			}
 		</div>
 	);

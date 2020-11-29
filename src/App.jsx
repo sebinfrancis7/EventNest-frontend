@@ -104,26 +104,14 @@ function App() {
 						<CreateEvent />
 					</Route>
 					<Route exact path='/dashboard'>
-						{user.loggedIn == undefined || user.loggedIn ? <Dashboard /> :
-							<div>
-								<div>
-									<Link to='/signin'>
-										<h2>yo need to sign in first</h2>
-									</Link>
-
-								</div>
-							</div>}
+						{
+							checkLoggedIn(< Dashboard />)
+						}
 					</Route>
 					<Route exact path='/wishlist'>
-						{user.loggedIn == undefined || user.loggedIn ? <Wishlist /> :
-							<div>
-								<div>
-									<Link to='/signin'>
-										<h2>yo need to sign in first</h2>
-									</Link>
-
-								</div>
-							</div>}
+						{
+							checkLoggedIn(< Wishlist />)
+						}
 					</Route>
 					<Route exact path='/invoices'>
 						{

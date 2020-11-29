@@ -46,6 +46,7 @@
 }
 
 .search-result {
+    display: none;
     position: absolute;
     z-index: 100;
     width: 100%;
@@ -186,4 +187,8 @@
     @media (max-width: 600px) {
         display: none;
     }
+}
+
+.search-bar:focus-within .search-result {
+    display: block;
 }
