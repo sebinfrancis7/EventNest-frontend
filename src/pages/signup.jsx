@@ -138,7 +138,14 @@ export default function SignUp() {
 						variant="outlined"
 					>
 						Sign Up
-					</Button>
+					</Button>				
+					<Grid item xs={12}>
+						<Typography
+							align='center'
+						>
+									Or
+						</Typography>
+					</Grid>
 					<Grid container item xs={12}>
 						<Grid item xs={12}>
 							<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
@@ -158,7 +165,6 @@ export default function SignUp() {
 									className="twitter-btn"
 									fullWidth
 									startIcon={<TwitterIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Twitter
@@ -171,7 +177,6 @@ export default function SignUp() {
 									className="facebook-btn"
 									fullWidth
 									startIcon={<FacebookIcon />}
-									type="submit"
 									variant="contained"
 								>
 											Sign in with Facebook
