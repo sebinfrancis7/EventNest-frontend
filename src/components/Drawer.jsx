@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -14,8 +13,8 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import '../sass/dashboard.scss';
-import { classNames } from 'classnames';
 
 const drawerWidth = 240;
 
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		flexGrow: 1,
 		padding: theme.spacing(3),
+		
 	},
 }));
 
@@ -61,6 +61,12 @@ export default function ClippedDrawer({children}) {
 				<div className={classes.drawerContainer}>
 					<Divider />
 					<List>
+						<Link className='list-link' to='/dashboard'>
+							<ListItem button className='list-button'> 
+								<ListItemIcon><DashboardIcon /></ListItemIcon>
+								<ListItemText primary="Dashboard" />
+							</ListItem>
+						</Link>
 						<Link className='list-link' to='/wishlist'>
 							<ListItem button className='list-button'> 
 								<ListItemIcon><FavoriteOutlinedIcon /></ListItemIcon>

@@ -202,7 +202,24 @@ export default function Navbar() {
 				console.log(err);
 			});
 	};
-
+		
+	const org = (
+		<Link className='no-underline' to='/dashboard'>
+			<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+		</Link>
+	);
+	
+	const cust = (
+		<div>
+			<Link className='no-underline' to='/wishlist'>
+				<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
+			</Link>
+			<Link className='no-underline' to='/invoices'>
+				<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
+			</Link>	
+		</div>
+	);
+	
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
 		<Menu
@@ -214,21 +231,18 @@ export default function Navbar() {
 			open={isMenuOpen}
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
-			<Link className='no-underline' to='/dashboard'>
-				<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
-			</Link>
-			<Link className='no-underline' to='/wishlist'>
-				<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
-			</Link>
-			<Link className='no-underline' to='/invoices'>
-				<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
-			</Link>
+			{
+				user.type == 'customer' ? 
+					cust
+					: org
+			}
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
 
 	const mobileMenuId = 'primary-search-account-menu-mobile';
+
 	let renderMobileMenu;
 	if (user.loggedIn) {
 		renderMobileMenu = (
@@ -241,15 +255,12 @@ export default function Navbar() {
 				open={isMobileMenuOpen}
 				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 			>
-				<Link className='no-underline' to='/dashboard'>
-					<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
-				</Link>
-				<Link className='no-underline' to='/wishlist'>
-					<MenuItem onClick={handleMenuClose}>Wishlist</MenuItem>
-				</Link>
-				<Link className='no-underline' to='/invoices'>
-					<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
-				</Link>
+				{
+					user.type == 'customer' ? 
+						cust
+						: org
+				}
+
 				<Link className='no-underline' to='/'>
 					<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
 				</Link>
