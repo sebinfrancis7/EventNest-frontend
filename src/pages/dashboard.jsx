@@ -9,7 +9,7 @@ import Card from '../components/Card';
 const url = 'https://eventnest-server.herokuapp.com/';
 
 function createCard(event, i) {
-	console.log('card',event);
+	if(event)
 	return (
 		<Card
 			city={event.city || event.venue_addr}
@@ -23,34 +23,9 @@ function createCard(event, i) {
 	);
 } 
 
-function Events() {
-	const [events, setEvents] = useState([]);
-	const [user, setUser] = useContext(UserContext);
-
-	useEffect(() => {
-		let yeet = [];
-		user.data.events.map(event_id => {
-			fetch(url + 'events?_id=' + event_id)
-				.then(res=> res.json())
-				.then(data => {
-					if(data.length != 0) {
-						yeet.push(data[0]);
-						setEvents(yeet);
-					}
-				});
-		});
-	},[user]);
-
-	useEffect(() => {
-		console.log('events',events);
-	},[events]);
-
-	return (
-		events.map(createCard)
-	);
-}
 
 function DashboardContent () {
+	
 	return (
 		<Link className='no-underline' to='/create-event'>
 			<Button
@@ -65,6 +40,27 @@ function DashboardContent () {
 }
 
 function Dashboard() {
+	const [events, setEvents] = useState([]);
+	const [user, setUser] = useContext(UserContext);
+
+// ++++++ codegasm +++++++
+// by courtesy of https://gist.github.com/ericls/f11d58b69faa236883fc5c0249b315dc +++++++
+	function getData() {
+		const data = Promise.all(
+			user.data.events.map(async(eid) =>  await (await fetch(url + 'events/' + eid)).json())
+		)
+		return data;
+	} 
+	
+	useEffect(() => {
+		// waise bhi ye galat hi hai backend mai route dalna jyada accha rehga user kabhi updated nai rehta context mai 
+		// toh newly created events nai dikhega 
+		// but as intresting challenge ye kr dia
+		getData()
+		.then(data => {
+			setEvents(data)
+		  })
+	},[user]);
 
 	return (
 		<div>
@@ -84,8 +80,8 @@ function Dashboard() {
 						Here are your Events
 					</Typography>
 					<div className='event-card'>
-						<Events />
-					</div>
+						{events.map(createCard)}
+					</div>	
 				</div>
 			</Drawer>
 		</div>

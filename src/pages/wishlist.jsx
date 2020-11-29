@@ -8,6 +8,7 @@ import axios from 'axios';
 const url = 'https://eventnest-server.herokuapp.com/';
 
 function createCard(event, i) {
+	if(event)
 	return (
 		<div className='event-card' key={i}>
 			<Card
