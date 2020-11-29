@@ -12,6 +12,7 @@
         "axios": "^0.21.0",
         "classnames": "^2.2.6",
         "i": "^0.3.6",
+        "material-ui-dropzone": "^3.5.0",
         "node-sass": "^4.14.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
