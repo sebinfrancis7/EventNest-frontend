@@ -103,26 +103,23 @@ function App() {
 						<CreateEvent />
 					</Route>
 					<Route exact path='/dashboard'>
-						{checkLoggedIn(< Dashboard />)}
+						{checkLoggedIn(<Dashboard />)}
 					</Route>
 					<Route exact path='/wishlist'>
-						{checkLoggedIn(< Wishlist />)}
+						{checkLoggedIn(<Wishlist />)}
 					</Route>
 					<Route exact path='/invoices'>
-						{checkLoggedIn(< Invoices />)}
+						{checkLoggedIn(<Invoices />)}
 					</Route>
 					<Route component={Invoice} path='/invoices/:invoice_id' />
 					<Route exact path='/aboutus'>
 						<AboutUs />
 					</Route>
-					{/* <Route exact path='/dashboard'>
-						<Dashboard />
-					</Route> */}
 					<Route exact path='/contactus'>
 						<ContactUs />
 					</Route>
 					<Route exact path='/account'>
-						<MyAccount />
+						{checkLoggedIn(<MyAccount />)}
 					</Route>
 					<Route component={Event} path='/events/:event_id' />
 					<Route path="*">

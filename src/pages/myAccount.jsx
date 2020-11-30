@@ -170,24 +170,26 @@ function CustomerAccount(props) {
 }
 
 function OrganizerAccount(props) {
-
+	const [user, setUser] = useContext(UserContext);
 	const [edit, setEdit] = useState(false);
+
 	function handleEdit(e) {
 		e.preventDefault();
 		edit ? setEdit(false) : setEdit(true);
 	}
 
-	const [details, setDetails] = useState({ username: props.info.data.username, password: '' });
+	const [details, setDetails] = useState({ username: props.info.data.username, password: '', email: props.info.data.email });
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(details);
 		axios
 			.put('https://eventnest-server.herokuapp.com/organizer/' + props.info.data._id, details, { withCredentials: true })
 			.then(res => {
-				setUser({...user, data: res.data})	
+				setUser({...user, data: res.data});	
+				edit ? setEdit(false) : setEdit(true);
 			})
 			.catch(err => {
-				alert(err)
+				alert(err);
 			});
 	};
 
@@ -196,54 +198,117 @@ function OrganizerAccount(props) {
 		const inputvalue = event.target.value;
 		const newDetails = { ...details, [inputname]: inputvalue };
 		setDetails(newDetails);
+		console.log('kek', details);
 	}
 
 	return (
 		edit ?
 			<div>
-				<h2>edit</h2>
-				<form noValidate onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
-						<Grid item xs={12} >
-							<TextField
-								autoFocus
-								fullWidth
-								id="username"
-								label="Username"
-								name="username"
-								onChange={handleChange}
-								required
-								value={details.username}
-								variant="outlined"
-							/>
-						</Grid>
-						{/* <Grid item xs={12}>
-						<FormControlLabel
-							control={<Checkbox color="primary" value="allowExtraEmails" />}
-							label="I want to receive inspiration, marketing promotions and updates via email."
+				<div>
+					<div>
+						<Typography className="dashboard-title" variant="h3">
+					Account Information
+						</Typography>
+					</div>
+					<Divider />
+					<div className="avatar-container">
+						<Avatar alt="avatar" className="profile-avatar" src={props.info.data.imageUrl} variant="circle" />
+					</div>
+					<div className='info-container'>
+						<Typography className="info" variant="h4">
+									Email
+						</Typography>					
+						<TextField
+							autoComplete="email"
+							id="email"
+							name="email"
+							onChange={handleChange}
+							value={details.email}
+							variant="outlined"
 						/>
-					</Grid> */}
-					</Grid>
+						<Typography className="info" variant="h4">
+						Username*
+						</Typography>
+						<TextField
+							autoFocus
+							id="username"
+							name="username"
+							onChange={handleChange}
+							required
+							value={details.username}
+							variant="outlined"
+						/>
+						<Typography className="info" variant="h4">
+						Password*
+						</Typography>
+						<TextField
+							autoComplete="current-password"
+							id="password"
+							name="password"
+							onChange={handleChange}
+							required
+							type="password"
+							value={details.password}
+							variant="outlined"
+						/>
+					</div>
+				</div>
+				<form noValidate onSubmit={handleSubmit}>
 					<Button
-						className="submit"
+						className="edit-submit submit"
 						color="primary"
-						fullWidth
 						type="submit"
 						variant="outlined"
 					>
 						Confirm changes
 					</Button>
+					<Button
+						className="edit-submit submit"
+						color="primary"
+						onClick={handleEdit}
+						variant="outlined"
+					>
+						Cancel
+					</Button>
 				</form>
-				<button onClick={handleEdit}>cancel</button>
 			</div>
 			:
 			<div>
-				<h2>hello cust</h2>
-			// <h2>name - {props.info.data.display_name}</h2>
-			// <h2>email - {props.info.data.email}</h2>
-				<h2>username - {props.info.data.username}</h2>
-				<h2>account type - {props.info.type}</h2>
-				<button onClick={handleEdit}>Edit</button>
+				<div>
+					<Typography className="dashboard-title" variant="h3">
+					Account Information
+					</Typography>
+				</div>
+				<Divider />
+				<div className="avatar-container">
+					<Avatar alt="avatar" className="profile-avatar" src={props.info.data.imageUrl} variant="circle" />
+					<Typography className="avatar-display-name" variant="h4">
+						{props.info.data.display_name || props.info.data.username} 				
+						<IconButton
+							className="edit-btn"
+							onClick={handleEdit}
+						>
+							<EditIcon />
+						</IconButton>
+					</Typography>
+					<Typography className="avatar-customer" variant="subtitle1">
+						{props.info.type}
+					</Typography>
+				</div>
+				<div className='info-container'>
+					<Typography className="info" variant="h4">
+									Email
+					</Typography>					
+					<Typography className="" variant="h6">
+						{props.info.data.email || '-'}
+					</Typography>
+					<Typography className="info" variant="h4">
+						Username
+					</Typography>
+					<Typography className="" variant="h6">
+						{props.info.data.username}
+					</Typography>
+				</div>
 			</div>
 	);
 }
