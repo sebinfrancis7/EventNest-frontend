@@ -19,6 +19,7 @@ import Navbar from './components/Navbar';
 import Invoices from './pages/invoices';
 import Invoice from './components/Invoice';
 import Wishlist from './pages/wishlist';
+import MyAccount from './pages/myAccount';
 
 const theme = createMuiTheme({
 	palette: {
@@ -62,11 +63,11 @@ function App() {
 
 	useEffect(() => {
 		console.log(user);
-	},[user]);
+	}, [user]);
 
 	function checkLoggedIn(redirect) {
-		if(user.loggedIn != undefined) {
-			if(user.loggedIn) return redirect;
+		if (user.loggedIn != undefined) {
+			if (user.loggedIn) return redirect;
 			return (
 				<div>
 					<Link to='/signin'>
@@ -133,6 +134,9 @@ function App() {
 					</Route>
 					<Route exact path='/orgsignup'>
 						<OrgSignUp />
+					</Route>
+					<Route exact path='/accounts'>
+						<MyAccount />
 					</Route>
 					<Route component={Event} path='/events/:event_id' />
 					<Route path="*">

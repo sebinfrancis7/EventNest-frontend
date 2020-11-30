@@ -145,12 +145,12 @@ function Search() {
 				value={input}
 			/>
 			{
-				input ? 
+				input ?
 					<Paper className="search-result">
 						{
-							notfound ? 
-								<Button className="search-button" fullWidth>Not Found</Button> 
-								: 
+							notfound ?
+								<Button className="search-button" fullWidth>Not Found</Button>
+								:
 								<div>
 									{results.map(displayResult)}
 								</div>
@@ -202,13 +202,13 @@ export default function Navbar() {
 				console.log(err);
 			});
 	};
-		
+
 	const org = (
 		<Link className='no-underline' to='/dashboard'>
 			<MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
 		</Link>
 	);
-	
+
 	const cust = (
 		<div>
 			<Link className='no-underline' to='/wishlist'>
@@ -216,10 +216,10 @@ export default function Navbar() {
 			</Link>
 			<Link className='no-underline' to='/invoices'>
 				<MenuItem onClick={handleMenuClose}>Tickets</MenuItem>
-			</Link>	
+			</Link>
 		</div>
 	);
-	
+
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
 		<Menu
@@ -232,11 +232,13 @@ export default function Navbar() {
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 		>
 			{
-				user.type == 'customer' ? 
+				user.type == 'customer' ?
 					cust
 					: org
 			}
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<Link className='no-underline' to='/accounts'>
+				<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			</Link>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
@@ -256,12 +258,12 @@ export default function Navbar() {
 				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 			>
 				{
-					user.type == 'customer' ? 
+					user.type == 'customer' ?
 						cust
 						: org
 				}
 
-				<Link className='no-underline' to='/'>
+				<Link className='no-underline' to='/accounts'>
 					<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
 				</Link>
 				<MenuItem onClick={handleLogout}>Logout</MenuItem>

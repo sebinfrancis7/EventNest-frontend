@@ -49,21 +49,21 @@ function Dashboard() {
 
 	useEffect(() => {
 		axios
-		.get(url + 'organizer/events', { withCredentials: true})
-		.then(res => {
-			setEvents(res.data)
-		})
-		.catch(err => alert(err))
+			.get(url + 'organizer/events', { withCredentials: true})
+			.then(res => {
+				setEvents(res.data);
+			})
+			.catch(err => alert(err));
 	});
 
-// // ++++++ codegasm +++++++
-// // by courtesy of https://gist.github.com/ericls/f11d58b69faa236883fc5c0249b315dc +++++++
-// 	function getData() {
-// 		const data = Promise.all(
-// 			user.data.events.map(async(eid) =>  await (await fetch(url + 'events/' + eid)).json())
-// 		)
-// 		return data;
-// 	} 
+	// // ++++++ codegasm +++++++
+	// // by courtesy of https://gist.github.com/ericls/f11d58b69faa236883fc5c0249b315dc +++++++
+	// 	function getData() {
+	// 		const data = Promise.all(
+	// 			user.data.events.map(async(eid) =>  await (await fetch(url + 'events/' + eid)).json())
+	// 		)
+	// 		return data;
+	// 	} 
 	
 	// useEffect(() => {
 	// 	// waise bhi ye galat hi hai backend mai route dalna jyada accha rehga user kabhi updated nai rehta context mai 
