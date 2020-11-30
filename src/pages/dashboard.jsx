@@ -47,7 +47,6 @@ function Dashboard() {
 	const [events, setEvents] = useState([]);
 	const [user, setUser] = useContext(UserContext);
 
-<<<<<<< HEAD
 	useEffect(() => {
 		axios
 		.get(url + 'organizer/events', { withCredentials: true})
@@ -75,27 +74,6 @@ function Dashboard() {
 	// 		setEvents(data)
 	// 	  })
 	// },[user]);
-=======
-	// ++++++ codegasm +++++++
-	// by courtesy of https://gist.github.com/ericls/f11d58b69faa236883fc5c0249b315dc +++++++
-	function getData() {
-		const data = Promise.all(
-			user.data.events.map(async(eid) => await (await fetch(url + 'events/' + eid)).json())
-		);
-		return data;
-	} 
-	
-	useEffect(() => {
-		// waise bhi ye galat hi hai backend mai route dalna jyada accha rehga user kabhi updated nai rehta context mai 
-		// toh newly created events nai dikhega 
-		// but as intresting challenge ye kr dia -sahil
-		// pro af  -paras
-		getData()
-			.then(data => {
-				setEvents(data);
-			});
-	},[user]);
->>>>>>> 2b7b435428e4dc7f4ceeebc03a469844a1a70256
 
 	return (
 		<div>
