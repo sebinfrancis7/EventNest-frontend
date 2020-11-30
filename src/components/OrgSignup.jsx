@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrgSignup() {
 	const classes = useStyles();
-    const [details, setDetails] = useState({ username: '',password: '', email: ''});
-    const [user, setUser] = useContext(UserContext);
-    const history = useHistory();
+	const [details, setDetails] = useState({ username: '',password: '', email: ''});
+	const [user, setUser] = useContext(UserContext);
+	const history = useHistory();
     
 	const handleSubmit = (e) => {
 		async function submitData() {
@@ -45,16 +45,16 @@ export default function OrgSignup() {
 				headers: myHeaders,
 				credentials: 'include',
 				body: JSON.stringify(details),
-            });
-            let json = await response.json();
+			});
+			let json = await response.json();
 			if (response.ok) {
-                alert('Signup successfull ');
+				alert('Signup successfull ');
 				setUser({ data: json, type: 'organizer', loggedIn: true });
 				history.push('/');
-            }
-            else {
-                alert(json.err.message)
-            }
+			}
+			else {
+				alert(json.err.message);
+			}
 		}
 		e.preventDefault();
 		submitData();
@@ -67,72 +67,72 @@ export default function OrgSignup() {
 		setDetails(newDetails);
 	}
 	return (
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} >
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        id="username"
-                        label="username"
-                        name="username"
-                        onChange={handleChange}
-                        required
-                        value={details.username}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        autoComplete="email"
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        onChange={handleChange}
-                        required
-                        value={details.email}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        autoComplete="current-password"
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                        type="password"
-                        value={details.password}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <FormControlLabel
-                        control={<Checkbox color="primary" value="allowExtraEmails" />}
-                        label="I want to receive inspiration, marketing promotions and updates via email."
-                    />
-                </Grid>
-            </Grid>
-            <Button
-                className={classes.submit}
-                color="primary"
-                fullWidth
-                type="submit"
-                variant="contained"
-            >
+		<form className={classes.form} noValidate onSubmit={handleSubmit}>
+			<Grid container spacing={2}>
+				<Grid item xs={12} >
+					<TextField
+						autoFocus
+						fullWidth
+						id="username"
+						label="username"
+						name="username"
+						onChange={handleChange}
+						required
+						value={details.username}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<TextField
+						autoComplete="email"
+						fullWidth
+						id="email"
+						label="Email Address"
+						name="email"
+						onChange={handleChange}
+						required
+						value={details.email}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<TextField
+						autoComplete="current-password"
+						fullWidth
+						id="password"
+						label="Password"
+						name="password"
+						onChange={handleChange}
+						required
+						type="password"
+						value={details.password}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<FormControlLabel
+						control={<Checkbox color="primary" value="allowExtraEmails" />}
+						label="I want to receive inspiration, marketing promotions and updates via email."
+					/>
+				</Grid>
+			</Grid>
+			<Button
+				className={classes.submit}
+				color="primary"
+				fullWidth
+				type="submit"
+				variant="contained"
+			>
                 Sign Up
-            </Button>
-            <Grid container justify="flex-end">
-                <Grid item>
-                    <Link to='/orgsignin' variant="body2">
+			</Button>
+			<Grid container justify="flex-end">
+				<Grid item>
+					<Link to='/orgsignin' variant="body2">
                         Already have an account? Sign in
-                    </Link>
-                </Grid>
-            </Grid>
-        </form>
+					</Link>
+				</Grid>
+			</Grid>
+		</form>
 			
 	);
 }

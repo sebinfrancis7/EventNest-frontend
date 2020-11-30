@@ -47,14 +47,14 @@ export default function CustSignin() {
 			});
 			
 			if (response.ok) {
-                // alert('Signin successfull ');
-                let json = await response.json();
+				// alert('Signin successfull ');
+				let json = await response.json();
 				setUser({ data: json, type: 'customer', loggedIn: true });
 				history.push('/');
-            }
-            else {
-                alert("Wrong username or password ")
-            }
+			}
+			else {
+				alert('Wrong username or password ');
+			}
 		}
 		e.preventDefault();
 		submitData();
@@ -70,98 +70,98 @@ export default function CustSignin() {
 	}
 
 	return (
-        <form className="form" noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} >
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        onChange={handleChange}
-                        required
-                        value={details.username}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12} >
-                    <TextField
-                        autoComplete="current-password"
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                        type="password"
-                        value={details.password}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12} >
-                    <FormControlLabel
-                        control={<Checkbox color="primary" value="remember" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        className="submit"
-                        color="primary"
-                        fullWidth
-                        type="submit"
-                        variant="outlined"
-                    >
+		<form className="form" noValidate onSubmit={handleSubmit}>
+			<Grid container spacing={2}>
+				<Grid item xs={12} >
+					<TextField
+						autoFocus
+						fullWidth
+						id="username"
+						label="Username"
+						name="username"
+						onChange={handleChange}
+						required
+						value={details.username}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12} >
+					<TextField
+						autoComplete="current-password"
+						fullWidth
+						id="password"
+						label="Password"
+						name="password"
+						onChange={handleChange}
+						required
+						type="password"
+						value={details.password}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12} >
+					<FormControlLabel
+						control={<Checkbox color="primary" value="remember" />}
+						label="Remember me"
+					/>
+					<Button
+						className="submit"
+						color="primary"
+						fullWidth
+						type="submit"
+						variant="outlined"
+					>
                         Sign In
-                    </Button>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography
-                        align='center'
-                    >
+					</Button>
+				</Grid>
+				<Grid item xs={12}>
+					<Typography
+						align='center'
+					>
                     Or
-                    </Typography>
-                </Grid>
-                <Grid container item xs={12}>
-                    <Grid item xs={12}>
-                        <Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
-                            <Button
-                                className="google-btn"
-                                fullWidth
-                                startIcon={<GoogleIcon />}
-                                variant="contained"
-                            >
+					</Typography>
+				</Grid>
+				<Grid container item xs={12}>
+					<Grid item xs={12}>
+						<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
+							<Button
+								className="google-btn"
+								fullWidth
+								startIcon={<GoogleIcon />}
+								variant="contained"
+							>
                             Sign in with Google
-                            </Button>
-                        </Lnk>
-                    </Grid>	
-                    <Grid item xs={12}>
-                        <Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
-                            <Button
-                                className="twitter-btn"
-                                fullWidth
-                                startIcon={<TwitterIcon />}
-                                variant="contained"
-                            >
+							</Button>
+						</Lnk>
+					</Grid>	
+					<Grid item xs={12}>
+						<Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
+							<Button
+								className="twitter-btn"
+								fullWidth
+								startIcon={<TwitterIcon />}
+								variant="contained"
+							>
                             Sign in with Twitter
-                            </Button>
-                        </Lnk>
-                    </Grid>	
-                    <Grid item xs={12}>
-                        <Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
-                            <Button
-                                className="facebook-btn"
-                                fullWidth
-                                startIcon={<FacebookIcon />}
-                                variant="contained"
-                            >
+							</Button>
+						</Lnk>
+					</Grid>	
+					<Grid item xs={12}>
+						<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
+							<Button
+								className="facebook-btn"
+								fullWidth
+								startIcon={<FacebookIcon />}
+								variant="contained"
+							>
                             Sign in with Facebook
-                            </Button>
-                        </Lnk>
-                    </Grid>
-                </Grid>
-            </Grid>
-            {/* <a href="https://eventnest-server.herokuapp.com/auth/facebook">Facebook</a> */}
-            {/* <Button
+							</Button>
+						</Lnk>
+					</Grid>
+				</Grid>
+			</Grid>
+			{/* <a href="https://eventnest-server.herokuapp.com/auth/facebook">Facebook</a> */}
+			{/* <Button
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -171,22 +171,22 @@ export default function CustSignin() {
             >
 Facebook
             </Button> */}
-            <Grid container>
-                <Grid item sm={6} xs={12}>
-                    <Link href='#' variant='body2'>
+			<Grid container>
+				<Grid item sm={6} xs={12}>
+					<Link href='#' variant='body2'>
                         Forgot password?
-                    </Link>
-                </Grid>
-                <Grid item sm={6} xs={12}>
-                    <Link to='/signup' variant='body2'>
-                        {'Don\'t have an account? Sign Up'}
-                    </Link>
-                </Grid>
-            </Grid>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </form>
+					</Link>
+				</Grid>
+				<Grid item sm={6} xs={12}>
+					<Link to='/signup' variant='body2'>
+						{'Don\'t have an account? Sign Up'}
+					</Link>
+				</Grid>
+			</Grid>
+			<Box mt={5}>
+				<Copyright />
+			</Box>
+		</form>
 
 	);
 }

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
 	const classes = useStyles();
-	const [ type, setType ] = useState('customer')
+	const [ type, setType ] = useState('customer');
 
 	const handleChange = (event) => {
 		setType(event.target.value);
@@ -42,9 +42,9 @@ export default function SignUp() {
 
 	function CheckType() {
 		if(type === 'customer')
-		return < CustSignup /> ;
+			return < CustSignup /> ;
 		if(type === 'organizer')
-		return < OrgSignup />;
+			return < OrgSignup />;
 	}
 	
 	return (
@@ -59,8 +59,8 @@ export default function SignUp() {
 				</Typography>
 				<Select
 					id="uer-type"
-					value={type}
 					onChange={handleChange}
+					value={type}
 				>
 					<MenuItem value={'customer'}>Customer</MenuItem>
 					<MenuItem value={'organizer'}>Organizer</MenuItem>

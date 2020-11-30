@@ -42,14 +42,14 @@ export default function OrgSignin() {
 			});
 			
 			if (response.ok) {
-                // alert('Signin successfull ');
-                let json = await response.json();
+				// alert('Signin successfull ');
+				let json = await response.json();
 				setUser({ data: json, type: 'organizer', loggedIn: true });
 				history.push('/');
-            }
-            else {
-                alert("Wrong username or password ")
-            }
+			}
+			else {
+				alert('Wrong username or password ');
+			}
 		}
 		e.preventDefault();
 		submitData();
@@ -65,66 +65,66 @@ export default function OrgSignin() {
 	}
 
 	return (
-        <form className="form" noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} >
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        onChange={handleChange}
-                        required
-                        value={details.username}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12} >
-                    <TextField
-                        autoComplete="current-password"
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                        type="password"
-                        value={details.password}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12} >
-                    <FormControlLabel
-                        control={<Checkbox color="primary" value="remember" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        className="submit"
-                        color="primary"
-                        fullWidth
-                        type="submit"
-                        variant="outlined"
-                    >
+		<form className="form" noValidate onSubmit={handleSubmit}>
+			<Grid container spacing={2}>
+				<Grid item xs={12} >
+					<TextField
+						autoFocus
+						fullWidth
+						id="username"
+						label="Username"
+						name="username"
+						onChange={handleChange}
+						required
+						value={details.username}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12} >
+					<TextField
+						autoComplete="current-password"
+						fullWidth
+						id="password"
+						label="Password"
+						name="password"
+						onChange={handleChange}
+						required
+						type="password"
+						value={details.password}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12} >
+					<FormControlLabel
+						control={<Checkbox color="primary" value="remember" />}
+						label="Remember me"
+					/>
+					<Button
+						className="submit"
+						color="primary"
+						fullWidth
+						type="submit"
+						variant="outlined"
+					>
                         Sign In
-                    </Button>
-                </Grid>
-            </Grid>
-            <Grid container>
-                <Grid item sm={6} xs={12}>
-                    <Link href="#" variant="body2">
+					</Button>
+				</Grid>
+			</Grid>
+			<Grid container>
+				<Grid item sm={6} xs={12}>
+					<Link href="#" variant="body2">
                         Forgot password?
-                    </Link>
-                </Grid>
-                <Grid item sm={6} xs={12}>
-                    <Link to='/orgsignup' variant="body2">
-                        {'Don\'t have an account? Sign Up'}
-                    </Link>
-                </Grid>
-            </Grid>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </form>	
+					</Link>
+				</Grid>
+				<Grid item sm={6} xs={12}>
+					<Link to='/orgsignup' variant="body2">
+						{'Don\'t have an account? Sign Up'}
+					</Link>
+				</Grid>
+			</Grid>
+			<Box mt={5}>
+				<Copyright />
+			</Box>
+		</form>	
 	);
 }

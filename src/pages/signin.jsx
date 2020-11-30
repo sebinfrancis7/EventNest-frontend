@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
-	const [ type, setType ] = useState('customer')
+	const [ type, setType ] = useState('customer');
 
 	const handleChange = (event) => {
 		setType(event.target.value);
@@ -29,9 +29,9 @@ export default function SignInSide() {
 
 	function CheckType() {
 		if(type === 'customer')
-		return < CustSignin /> ;
+			return < CustSignin /> ;
 		if(type === 'organizer')
-		return < OrgSignin />;
+			return < OrgSignin />;
 	}
 	return (
 		<StylesProvider injectFirst>
@@ -49,12 +49,12 @@ export default function SignInSide() {
 						</Typography>
 						<Select
 							id="uer-type"
-							value={type}
 							onChange={handleChange}
+							value={type}
 						>
 							<MenuItem value={'customer'}>Customer</MenuItem>
 							<MenuItem value={'organizer'}>Organizer</MenuItem>
-        				</Select>
+						</Select>
 						< CheckType />
 					</div>
 				</Grid>

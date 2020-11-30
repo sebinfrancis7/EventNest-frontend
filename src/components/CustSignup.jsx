@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustSignUp() {
 	const classes = useStyles();
-    const [details, setDetails] = useState({ username: '',password: '', dispaly_name: '', email: ''});
-    const [user, setUser] = useContext(UserContext);
-    const history = useHistory();
+	const [details, setDetails] = useState({ username: '',password: '', dispaly_name: '', email: ''});
+	const [user, setUser] = useContext(UserContext);
+	const history = useHistory();
     
 	const handleSubmit = (e) => {
 		async function submitData() {
@@ -48,16 +48,16 @@ export default function CustSignUp() {
 				headers: myHeaders,
 				credentials: 'include',
 				body: JSON.stringify(details),
-            });
-            let json = await response.json();
+			});
+			let json = await response.json();
 			if (response.ok) {
-                alert('Signup successfull ');
+				alert('Signup successfull ');
 				setUser({ data: json, type: 'customer', loggedIn: true });
 				history.push('/');
-            }
-            else {
-                alert(json.err.message)
-            }
+			}
+			else {
+				alert(json.err.message);
+			}
 		}
 		e.preventDefault();
 		submitData();
@@ -70,127 +70,127 @@ export default function CustSignUp() {
 		setDetails(newDetails);
 	}
 	return (
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <Grid container item spacing={2}>
-                <Grid item xs={12} >
-                    <TextField
-                        autoFocus
-                        className='signup-input'
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        onChange={handleChange}
-                        required
-                        value={details.username}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12} >
-                    <TextField
-                        className='signup-input'
-                        fullWidth
-                        id="display_name"
-                        label="Display Name"
-                        name="display_name"
-                        onChange={handleChange}
-                        value={details.display_name}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        autoComplete="email"
-                        className='signup-input'
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        onChange={handleChange}
-                        value={details.email}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        autoComplete="current-password"
-                        className='signup-input'
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                        type="password"
-                        value={details.password}
-                        variant="outlined"
-                    />
-                </Grid>
-                <Grid className="signup-submit" item xs={12}>
-                    <Button
-                        className="submit signup-input"
-                        color="primary"
-                        fullWidth
-                        type="submit"
-                        variant="outlined"
-                    >
+		<form className={classes.form} noValidate onSubmit={handleSubmit}>
+			<Grid container item spacing={2}>
+				<Grid item xs={12} >
+					<TextField
+						autoFocus
+						className='signup-input'
+						fullWidth
+						id="username"
+						label="Username"
+						name="username"
+						onChange={handleChange}
+						required
+						value={details.username}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12} >
+					<TextField
+						className='signup-input'
+						fullWidth
+						id="display_name"
+						label="Display Name"
+						name="display_name"
+						onChange={handleChange}
+						value={details.display_name}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<TextField
+						autoComplete="email"
+						className='signup-input'
+						fullWidth
+						id="email"
+						label="Email Address"
+						name="email"
+						onChange={handleChange}
+						value={details.email}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<TextField
+						autoComplete="current-password"
+						className='signup-input'
+						fullWidth
+						id="password"
+						label="Password"
+						name="password"
+						onChange={handleChange}
+						required
+						type="password"
+						value={details.password}
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid className="signup-submit" item xs={12}>
+					<Button
+						className="submit signup-input"
+						color="primary"
+						fullWidth
+						type="submit"
+						variant="outlined"
+					>
                 Sign Up
-                    </Button>		
-                </Grid>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography
-                    align='center'
-                >
+					</Button>		
+				</Grid>
+			</Grid>
+			<Grid item xs={12}>
+				<Typography
+					align='center'
+				>
                             Or
-                </Typography>
-            </Grid>
-            <Grid container item xs={12}>
-                <Grid item xs={12}>
-                    <Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
-                        <Button
-                            className="google-btn"
-                            fullWidth
-                            startIcon={<GoogleIcon />}
-                            variant="contained"
-                        >
+				</Typography>
+			</Grid>
+			<Grid container item xs={12}>
+				<Grid item xs={12}>
+					<Lnk className="google-link" href="https://eventnest-server.herokuapp.com/auth/google">
+						<Button
+							className="google-btn"
+							fullWidth
+							startIcon={<GoogleIcon />}
+							variant="contained"
+						>
                                     Sign in with Google
-                        </Button>
-                    </Lnk>
-                </Grid>	
-                <Grid item xs={12}>
-                    <Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
-                        <Button
-                            className="twitter-btn"
-                            fullWidth
-                            startIcon={<TwitterIcon />}
-                            variant="contained"
-                        >
+						</Button>
+					</Lnk>
+				</Grid>	
+				<Grid item xs={12}>
+					<Lnk className="twitter-link" href="https://eventnest-server.herokuapp.com/auth/twitter">
+						<Button
+							className="twitter-btn"
+							fullWidth
+							startIcon={<TwitterIcon />}
+							variant="contained"
+						>
                                     Sign in with Twitter
-                        </Button>
-                    </Lnk>
-                </Grid>	
-                <Grid item xs={12}>
-                    <Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
-                        <Button
-                            className="facebook-btn"
-                            fullWidth
-                            startIcon={<FacebookIcon />}
-                            variant="contained"
-                        >
+						</Button>
+					</Lnk>
+				</Grid>	
+				<Grid item xs={12}>
+					<Lnk className="facebook-link" href="https://eventnest-server.herokuapp.com/auth/facebook">
+						<Button
+							className="facebook-btn"
+							fullWidth
+							startIcon={<FacebookIcon />}
+							variant="contained"
+						>
                                     Sign in with Facebook
-                        </Button>
-                    </Lnk>
-                </Grid>
-            </Grid>
-            <Grid container justify="flex-end">
-                <Grid item>
-                    <Link to='/signin' variant="body2">
+						</Button>
+					</Lnk>
+				</Grid>
+			</Grid>
+			<Grid container justify="flex-end">
+				<Grid item>
+					<Link to='/signin' variant="body2">
                         Already have an account? Sign in
-                    </Link>
-                </Grid>
-            </Grid>
-        </form>
+					</Link>
+				</Grid>
+			</Grid>
+		</form>
 			
 	);
 }
