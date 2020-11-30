@@ -26,21 +26,10 @@ function CustomerAccount(props) {
 		axios
 			.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
 			.then(res => {
-				console.log(res);
-				console.log(res.data);
-				// axios
-				// 	.get('https://eventnest-server.herokuapp.com/users/' + props.info.data._id, details, { withCredentials: true })
-				// 	.then(res => {
-				// 		// console.log(res);
-				// 		console.log(res.data);
-				// 		// setUser(res.data);
-				// 	})
-				// 	.catch(err => {
-				// 		console.log(err);
-				// 	});
+				setUser({...user, data: res.data})	
 			})
 			.catch(err => {
-				console.log(err);
+				alert(err)
 			});
 	};
 
