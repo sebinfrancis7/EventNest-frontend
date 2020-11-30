@@ -34,6 +34,7 @@ const theme = createMuiTheme({
 
 function App() {
 	const [user, setUser] = useContext(UserContext);
+
 	useEffect(() => {
 		async function fetchData() {
 			let url = 'https://eventnest-server.herokuapp.com/users';
@@ -57,7 +58,7 @@ function App() {
 			}
 		}
 		fetchData();
-	}, []);
+	});
 
 	useEffect(() => {
 		console.log(user);

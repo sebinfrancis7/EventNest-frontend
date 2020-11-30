@@ -37,10 +37,11 @@ function loadScript(src) {
 function EventInfo(props) {
 	const [details, setDetails] = useState([]);
 	const [orderData, setOrder] = useState();
-	const [ loadRazor, setLoadRazor ] = useState(true);
-	const [ number, setNumber ] = useState(1);
+	const [loadRazor, setLoadRazor] = useState(true);
+	const [number, setNumber] = useState(1);
 	const [user, setUser] = useContext(UserContext);
 	const [load, setLoad] = useState(false);
+	const [over, setOver] = useState(false);
 	const { match: { params } } = props;
 	let history = useHistory();
 
@@ -126,21 +127,17 @@ function EventInfo(props) {
 				.then(res => {
 					console.log(res.data);
 					setOrder(res.data);
-					setLoad(true);
+					if(details.max_attendees - details.attendees < 1)
+						setLoad(false);
+					else
+						setLoad(true);						
 				});
 		}
 	}, [details, number]);
 
+
 	return (
 		<StylesProvider injectFirst>
-			{/* <Navbar /> */}
-			{/* <h2>event data</h2>
-			<h2>{details.title}</h2>
-			<h2>{details.category}</h2>
-			<h2>{details.city}</h2>
-			<h2>{details.price}</h2>
-			<h2>{details.image_url}</h2>
-			<h2>{details.attendees}</h2> */}
 			<Grid container>
 				<div className="background-event-img" style={{
 					backgroundImage: 'url(' + details.image_url + ')',

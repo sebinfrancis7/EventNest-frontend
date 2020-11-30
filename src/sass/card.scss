@@ -1,6 +1,6 @@
 .card {
     box-shadow: 0px 0px 2rem 0.5rem rgba(#6c63ff, 0.1);
-    height: 25rem;
+    height: 25.5rem;
     width: 15rem;
     overflow: hidden;
     border-radius: 1rem;
@@ -45,7 +45,7 @@
         background-size: cover;
 
         @media (max-width: 600px) {
-            min-height: 8.5rem;
+            min-height: 8rem;
         }
     }
 
