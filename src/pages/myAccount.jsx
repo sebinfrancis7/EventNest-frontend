@@ -4,9 +4,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
+
 
 function CustomerAccount(props) {
 	const [edit, setEdit] = useState(false);
+	const [user, setUser] = useContext(UserContext);
 
 	var date = props.info.data.createdAt;
 	var result = date.split('T')[0];
@@ -16,19 +19,29 @@ function CustomerAccount(props) {
 		edit ? setEdit(false) : setEdit(true);
 	}
 
-	const [details, setDetails] = useState({ username: props.info.data.username,password:'' ,display_name: props.info.data.display_name, email: props.info.data.email });
+	const [details, setDetails] = useState({ username: props.info.data.username, password: '', display_name: props.info.data.display_name, email: props.info.data.email });
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(details);
-		// axios
-		// 	.put('https://eventnest-server.herokuapp.com/customer', details, {withCredentials: true })
-		// 	.then(res => {
-		// 		console.log(res);
-		// 		console.log(res.data);
-		// 	})
-		// 	.catch(err => {
-		// 		console.log(err);
-		// 	});
+		axios
+			.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
+			.then(res => {
+				console.log(res);
+				console.log(res.data);
+				// axios
+				// 	.get('https://eventnest-server.herokuapp.com/users/' + props.info.data._id, details, { withCredentials: true })
+				// 	.then(res => {
+				// 		// console.log(res);
+				// 		console.log(res.data);
+				// 		// setUser(res.data);
+				// 	})
+				// 	.catch(err => {
+				// 		console.log(err);
+				// 	});
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
 	function handleChange(event) {
@@ -108,7 +121,7 @@ function CustomerAccount(props) {
 						type="submit"
 						variant="outlined"
 					>
-                        Confirm changes
+						Confirm changes
 					</Button>
 				</form>
 				<button onClick={handleEdit}>cancel</button>
@@ -127,10 +140,92 @@ function CustomerAccount(props) {
 }
 
 function OrganizerAccount(props) {
+
+	const [edit, setEdit] = useState(false);
+	function handleEdit(e) {
+		e.preventDefault();
+		edit ? setEdit(false) : setEdit(true);
+	}
+
+	const [details, setDetails] = useState({ username: props.info.data.username, password: '' });
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(details);
+		// axios
+		// 	.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
+		// 	.then(res => {
+		// 		console.log(res);
+		// 		console.log(res.data);
+		// 		// axios
+		// 		// 	.get('https://eventnest-server.herokuapp.com/users/' + props.info.data._id, details, { withCredentials: true })
+		// 		// 	.then(res => {
+		// 		// 		// console.log(res);
+		// 		// 		console.log(res.data);
+		// 		// 		// setUser(res.data);
+		// 		// 	})
+		// 		// 	.catch(err => {
+		// 		// 		console.log(err);
+		// 		// 	});
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 	});
+	};
+
+	function handleChange(event) {
+		const inputname = event.target.name;
+		const inputvalue = event.target.value;
+		const newDetails = { ...details, [inputname]: inputvalue };
+		setDetails(newDetails);
+	}
+
 	return (
-		<div>
-			<h2>hello org</h2>
-		</div>
+		edit ?
+			<div>
+				<h2>edit</h2>
+				<form noValidate onSubmit={handleSubmit}>
+					<Grid container spacing={2}>
+						<Grid item xs={12} >
+							<TextField
+								autoFocus
+								fullWidth
+								id="username"
+								label="Username"
+								name="username"
+								onChange={handleChange}
+								required
+								value={details.username}
+								variant="outlined"
+							/>
+						</Grid>
+						{/* <Grid item xs={12}>
+						<FormControlLabel
+							control={<Checkbox color="primary" value="allowExtraEmails" />}
+							label="I want to receive inspiration, marketing promotions and updates via email."
+						/>
+					</Grid> */}
+					</Grid>
+					<Button
+						className="submit"
+						color="primary"
+						fullWidth
+						type="submit"
+						variant="outlined"
+					>
+						Confirm changes
+					</Button>
+				</form>
+				<button onClick={handleEdit}>cancel</button>
+			</div>
+			:
+			<div>
+				<h2>hello cust</h2>
+			// <h2>name - {props.info.data.display_name}</h2>
+			// <h2>email - {props.info.data.email}</h2>
+				<h2>username - {props.info.data.username}</h2>
+				<h2>account type - {props.info.type}</h2>
+				<button onClick={handleEdit}>Edit</button>
+			</div>
 	);
 }
 
