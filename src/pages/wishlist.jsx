@@ -70,7 +70,7 @@ function WishlistPage() {
 		<div>
 			<Drawer>
 				<div>
-					<Typography variant="h3">
+					<Typography className="dashboard-title" variant="h3">
 						Here are your Wishlisted Events
 					</Typography>
 					<div className='events-row events-row-wishlist' >

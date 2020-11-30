@@ -236,8 +236,8 @@ export default function Navbar() {
 					cust
 					: org
 			}
-			<Link className='no-underline' to='/accounts'>
-				<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<Link className='no-underline' to='/account'>
+				<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 			</Link>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
@@ -262,9 +262,8 @@ export default function Navbar() {
 						cust
 						: org
 				}
-
-				<Link className='no-underline' to='/accounts'>
-					<MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+				<Link className='no-underline' to='/account'>
+					<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 				</Link>
 				<MenuItem onClick={handleLogout}>Logout</MenuItem>
 			</Menu>

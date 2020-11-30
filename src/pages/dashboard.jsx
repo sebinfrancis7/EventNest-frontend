@@ -64,13 +64,13 @@ function Dashboard() {
 					<h2>{user.data.username}</h2>
 					<h2>{user.data.display_name}</h2> */}
 					{/* <h2>wishlist</h2> */}
-					<Typography variant="h3">
+					<Typography className="dashboard-title" variant="h3">
 						Dashboard
 					</Typography>
 					<div>
 						<DashboardContent />
 					</div>
-					<Typography variant="h3">
+					<Typography className="dashboard-title" variant="h3">
 						Here are your Events
 					</Typography>
 					<div className='events-row events-row-wishlist' >

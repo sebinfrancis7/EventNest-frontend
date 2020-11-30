@@ -12,7 +12,7 @@ import '../sass/dashboard.scss';
 function Ticket(purchase) {
 	if(purchase.event) {
 		return (
-			<Link to={'/invoices/' + purchase.transactionid} className='list-link'>
+			<Link className='list-link' to={'/invoices/' + purchase.transactionid}>
 				<ListItem button key={purchase.event._id}>
 					<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
 					<ListItemText primary={purchase.event.title + '\t' + 'Tickets: ' + purchase.tickets} />
@@ -40,7 +40,7 @@ function TicketsPage() {
 		if(error) {
 			return 'Some error occured while getting your purchases';
 		}
-		console.log(purchases)
+		console.log(purchases);
 		return (
 			<List>
 				{purchases.map(Ticket)}
@@ -78,7 +78,7 @@ function TicketsPage() {
 		<div>
 			<Drawer>
 				<div>
-					<Typography variant="h3">
+					<Typography className="dashboard-title" variant="h3">
 						Tickets
 					</Typography>
 					<div>

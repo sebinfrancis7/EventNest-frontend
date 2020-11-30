@@ -10,7 +10,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
@@ -62,7 +64,7 @@ export default function ClippedDrawer({children}) {
 		<div>
 			<Link className='list-link' to='/wishlist'>
 				<ListItem button className='list-button'> 
-					<ListItemIcon><FavoriteOutlinedIcon /></ListItemIcon>
+					<ListItemIcon><FavoriteBorderIcon /></ListItemIcon>
 					<ListItemText primary="Wishlist" />
 				</ListItem>
 			</Link>
@@ -93,6 +95,15 @@ export default function ClippedDrawer({children}) {
 								cust
 								: org
 						}
+					</List>
+					<Divider />
+					<List>
+						<Link className='list-link' to='/account'>
+							<ListItem button className='list-button'> 
+								<ListItemIcon><PersonOutlineIcon /></ListItemIcon>
+								<ListItemText primary="Profile" />
+							</ListItem>
+						</Link>
 					</List>
 					<Divider />
 				</div>
