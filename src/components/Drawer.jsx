@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,8 +13,11 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import { useUserContext, UserContext } from '../userContext';
+
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import '../sass/dashboard.scss';
+import '../sass/drawer.scss';
 
 const drawerWidth = 240;
 
@@ -43,47 +46,58 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ClippedDrawer({children}) {
-	const classes = useStyles();
+	let [user, setUser] = useContext(UserContext);
+
+
+	const org = (
+		<Link className='list-link' to='/dashboard'>
+			<ListItem button className='list-button'> 
+				<ListItemIcon><DashboardIcon /></ListItemIcon>
+				<ListItemText primary="Dashboard" />
+			</ListItem>
+		</Link>
+	);
+	
+	const cust = (
+		<div>
+			<Link className='list-link' to='/wishlist'>
+				<ListItem button className='list-button'> 
+					<ListItemIcon><FavoriteOutlinedIcon /></ListItemIcon>
+					<ListItemText primary="Wishlist" />
+				</ListItem>
+			</Link>
+			<Link className='list-link' to='/invoices'>
+				<ListItem button className='list-button'>
+					<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
+					<ListItemText primary="Tickets" />
+				</ListItem>
+			</Link>
+		</div>
+	);
 
 	return (
-		<div className={classes.root}>
+		<div className='drawer-root'>
 			<CssBaseline />
-			<AppBar className={classes.appBar} position="fixed">
-				{/* <Navbar /> */}
-			</AppBar>
 			<Drawer
-				className={classes.drawer}
+				className='drawer'
 				classes={{
-					paper: classes.drawerPaper,
+					paper: 'drawer-paper',
 				}}
 				variant="permanent"
 			>
-				<div className={classes.drawerContainer}>
+				<div className='drawer-container'>
 					<Divider />
 					<List>
-						<Link className='list-link' to='/dashboard'>
-							<ListItem button className='list-button'> 
-								<ListItemIcon><DashboardIcon /></ListItemIcon>
-								<ListItemText primary="Dashboard" />
-							</ListItem>
-						</Link>
-						<Link className='list-link' to='/wishlist'>
-							<ListItem button className='list-button'> 
-								<ListItemIcon><FavoriteOutlinedIcon /></ListItemIcon>
-								<ListItemText primary="Wishlist" />
-							</ListItem>
-						</Link>
-						<Link className='list-link' to='/invoices'>
-							<ListItem button className='list-button'>
-								<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
-								<ListItemText primary="Tickets" />
-							</ListItem>
-						</Link>
+						{
+							user.type == 'customer' ? 
+								cust
+								: org
+						}
 					</List>
 					<Divider />
 				</div>
 			</Drawer>
-			<main className={classes.content}>
+			<main className='drawer-content'>
 				{children}
 			</main>
 		</div>

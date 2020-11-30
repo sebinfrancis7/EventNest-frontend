@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect} from 'react';
 import { useUserContext, UserContext } from '../userContext';
 import Drawer from './../components/Drawer';
 import Card from '../components/Card';
-import axios from 'axios';
 
 const url = 'https://eventnest-server.herokuapp.com/';
 
@@ -71,10 +70,6 @@ function WishlistPage() {
 		<div>
 			<Drawer>
 				<div>
-					{/* <h2>{user.data._id}</h2>
-					<h2>{user.data.username}</h2>
-					<h2>{user.data.display_name}</h2> */}
-					{/* <h2>wishlist</h2> */}
 					<Typography variant="h3">
 						Here are your Wishlisted Events
 					</Typography>

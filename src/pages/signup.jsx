@@ -72,10 +72,11 @@ export default function SignUp() {
 					Sign up
 				</Typography>
 				<form className={classes.form} noValidate onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
+					<Grid container item spacing={2}>
 						<Grid item xs={12} >
 							<TextField
 								autoFocus
+								className='signup-input'
 								fullWidth
 								id="username"
 								label="Username"
@@ -88,6 +89,7 @@ export default function SignUp() {
 						</Grid>
 						<Grid item xs={12} >
 							<TextField
+								className='signup-input'
 								fullWidth
 								id="display_name"
 								label="Display Name"
@@ -100,6 +102,7 @@ export default function SignUp() {
 						<Grid item xs={12}>
 							<TextField
 								autoComplete="email"
+								className='signup-input'
 								fullWidth
 								id="email"
 								label="Email Address"
@@ -112,6 +115,7 @@ export default function SignUp() {
 						<Grid item xs={12}>
 							<TextField
 								autoComplete="current-password"
+								className='signup-input'
 								fullWidth
 								id="password"
 								label="Password"
@@ -123,22 +127,18 @@ export default function SignUp() {
 								variant="outlined"
 							/>
 						</Grid>
-						{/* <Grid item xs={12}>
-							<FormControlLabel
-								control={<Checkbox color="primary" value="allowExtraEmails" />}
-								label="I want to receive inspiration, marketing promotions and updates via email."
-							/>
-						</Grid> */}
-					</Grid>
-					<Button
-						className="submit"
-						color="primary"
-						fullWidth
-						type="submit"
-						variant="outlined"
-					>
+						<Grid className="signup-submit" item xs={12}>
+							<Button
+								className="submit signup-input"
+								color="primary"
+								fullWidth
+								type="submit"
+								variant="outlined"
+							>
 						Sign Up
-					</Button>				
+							</Button>		
+						</Grid>
+					</Grid>
 					<Grid item xs={12}>
 						<Typography
 							align='center'
