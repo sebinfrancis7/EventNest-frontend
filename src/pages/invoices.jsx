@@ -9,10 +9,10 @@ import { ListItemText } from '@material-ui/core';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import '../sass/dashboard.scss';
 
-function Ticket(purchase) {
+function Ticket(purchase, i) {
 	if(purchase.event) {
 		return (
-			<Link className='list-link' to={'/invoices/' + purchase.transactionid}>
+			<Link className='list-link' key={i} to={'/invoices/' + purchase.transactionid}>
 				<ListItem button key={purchase.event._id}>
 					<ListItemIcon><ReceiptOutlinedIcon /></ListItemIcon>
 					<ListItemText primary={purchase.event.title + '\t' + 'Tickets: ' + purchase.tickets} />

@@ -145,7 +145,7 @@ function EventInfo(props) {
 				>
 					<div className='blur'></div>
 				</div>
-				<Grid item lg={2} xs={0}></Grid>
+				<Grid item lg={2}></Grid>
 				<Grid container item lg={8} spacing={2} xs={12}>
 					<Grid className="event-page-container" item xs={12}>
 						<Card className="event-page-card shadow-large">
@@ -251,7 +251,7 @@ function EventInfo(props) {
 						</Card>
 					</Grid>
 				</Grid>
-				<Grid item lg={2} xs={0}></Grid>
+				<Grid item lg={2}></Grid>
 			</Grid>
 		</StylesProvider>
 	);

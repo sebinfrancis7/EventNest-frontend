@@ -58,7 +58,7 @@ function App() {
 			}
 		}
 		fetchData();
-	});
+	}, []);
 
 	useEffect(() => {
 		console.log(user);
