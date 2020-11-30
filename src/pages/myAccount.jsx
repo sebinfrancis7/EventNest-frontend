@@ -22,7 +22,6 @@ function CustomerAccount(props) {
 	const [details, setDetails] = useState({ username: props.info.data.username, password: '', display_name: props.info.data.display_name, email: props.info.data.email });
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(details);
 		axios
 			.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
 			.then(res => {
@@ -140,25 +139,14 @@ function OrganizerAccount(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(details);
-		// axios
-		// 	.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
-		// 	.then(res => {
-		// 		console.log(res);
-		// 		console.log(res.data);
-		// 		// axios
-		// 		// 	.get('https://eventnest-server.herokuapp.com/users/' + props.info.data._id, details, { withCredentials: true })
-		// 		// 	.then(res => {
-		// 		// 		// console.log(res);
-		// 		// 		console.log(res.data);
-		// 		// 		// setUser(res.data);
-		// 		// 	})
-		// 		// 	.catch(err => {
-		// 		// 		console.log(err);
-		// 		// 	});
-		// 	})
-		// 	.catch(err => {
-		// 		console.log(err);
-		// 	});
+		axios
+			.put('https://eventnest-server.herokuapp.com/organizer/' + props.info.data._id, details, { withCredentials: true })
+			.then(res => {
+				setUser({...user, data: res.data})	
+			})
+			.catch(err => {
+				alert(err)
+			});
 	};
 
 	function handleChange(event) {
