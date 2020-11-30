@@ -9,18 +9,18 @@ const url = 'https://eventnest-server.herokuapp.com/';
 
 function createCard(event, i) {
 	if(event)
-	return (
-		<div className='event-card' key={i}>
-			<Card
-				city={event.city || event.venue_addr}
-				description={event.description}
-				event_id={event._id}
-				img_url={event.image_url}
-				price={event.price}
-				title={event.title}
-			/>
-		</div>
-	);
+		return (
+			<div className='event-card' key={i}>
+				<Card
+					city={event.city || event.venue_addr}
+					description={event.description}
+					event_id={event._id}
+					img_url={event.image_url}
+					price={event.price}
+					title={event.title}
+				/>
+			</div>
+		);
 }
 
 function WishlistPage() {
