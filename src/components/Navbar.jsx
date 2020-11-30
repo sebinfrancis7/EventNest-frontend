@@ -292,10 +292,10 @@ export default function Navbar() {
 				<AppBar className="no-shadow" color="primary" position="static">
 					<Toolbar>
 						<div className="title-search-container">
+							<Search />
 							<Typography className={classNames(classes.title, 'title')} variant="h5">
 								<Link className="logo" to="/">EventNest</Link>
 							</Typography>
-							<Search />
 						</div>
 						<div className='grow' />
 						<div className={classes.sectionDesktop}>

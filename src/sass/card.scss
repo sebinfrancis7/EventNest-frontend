@@ -43,6 +43,10 @@
         border-radius: 1rem;
         min-height: 21.5rem;
         background-size: cover;
+
+        @media (max-width: 600px) {
+            min-height: 8.5rem;
+        }
     }
 
     &-title {
@@ -53,6 +57,7 @@
         border-radius: 1rem;
         margin-top: 10px;
         margin-left: 10px;
+        margin-right: 10px;
         background-color: rgba(white, 0.9);
         max-width: 10rem;
         box-shadow: 0 4px 15px 0 rgba(40,44,53,.06), 0 2px 2px 0 rgba(40,44,53,.08);

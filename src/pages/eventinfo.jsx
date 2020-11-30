@@ -254,7 +254,7 @@ function EventInfo(props) {
 						</Card>
 					</Grid>
 				</Grid>
-				<Grid item sm={2} xs={0}></Grid>
+				<Grid item lg={2} xs={0}></Grid>
 			</Grid>
 		</StylesProvider>
 	);
