@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,8 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link as Lnk } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import GoogleIcon from './../components/GoogleIcon';
+import { UserContext } from '../userContext';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -33,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustSignUp() {
 	const classes = useStyles();
-	const [details, setDetails] = useState({ username: '',password: '', dispaly_name: '', email: ''});
+    const [details, setDetails] = useState({ username: '',password: '', dispaly_name: '', email: ''});
+    const [user, setUser] = useContext(UserContext);
+    const history = useHistory();
+    
 	const handleSubmit = (e) => {
 		async function submitData() {
 			let httpHeaders = { 'Content-Type': 'application/json' };

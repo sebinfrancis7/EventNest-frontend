@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,7 +6,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../userContext';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -30,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrgSignup() {
 	const classes = useStyles();
-	const [details, setDetails] = useState({ username: '',password: '', email: ''});
+    const [details, setDetails] = useState({ username: '',password: '', email: ''});
+    const [user, setUser] = useContext(UserContext);
+    const history = useHistory();
+    
 	const handleSubmit = (e) => {
 		async function submitData() {
 			let httpHeaders = { 'Content-Type': 'application/json' };
