@@ -2,8 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import Homepage from './pages/homepage';
 import SignInSide from './pages/signin';
 import SignUp from './pages/signup';
-import OrgSignUp from './pages/orgSignup.jsx';
-import OrgSignInSide from './pages/orgSignin.jsx';
 import Error from './pages/404';
 import Events from './pages/eventsPage.jsx';
 import Event from './pages/eventinfo.jsx';
@@ -128,12 +126,6 @@ function App() {
 					</Route> */}
 					<Route exact path='/contactus'>
 						<ContactUs />
-					</Route>
-					<Route exact path='/orgsignin'>
-						<OrgSignInSide />
-					</Route>
-					<Route exact path='/orgsignup'>
-						<OrgSignUp />
 					</Route>
 					<Route exact path='/accounts'>
 						<MyAccount />
