@@ -142,8 +142,14 @@ function EventInfo(props) {
 			<h2>{details.image_url}</h2>
 			<h2>{details.attendees}</h2> */}
 			<Grid container>
-				<Grid item sm={2} xs={0}></Grid>
-				<Grid container item sm={8} spacing={2} xs={12}>
+				<div className="background-event-img" style={{
+					backgroundImage: 'url(' + details.image_url + ')',
+				}}
+				>
+					<div className='blur'></div>
+				</div>
+				<Grid item lg={2} xs={0}></Grid>
+				<Grid container item lg={8} spacing={2} xs={12}>
 					<Grid className="event-page-container" item xs={12}>
 						<Card className="event-page-card shadow-large">
 							<CardMedia
@@ -166,35 +172,40 @@ function EventInfo(props) {
 											Only {details.max_attendees - details.attendees} left !!!
 										</Typography>
 									</Grid>
-									<Grid className="event-button-container" item sm={6} xs={12}>
-										<FormControl className="form-select">
-											<InputLabel>Tickets</InputLabel>
-											<Select
-												className="ticket-select"
-												inputProps={{
-													name: 'Tickets'
-												}}
-												onChange={handleNumber}
-												value={number}
+									<Grid className="event-button-container" container item sm={6} xs={12}>
+										<Grid>
+
+											<FormControl className="form-select">
+												<InputLabel>Tickets</InputLabel>
+												<Select
+													className="ticket-select"
+													inputProps={{
+														name: 'Tickets'
+													}}
+													onChange={handleNumber}
+													value={number}
 												// variant="outlined"
+												>
+													<MenuItem value={1}>1</MenuItem>
+													<MenuItem value={2}>2</MenuItem>
+													<MenuItem value={3}>3</MenuItem>
+													<MenuItem value={4}>4</MenuItem>
+													<MenuItem value={5}>5</MenuItem>
+													<MenuItem value={6}>6</MenuItem>
+												</Select>
+											</FormControl>
+										</Grid>
+										<Grid>
+											<Button
+												className="event-register-button button-shadow"
+												color="primary"
+												disabled={!load}
+												onClick={displayRazorpay}
+												variant="contained"
 											>
-												<MenuItem value={1}>1</MenuItem>
-												<MenuItem value={2}>2</MenuItem>
-												<MenuItem value={3}>3</MenuItem>
-												<MenuItem value={4}>4</MenuItem>
-												<MenuItem value={5}>5</MenuItem>
-												<MenuItem value={6}>6</MenuItem>
-											</Select>
-										</FormControl>
-										<Button
-											className="event-register-button button-shadow"
-											color="primary"
-											disabled={!load}
-											onClick={displayRazorpay}
-											variant="contained"
-										>
 											Register
-										</Button>
+											</Button>
+										</Grid>
 									</Grid>
 								</Grid>
 							</CardContent>
@@ -224,7 +235,7 @@ function EventInfo(props) {
 								</FacebookShareButton>
 								<TwitterShareButton 
 									hashtag={['#'+ details.title, '#eventnest']}
-									title={'Hey checkout this event on EventNest ' + details.title}
+									title={'Hey checkout this event on EventNest ' + '"' + details.title + '"'}
 									url={window.location.href}
 								>
 									<TwitterIcon />

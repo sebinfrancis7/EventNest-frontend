@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Grid, makeStyles, StylesProvider, TextField, Typography } from '@material-ui/core';
-import {DropzoneDialog} from 'material-ui-dropzone'
+import {DropzoneDialog} from 'material-ui-dropzone';
 import { Paper } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import '../sass/createEvent.scss';
 import { red } from '@material-ui/core/colors';
-import ImgUpload from '../components/ImgUpload'
+import ImgUpload from '../components/ImgUpload';
+import Copyright from './../components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -44,19 +45,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Copyright() {
-	return (
-		<Typography align="center" color="textSecondary" variant="body2">
-			{'Copyright © '}
-			<Link to="/">
-                Procyon
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
-
 function CreatEvent() {
 	const classes = useStyles();
 	const [details, setDetails] = useState({});
@@ -70,7 +58,7 @@ function CreatEvent() {
 			.post('https://eventnest-server.herokuapp.com/events', details, { withCredentials: true })
 			.then(res => {
 				alert('Event created redirecting to dashboard ');
-				history.push('/dashboard')
+				history.push('/dashboard');
 			})
 			.catch(err => {
 				alert(err);
@@ -91,8 +79,8 @@ function CreatEvent() {
 	return (
 		<StylesProvider injectFirst>
 			<Grid className={classes.root} component="main" container>
-				<Grid className={classes.image} item md={7} sm={4} xs={false} />
-				<Grid component={Paper} elevation={6} item md={5} sm={8} square xs={12}>
+				<Grid className={classes.image} item md={8} sm={4} xs={false} />
+				<Grid component={Paper} elevation={6} item md={4} sm={8} square xs={12}>
 					<div className={classes.paper}>
 						<Typography component="h1" variant="h5">
 							Create Event
@@ -139,7 +127,8 @@ function CreatEvent() {
 								variant="outlined"
 							/>
 							<TextField
-								className="event-input"
+								// className="event-input"
+								fullWidth
 								id="max_attendees"
 								label="Max max_attendees"
 								margin="normal"
@@ -149,15 +138,15 @@ function CreatEvent() {
 								value={details.max_attendees}
 								variant="outlined"
 							/>
-							< ImgUpload 
+							<ImgUpload 
 								details={details}
-								setDetails={setDetails}
-								open={open}
-								setOpen={setOpen}
-								handleChange={handleChange} 
 								files={files}
+								filesLimit={1}
+								handleChange={handleChange}
+								open={open}
+								setDetails={setDetails}
 								setFiles={setFiles}
-								filesLimit={1}	
+								setOpen={setOpen}	
 							/>
 							<TextField
 								fullWidth
@@ -176,9 +165,9 @@ function CreatEvent() {
 								className="submit-button"
 								color="primary"
 								fullWidth
+								onClick={handleSubmit}
 								type="submit"
 								variant="contained"
-								onClick={handleSubmit}
 							>
 								Create Event
 							</Button>

@@ -6,7 +6,7 @@
 
 .event-page-card {
     width: 100%;
-    border-radius: 0.5rem;
+    border-radius: 4px;
 }
 
 .shadow-large {
@@ -17,7 +17,10 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
-    // margin: 1rem 1rem;
+    
+    @media (max-width: 600px) {
+        justify-content: center;
+    }
 }
 
 .event-banner-image {
@@ -42,5 +45,9 @@ div.event-page-content-container:last-child {
 }
 
 .form-select {
-    margin: 1rem;
+    margin: 0.5rem 1rem 1rem 0;
+}
+
+div.MuiGrid-spacing-xs-2 {
+    margin: 0;
 }
