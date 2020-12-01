@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +10,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link, useHistory } from 'react-router-dom';
 import GoogleIcon from './../components/GoogleIcon';
 import { UserContext } from '../userContext';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -34,12 +34,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustSignUp() {
 	const classes = useStyles();
+	const [error, setError] = useState(false);
+	const [errorMsg, setErrorMsg] = useState('');
 	const [details, setDetails] = useState({ username: '',password: '', dispaly_name: '', email: ''});
 	const [user, setUser] = useContext(UserContext);
 	const history = useHistory();
     
 	const handleSubmit = (e) => {
 		async function submitData() {
+			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
 			let url = 'https://eventnest-server.herokuapp.com/customer';
 			let myHeaders = new Headers(httpHeaders);
@@ -51,12 +54,13 @@ export default function CustSignUp() {
 			});
 			let json = await response.json();
 			if (response.ok) {
-				alert('Signup successfull ');
 				setUser({ data: json, type: 'customer', loggedIn: true });
 				history.push('/');
 			}
 			else {
-				alert(json.err.message);
+				setError(true);
+				setErrorMsg(json.err.message);
+				// alert(json.err.message);
 			}
 		}
 		e.preventDefault();
@@ -135,7 +139,14 @@ export default function CustSignUp() {
 						variant="outlined"
 					>
                 Sign Up
-					</Button>		
+					</Button>
+					{
+						error ?
+							<Alert severity="error">
+								{errorMsg}
+							</Alert>
+							: null
+					}
 				</Grid>
 			</Grid>
 			<Grid item xs={12}>

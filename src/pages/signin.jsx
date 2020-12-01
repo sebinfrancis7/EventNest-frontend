@@ -11,15 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import OrgSignin from '../components/OrgSignin';
 import CustSignin from '../components/CustSignin';
 
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		margin: theme.spacing(8, 4),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-	},
-}));
-
 export default function SignInSide() {
 	const [ type, setType ] = useState('customer');
 
@@ -33,6 +24,7 @@ export default function SignInSide() {
 		if(type === 'organizer')
 			return < OrgSignin />;
 	}
+	
 	return (
 		<StylesProvider injectFirst>
 			<Grid className="signin-root" component="main" container>
@@ -55,7 +47,7 @@ export default function SignInSide() {
 							<MenuItem value={'customer'}>Customer</MenuItem>
 							<MenuItem value={'organizer'}>Organizer</MenuItem>
 						</Select>
-						< CheckType />
+						<CheckType />
 					</div>
 				</Grid>
 			</Grid>

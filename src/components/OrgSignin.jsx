@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Copyright from './../components/Copyright';
 import { BrowserRouter as Router, Route, Redirect, useHistory } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
+import Alert from '@material-ui/lab/Alert';
 import '../sass/signin.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +25,14 @@ const useStyles = makeStyles((theme) => ({
 export default function OrgSignin() {
 
 	const [user, setUser] = useContext(UserContext);
+	const [error, setError] = useState(false);
 	const classes = useStyles();
 	const [details, setDetails] = useState({ username: '', password: '' });
 	let history = useHistory();
 	
 	const handleSubmit = (e) => {
 		async function submitData() {
+			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
 			let url = 'https://eventnest-server.herokuapp.com/organizer/login';
 			//let url = 'http://localhost:4000/customer/login';
@@ -48,7 +51,7 @@ export default function OrgSignin() {
 				history.push('/');
 			}
 			else {
-				alert('Wrong username or password ');
+				setError(true);
 			}
 		}
 		e.preventDefault();
@@ -95,10 +98,6 @@ export default function OrgSignin() {
 					/>
 				</Grid>
 				<Grid item xs={12} >
-					<FormControlLabel
-						control={<Checkbox color="primary" value="remember" />}
-						label="Remember me"
-					/>
 					<Button
 						className="submit"
 						color="primary"
@@ -108,6 +107,13 @@ export default function OrgSignin() {
 					>
                         Sign In
 					</Button>
+					{
+						error ?
+							<Alert severity="error">
+								Wrong Username or Password.
+							</Alert>
+							: null
+					}
 				</Grid>
 			</Grid>
 			<Grid container>

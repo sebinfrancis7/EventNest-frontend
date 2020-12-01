@@ -8,14 +8,15 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { Divider, Link as Lnk, SvgIcon } from '@material-ui/core';
+import { Avatar, Divider, Link as Lnk, SvgIcon } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Copyright from './../components/Copyright';
 import { BrowserRouter as Router, Route, Redirect, useHistory } from 'react-router-dom';
 import { useUserContext, UserContext } from '../userContext';
-import '../sass/signin.scss';
 import GoogleIcon from './../components/GoogleIcon';
+import Alert from '@material-ui/lab/Alert';
+import '../sass/signin.scss';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -29,12 +30,14 @@ const useStyles = makeStyles((theme) => ({
 export default function CustSignin() {
 
 	const [user, setUser] = useContext(UserContext);
+	const [error, setError] = useState(false);
 	const classes = useStyles();
 	const [details, setDetails] = useState({ username: '', password: '' });
 	let history = useHistory();
 
 	const handleSubmit = (e) => {
 		async function submitData() {
+			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
 			let url = 'https://eventnest-server.herokuapp.com/customer/login';
 			//let url = 'http://localhost:4000/customer/login';
@@ -53,14 +56,13 @@ export default function CustSignin() {
 				history.push('/');
 			}
 			else {
-				alert('Wrong username or password ');
+				setError(true);
 			}
 		}
 		e.preventDefault();
 		submitData();
 
 	};
-
 
 	function handleChange(event) {
 		const inputname = event.target.name;
@@ -100,10 +102,7 @@ export default function CustSignin() {
 					/>
 				</Grid>
 				<Grid item xs={12} >
-					<FormControlLabel
-						control={<Checkbox color="primary" value="remember" />}
-						label="Remember me"
-					/>
+
 					<Button
 						className="submit"
 						color="primary"
@@ -113,6 +112,13 @@ export default function CustSignin() {
 					>
                         Sign In
 					</Button>
+					{
+						error ?
+							<Alert severity="error">
+								Wrong Username or Password.
+							</Alert>
+							: null
+					}
 				</Grid>
 				<Grid item xs={12}>
 					<Typography
@@ -160,17 +166,6 @@ export default function CustSignin() {
 					</Grid>
 				</Grid>
 			</Grid>
-			{/* <a href="https://eventnest-server.herokuapp.com/auth/facebook">Facebook</a> */}
-			{/* <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleFacebook}
-            >
-Facebook
-            </Button> */}
 			<Grid container>
 				<Grid item sm={6} xs={12}>
 					<Link href='#' variant='body2'>
