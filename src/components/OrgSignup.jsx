@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../userContext';
 import Alert from '@material-ui/lab/Alert';
+import { useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -36,8 +37,11 @@ export default function OrgSignup() {
 	const [details, setDetails] = useState({ username: '',password: '', email: ''});
 	const [user, setUser] = useContext(UserContext);
 	const history = useHistory();
+	const { register, handleSubmit, errors } = useForm({
+		mode: 'onChange'
+	});
     
-	const handleSubmit = (e) => {
+	const onSubmit = (e) => {
 		async function submitData() {
 			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
@@ -51,7 +55,6 @@ export default function OrgSignup() {
 			});
 			let json = await response.json();
 			if (response.ok) {
-				alert('Signup successfull ');
 				setUser({ data: json, type: 'organizer', loggedIn: true });
 				history.push('/');
 			}
@@ -61,7 +64,7 @@ export default function OrgSignup() {
 				// alert(json.err.message);
 			}
 		}
-		e.preventDefault();
+		// e.preventDefault();
 		submitData();
 	};
 
@@ -72,7 +75,7 @@ export default function OrgSignup() {
 		setDetails(newDetails);
 	}
 	return (
-		<form className={classes.form} noValidate onSubmit={handleSubmit}>
+		<form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)}>
 			<Grid container spacing={2}>
 				<Grid item xs={12} >
 					<TextField
@@ -92,27 +95,61 @@ export default function OrgSignup() {
 						autoComplete="email"
 						fullWidth
 						id="email"
+						inputRef={register({
+							pattern: {
+								value: /\S+@\S+\.\S+/,
+								message: 'Please enter a valid Email address.'
+							}
+						})}
 						label="Email Address"
 						name="email"
 						onChange={handleChange}
-						required
-						value={details.email}
+						// value={details.email}
 						variant="outlined"
 					/>
+					{
+						errors.email ?
+							<Alert className="validation-error" severity="error">
+								{errors.email.message}
+							</Alert>
+							: null
+					}
 				</Grid>
 				<Grid item xs={12}>
 					<TextField
 						autoComplete="current-password"
 						fullWidth
 						id="password"
+						inputRef={register({
+							required: 'Required',
+							minLength: {
+								value: 8,
+								message: 'Password must have at least 8 characters'
+							},
+							maxLength: {
+								value: 20,
+								message: 'Password can have maximum 20 characters'
+							},
+							pattern: {
+								value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/,
+								message: 'Password must contain atleast 1 special character and 1 number'
+							}
+						})}
 						label="Password"
 						name="password"
 						onChange={handleChange}
 						required
 						type="password"
-						value={details.password}
+						// value={details.password}
 						variant="outlined"
 					/>
+					{
+						errors.password ?
+							<Alert className="validation-error" severity="error">
+								{errors.password.message}
+							</Alert>
+							: null
+					}
 				</Grid>
 				<Grid className="" item xs={12}>
 					<Button
@@ -131,11 +168,12 @@ export default function OrgSignup() {
 							</Alert>
 							: null
 					}
+
 				</Grid>
 			</Grid>
 			<Grid container justify="flex-end">
 				<Grid item>
-					<Link to='/orgsignin' variant="body2">
+					<Link to='/signin' variant="body2">
                         Already have an account? Sign in
 					</Link>
 				</Grid>

@@ -123,7 +123,7 @@ export default function OrgSignin() {
 					</Link>
 				</Grid>
 				<Grid item sm={6} xs={12}>
-					<Link to='/orgsignup' variant="body2">
+					<Link to='/signup' variant="body2">
 						{'Don\'t have an account? Sign Up'}
 					</Link>
 				</Grid>

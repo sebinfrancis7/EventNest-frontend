@@ -91,3 +91,12 @@ button.signup-input {
 div.signup-submit.signup-submit.signup-submit {
         padding-right: 1.5rem;
 }
+
+.validation-error {
+    margin-top: 1rem;
+
+    &-cust {
+        margin-top: 1rem;
+        margin-right: 1rem;
+    }
+}
