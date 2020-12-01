@@ -61,6 +61,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ContactUs() {
 	const classes = useStyles();
+	// const [details, setDetails] = useState({});
+
+	// function handleChange(event) {
+	// 	const inputname = event.target.name;
+	// 	let inputvalue = event.target.value;
+	// 	inputvalue = inputvalue.replace(/ /g, '%20');
+	// 	const newDetails = { ...details, [inputname]: inputvalue };
+	// 	setDetails(newDetails);
+	// 	console.log(details);
+	// }
 
 	return (
 		<Grid className={classes.root} component="main" container>
@@ -74,24 +84,15 @@ export default function ContactUs() {
 					<Typography component="h1" variant="h5">
 						CONTACT US
 					</Typography>
-					<form className={classes.form} noValidate>
+					<form action="mailto:sebin.k.francis07@gmail.com" className={classes.form} method="GET" encType="multipart/form-data" >
 						<TextField
 							autoComplete="fname"
 							autoFocus
 							fullWidth
-							id="fname"
-							label="First Name"
+							id="name"
+							label="Name"
 							margin="normal"
-							name="fname"
-							variant="outlined"
-						/>
-						<TextField
-							autoComplete="lname"
-							fullWidth
-							id="lname"
-							label="Last Name"
-							margin="normal"
-							name="lname"
+							name="name"
 							variant="outlined"
 						/>
 						<TextField
@@ -105,10 +106,23 @@ export default function ContactUs() {
 							variant="outlined"
 
 						/>
+						<TextField
+							fullWidth
+							id="subject"
+							label="Subject"
+							margin="normal"
+							name="subject"
+							// onChange={handleChange}
+							// value={details.subject}
+							variant="outlined"
+						/>
 						<TextareaAutosize
 							aria-label="minimum height"
 							fullwidth
 							margin="normal"
+							name="body"
+							// onChange={handleChange}
+							// value={details.body}
 							placeholder="Leave a Message" rowsMin={10} variant="outlined"
 						/>
 						<Button
