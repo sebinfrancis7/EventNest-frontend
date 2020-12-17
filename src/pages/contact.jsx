@@ -84,7 +84,7 @@ export default function ContactUs() {
 					<Typography component="h1" variant="h5">
 						CONTACT US
 					</Typography>
-					<form action="mailto:sebin.k.francis07@gmail.com" className={classes.form} method="GET" encType="multipart/form-data" >
+					<form action={"mailto:" + process.env.REACT_APP_CONTACT_EMAIL} className={classes.form} method="GET" encType="multipart/form-data" >
 						<TextField
 							autoComplete="fname"
 							autoFocus

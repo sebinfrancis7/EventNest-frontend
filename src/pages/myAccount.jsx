@@ -26,7 +26,7 @@ function CustomerAccount(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.put('https://eventnest-server.herokuapp.com/customer/' + props.info.data._id, details, { withCredentials: true })
+			.put(process.env.REACT_APP_SERVER_URL + '/customer/' + props.info.data._id, details, { withCredentials: true })
 			.then(res => {
 				setUser({...user, data: res.data});
 				edit ? setEdit(false) : setEdit(true);
@@ -183,7 +183,7 @@ function OrganizerAccount(props) {
 		e.preventDefault();
 		console.log(details);
 		axios
-			.put('https://eventnest-server.herokuapp.com/organizer/' + props.info.data._id, details, { withCredentials: true })
+			.put(process.env.REACT_APP_SERVER_URL + '/organizer/' + props.info.data._id, details, { withCredentials: true })
 			.then(res => {
 				setUser({...user, data: res.data});	
 				edit ? setEdit(false) : setEdit(true);

@@ -45,7 +45,7 @@ export default function OrgSignup() {
 		async function submitData() {
 			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
-			let url = 'https://eventnest-server.herokuapp.com/organizer';
+			let url = process.env.REACT_APP_SERVER_URL + '/organizer';
 			let myHeaders = new Headers(httpHeaders);
 			let response = await fetch(url, {
 				method: 'POST',

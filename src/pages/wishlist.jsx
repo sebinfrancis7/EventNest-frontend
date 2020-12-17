@@ -4,7 +4,7 @@ import { useUserContext, UserContext } from '../userContext';
 import Drawer from './../components/Drawer';
 import Card from '../components/Card';
 
-const url = 'https://eventnest-server.herokuapp.com/';
+const url = process.env.REACT_APP_SERVER_URL + '/';
 
 function createCard(event, i) {
 	if(event)

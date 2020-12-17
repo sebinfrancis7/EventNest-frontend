@@ -26,7 +26,7 @@ function Ticket(purchase, i) {
 
 
 function TicketsPage() {
-	const url = 'https://eventnest-server.herokuapp.com/';
+	const url = process.env.REACT_APP_SERVER_URL + '/';
 	const [user, setUser] = useContext(UserContext);
 	const [loading, setLoading] = useState(true);
 	const [error, setErrror] = useState(); 

@@ -22,7 +22,7 @@ function ImgUpload({ details, setDetails, open, setOpen, handleChange, files, se
 				nfiles[0].name
 			);
 			axios
-				.post('https://eventnest-server.herokuapp.com/public/images', formData)
+				.post(process.env.REACT_APP_SERVER_URL + '/public/images', formData)
 				.then(res => {
 					setDetails({...details, image_url: res?.data?.url});
 					setPosting(false);

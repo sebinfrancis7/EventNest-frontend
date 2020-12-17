@@ -55,7 +55,7 @@ function CreatEvent() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('https://eventnest-server.herokuapp.com/events', details, { withCredentials: true })
+			.post(process.env.REACT_APP_SERVER_URL + '/events', details, { withCredentials: true })
 			.then(res => {
 				alert('Event created redirecting to dashboard ');
 				history.push('/dashboard');

@@ -17,7 +17,7 @@ import { MenuItem, InputLabel } from '@material-ui/core';
 import '../sass/eventinfo.scss';
 import { classNames } from 'classnames';
 
-const url = 'https://eventnest-server.herokuapp.com/';
+const url = process.env.REACT_APP_SERVER_URL + '/';
 //const url = 'http://localhost:4000/'
 
 function loadScript(src) {
@@ -226,7 +226,7 @@ function EventInfo(props) {
 								<FacebookShareButton 
 									hashtag={'#'+ details.title}
 									quote={'Your online destination for hosting'}
-									url={'https://www.facebook.com/EventNest-102276125061269'}
+									url={process.env.REACT_APP_FB_PAGE}
 								>
 									<FacebookIcon />
 								</FacebookShareButton>

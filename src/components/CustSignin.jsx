@@ -39,7 +39,7 @@ export default function CustSignin() {
 		async function submitData() {
 			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
-			let url = 'https://eventnest-server.herokuapp.com/customer/login';
+			let url = process.env.REACT_APP_SERVER_URL + '/customer/login';
 			//let url = 'http://localhost:4000/customer/login';
 			let myHeaders = new Headers(httpHeaders);
 			let response = await fetch(url, {

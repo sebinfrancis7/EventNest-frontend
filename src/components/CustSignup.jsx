@@ -49,7 +49,7 @@ export default function CustSignUp() {
 		async function submitData() {
 			setError(false);
 			let httpHeaders = { 'Content-Type': 'application/json' };
-			let url = 'https://eventnest-server.herokuapp.com/customer';
+			let url = process.env.REACT_APP_SERVER_URL + '/customer';
 			let myHeaders = new Headers(httpHeaders);
 			let response = await fetch(url, {
 				method: 'POST',

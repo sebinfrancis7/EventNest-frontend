@@ -38,9 +38,9 @@ function CardRow(props) {
 		var category = props.category;
 		let url;
 		if (category)
-			url = 'https://eventnest-server.herokuapp.com/events?category=' + category;
+			url = process.env.REACT_APP_SERVER_URL + '/events?category=' + category;
 		else {
-			url = 'https://eventnest-server.herokuapp.com/events';
+			url = process.env.REACT_APP_SERVER_URL + '/events';
 		}
 		axios
 			.get(url)

@@ -13,7 +13,7 @@ export default function Homepage() {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		axios
-			.get('https://eventnest-server.herokuapp.com/logout', { withCredentials: true })
+			.get(process.env.REACT_APP_SERVER_URL + '/logout', { withCredentials: true })
 			.then(res => {
 				console.log(res.data);
 				setUser({ loggedIn: false });

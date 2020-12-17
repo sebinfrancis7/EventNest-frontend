@@ -4,7 +4,7 @@ import axios from 'axios';
 // import { UserContext } from '../userContext';
 import '../sass/invoice.scss';
 
-const url = 'https://eventnest-server.herokuapp.com/';
+const url = process.env.REACT_APP_SERVER_URL + '/';
 function Invoice(props) {
 	const [user, setUser] = useState(null);
 	const [name, setName] = useState('');
@@ -31,7 +31,7 @@ function Invoice(props) {
 
 	useEffect(() => {
 		async function fetchData() {
-			let url = 'https://eventnest-server.herokuapp.com/users';
+			let url = process.env.REACT_APP_SERVER_URL + '/users';
 			//let url = 'http://localhost:4000/users'
 
 			let response = await fetch(url,

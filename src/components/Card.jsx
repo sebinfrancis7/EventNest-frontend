@@ -40,7 +40,7 @@ function MediaCard(props) {
 				console.log('posting....');
 				setfavorite(true);
 				setColor('#F50057');
-				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+				let url = process.env.REACT_APP_SERVER_URL + '/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				axios
 					.post(url, props.event_id)
 					.then(res => {
@@ -50,7 +50,7 @@ function MediaCard(props) {
 						console.log(err);
 					});
 			} else {
-				let url = 'https://eventnest-server.herokuapp.com/customer/' + user.data._id + '/wishlist/' + props.event_id;
+				let url = process.env.REACT_APP_SERVER_URL + '/customer/' + user.data._id + '/wishlist/' + props.event_id;
 				setfavorite(false);
 				setColor(null);
 				axios
