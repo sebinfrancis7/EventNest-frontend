@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/EventNest-frontend/static/css/main.4b1e8389.chunk.css",
+    "main.js": "/EventNest-frontend/static/js/main.632ed567.chunk.js",
+    "main.js.map": "/EventNest-frontend/static/js/main.632ed567.chunk.js.map",
+    "runtime-main.js": "/EventNest-frontend/static/js/runtime-main.1c99e1d0.js",
+    "runtime-main.js.map": "/EventNest-frontend/static/js/runtime-main.1c99e1d0.js.map",
+    "static/js/2.752f4487.chunk.js": "/EventNest-frontend/static/js/2.752f4487.chunk.js",
+    "static/js/2.752f4487.chunk.js.map": "/EventNest-frontend/static/js/2.752f4487.chunk.js.map",
+    "index.html": "/EventNest-frontend/index.html",
+    "static/css/main.4b1e8389.chunk.css.map": "/EventNest-frontend/static/css/main.4b1e8389.chunk.css.map",
+    "static/js/2.752f4487.chunk.js.LICENSE.txt": "/EventNest-frontend/static/js/2.752f4487.chunk.js.LICENSE.txt",
+    "static/media/404.e5772f3d.png": "/EventNest-frontend/static/media/404.e5772f3d.png",
+    "static/media/blocks.938bebbc.jpg": "/EventNest-frontend/static/media/blocks.938bebbc.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1c99e1d0.js",
+    "static/js/2.752f4487.chunk.js",
+    "static/css/main.4b1e8389.chunk.css",
+    "static/js/main.632ed567.chunk.js"
+  ]
+}
