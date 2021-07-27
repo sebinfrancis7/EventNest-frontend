@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/EventNest-frontend/static/css/main.f3905a40.chunk.css",
-    "main.js": "/EventNest-frontend/static/js/main.cc6fd19a.chunk.js",
-    "main.js.map": "/EventNest-frontend/static/js/main.cc6fd19a.chunk.js.map",
+    "main.js": "/EventNest-frontend/static/js/main.4cdcc4f4.chunk.js",
+    "main.js.map": "/EventNest-frontend/static/js/main.4cdcc4f4.chunk.js.map",
     "runtime-main.js": "/EventNest-frontend/static/js/runtime-main.1c99e1d0.js",
     "runtime-main.js.map": "/EventNest-frontend/static/js/runtime-main.1c99e1d0.js.map",
     "static/css/2.e8c58b8f.chunk.css": "/EventNest-frontend/static/css/2.e8c58b8f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.e8c58b8f.chunk.css",
     "static/js/2.e8618f91.chunk.js",
     "static/css/main.f3905a40.chunk.css",
-    "static/js/main.cc6fd19a.chunk.js"
+    "static/js/main.4cdcc4f4.chunk.js"
   ]
 }
